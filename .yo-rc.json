@@ -30,5 +30,16 @@
         "dtoSuffix": "DTO",
         "otherModules": [],
         "enableTranslation": false
+    },
+    "generator-jhipster-swagger-cli": {
+        "promptValues": {
+            "inputSpec": "http://dev.ci2.divisosofttech.com:8095/Offer/v2/api-docs",
+            "cliName": "OfferResource"
+        },
+        "apis": {
+            "OfferResource": {
+                "spec": "http://dev.ci2.divisosofttech.com:8095/Offer/v2/api-docs"
+            }
+        }
     }
 }
