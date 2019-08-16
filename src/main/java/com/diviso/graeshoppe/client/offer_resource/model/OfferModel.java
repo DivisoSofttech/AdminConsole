@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
  * OfferModel
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-08-16T09:47:50.329632700+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-08-16T11:57:19.467722400+05:30[Asia/Calcutta]")
 
 public class OfferModel   {
   @JsonProperty("deductionValue")
