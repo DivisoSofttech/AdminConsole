@@ -53,4 +53,15 @@ public class AggregateQueryResource {
 		public Page<Order> findOrderByDatebetweenAndStoreId(@PathVariable Instant from,@PathVariable Instant to,@PathVariable String storeId){
 			return aggregateQueryService.findOrderByDatebetweenAndStoreId(from,to,storeId);
 		}
+	     
+	    @GetMapping("/orderby-date-status-name/{statusName}/{date}")
+	    public Long findOrderCountByDateAndStatusName(@PathVariable String statusName,@PathVariable Instant date){
+	    	return aggregateQueryService.findOrderCountByDateAndStatusName(statusName,date);
+	    }
+	    
+	    @GetMapping("/orderby-satatus/{statusName}")
+	    public Long findOrderCountByStatusName(@PathVariable String statusName){
+	    	return aggregateQueryService.findOrderCountByStatusName(statusName);
+	    }
+	    
 }

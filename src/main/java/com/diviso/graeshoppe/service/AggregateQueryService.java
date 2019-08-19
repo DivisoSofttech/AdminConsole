@@ -15,4 +15,16 @@ public interface AggregateQueryService {
 	 */
 	public Page<Order> findOrderByDatebetweenAndStoreId(Instant from, Instant to,String storeId);
 
+	/**
+	 * @param statusName
+	 * @param date
+	 */
+	public Long findOrderCountByDateAndStatusName(String statusName, Instant date);
+
+	/**
+	 * @param statusName
+	 * @return
+	 */
+	public Long findOrderCountByStatusName(String statusName);
+
 }
