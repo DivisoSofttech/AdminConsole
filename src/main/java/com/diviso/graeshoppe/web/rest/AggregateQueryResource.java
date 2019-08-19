@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.diviso.graeshoppe.client.offer_resource.api.AggregateQueryResourceApi;
 import com.diviso.graeshoppe.client.offer_resource.api.DeductionValueTypeResourceApi;
 import com.diviso.graeshoppe.client.offer_resource.model.DeductionValueTypeDTO;
+import com.diviso.graeshoppe.client.offer_resource.model.OfferDTO;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.service.AggregateQueryService;
 /**
@@ -46,6 +48,20 @@ public class AggregateQueryResource {
 	        List<DeductionValueTypeDTO> deductionValueList = aggregateQueryResourceApi.getAllDeductionValueTypesUsingGET(null, null, null, null, null, null, null, null, null, null).getBody();
 	        		
 	        return ResponseEntity.ok().body(deductionValueList);
+	    }
+	    
+	    /**
+	     * GET  /offers : get all the offers.
+	     *
+	     * @param pageable the pagination information
+	     * @return the ResponseEntity with status 200 (OK) and the list of offers in body
+	     */
+	    @GetMapping("/query/offers/get-all-offers")
+	    public ResponseEntity<List<OfferDTO>> getAllOffers(Pageable pageable) {
+	        log.debug("REST request to get a page of Offers");
+	        List<OfferDTO> offerList = aggregateQueryResourceApi.getAllOffersUsingGET(null, null, null, null, null, null, null, null, null, null).getBody(); 
+	       
+	        return ResponseEntity.ok().body(offerList);
 	    }
 	    
 	    
