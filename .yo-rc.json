@@ -33,12 +33,15 @@
     },
     "generator-jhipster-swagger-cli": {
         "promptValues": {
-            "inputSpec": "http://dev.ci2.divisosofttech.com:8095/Offer/v2/api-docs",
-            "cliName": "OfferResource"
+            "inputSpec": "http://35.239.128.233:8088/v2/api-docs ",
+            "cliName": "order"
         },
         "apis": {
             "OfferResource": {
                 "spec": "http://dev.ci2.divisosofttech.com:8095/Offer/v2/api-docs"
+            },
+            "order": {
+                "spec": "http://35.239.128.233:8088/v2/api-docs "
             }
         }
     }

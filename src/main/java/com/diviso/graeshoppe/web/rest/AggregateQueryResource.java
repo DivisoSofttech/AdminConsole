@@ -1,19 +1,24 @@
 package com.diviso.graeshoppe.web.rest;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.diviso.graeshoppe.client.offer_resource.api.AggregateQueryResourceApi;
 import com.diviso.graeshoppe.client.offer_resource.api.DeductionValueTypeResourceApi;
 import com.diviso.graeshoppe.client.offer_resource.model.DeductionValueTypeDTO;
+import com.diviso.graeshoppe.client.order.model.Order;
+import com.diviso.graeshoppe.service.AggregateQueryService;
 /**
  * REST controller for managing Offer query service.
  */
@@ -25,6 +30,9 @@ public class AggregateQueryResource {
 
 	 @Autowired
 	 private AggregateQueryResourceApi aggregateQueryResourceApi;
+	 
+	 @Autowired
+	 private AggregateQueryService aggregateQueryService;
 	 	 
 	 /**
 	     * GET  /deduction-value-types : get all the deductionValueTypes of offers.
@@ -39,4 +47,10 @@ public class AggregateQueryResource {
 	        		
 	        return ResponseEntity.ok().body(deductionValueList);
 	    }
+	    
+	    
+	    @GetMapping("/order/{from}/{to}/{storeId}")
+		public Page<Order> findOrderByDatebetweenAndStoreId(@PathVariable Instant from,@PathVariable Instant to,@PathVariable String storeId){
+			return aggregateQueryService.findOrderByDatebetweenAndStoreId(from,to,storeId);
+		}
 }
