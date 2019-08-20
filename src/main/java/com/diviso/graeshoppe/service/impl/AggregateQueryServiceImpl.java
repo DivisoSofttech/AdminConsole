@@ -34,32 +34,40 @@ import io.searchbox.core.search.aggregation.TermsAggregation.Entry;
 
 @Service
 public class AggregateQueryServiceImpl implements AggregateQueryService {
-	
+
 	@Autowired
 	ElasticsearchOperations elasticsearchOperations;
-	
-	int i=0; Long count=0L;
+
+	int i = 0;
+	Long count = 0L;
 	@Autowired
 	private JestClient jestClient;
 	@Autowired
-	private  JestElasticsearchTemplate elasticsearchTemplate;
-	
+	private JestElasticsearchTemplate elasticsearchTemplate;
+
 	private final Logger log = LoggerFactory.getLogger(AggregateQueryServiceImpl.class);
 
-	/* (non-Javadoc)
-	 * @see com.diviso.graeshoppe.service.QueryService#findDeliveryinfobydatebetween(java.time.Instant, java.time.Instant)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.diviso.graeshoppe.service.QueryService#findDeliveryinfobydatebetween(
+	 * java.time.Instant, java.time.Instant)
 	 */
 	@Override
 	public Page<Order> findOrderByDatebetweenAndStoreId(Instant from, Instant to, String storeId) {
-		//.........
-				SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(QueryBuilders.boolQuery()
-						.must(termQuery("storeId", storeId)).must(rangeQuery("date").gte(from).lte(to))).build();
+		// .........
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(QueryBuilders.boolQuery()
+				.must(termQuery("storeId", storeId)).must(rangeQuery("date").gte(from).lte(to))).build();
 
-				return elasticsearchOperations.queryForPage(searchQuery, Order.class);
+		return elasticsearchOperations.queryForPage(searchQuery, Order.class);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.diviso.graeshoppe.service.AggregateQueryService#findOrderCountByDateAndStatusName(java.lang.String, java.time.Instant)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.diviso.graeshoppe.service.AggregateQueryService#
+	 * findOrderCountByDateAndStatusName(java.lang.String, java.time.Instant)
 	 */
 	@Override
 	public Long findOrderCountByDateAndStatusName(String statusName, Instant date) {
@@ -86,7 +94,8 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 				if (bucket.getKey().equals(date.toString())) {
 					if (s.getKey().equals(statusName)) {
 
-						storeBasedEntry.add(bucket.getAggregation("statusName", TermsAggregation.class).getBuckets().get(i));
+						storeBasedEntry
+								.add(bucket.getAggregation("statusName", TermsAggregation.class).getBuckets().get(i));
 					}
 				}
 
@@ -94,14 +103,17 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 			});
 
 		});
-		storeBasedEntry.forEach(e->{
-		count=	e.getCount();
+		storeBasedEntry.forEach(e -> {
+			count = e.getCount();
 		});
 		return count;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.diviso.graeshoppe.service.AggregateQueryService#findOrderCountByStatusName(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.diviso.graeshoppe.service.AggregateQueryService#
+	 * findOrderCountByStatusName(java.lang.String)
 	 */
 	@Override
 	public Long findOrderCountByStatusName(String statusName) {
@@ -118,7 +130,7 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 
 		return count;
 	}
-	
+
 	@Override
 	public Page<Store> findStoreBySearchTerm(String searchTerm, Pageable pageable) {
 
@@ -130,24 +142,29 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 
 	@Override
 	public Page<Order> findOrderByDatebetween(Instant from, Instant to) {
-		
-		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(QueryBuilders.boolQuery()
-				.must(rangeQuery("date").gte(from).lte(to))).build();
+
+		SearchQuery searchQuery = new NativeSearchQueryBuilder()
+				.withQuery(QueryBuilders.boolQuery().must(rangeQuery("date").gte(from).lte(to))).build();
 
 		return elasticsearchOperations.queryForPage(searchQuery, Order.class);
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.diviso.graeshoppe.service.AggregateQueryService#getOrderCountByDateAndStatusName(java.lang.String, java.time.Instant)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.diviso.graeshoppe.service.AggregateQueryService#
+	 * getOrderCountByDateAndStatusName(java.lang.String, java.time.Instant)
 	 */
 	@Override
 	public Long getOrderCountByDateAndStatusName(String statusName, Instant date) {
-		
-		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(QueryBuilders.boolQuery()
-				.must(termQuery("status.name", statusName)).must(termQuery("date", date))).build();
-
-		return  new Long(elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent().size());
+		log.info(".............." + statusName + ".............." + date);
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(
+				QueryBuilders.boolQuery().must(termQuery("status.name", statusName)).must(termQuery("date", date)))
+				.build();
+		log.info(
+				"......................" + elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent());
+		return (long)elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent().size();
 	}
-	
+
 }

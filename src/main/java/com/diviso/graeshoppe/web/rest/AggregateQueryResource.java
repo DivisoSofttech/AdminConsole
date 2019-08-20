@@ -96,6 +96,7 @@ public class AggregateQueryResource {
        //.................alteranate of findOrderCountByDateAndStatusName.........
 		@GetMapping("/getorderby-date-status-name/{statusName}/{date}")
 		public Long getOrderCountByDateAndStatusName(@PathVariable String statusName, @PathVariable Instant date) {
+			log.info(".............."+statusName+".............."+date);
 			return aggregateQueryService.getOrderCountByDateAndStatusName(statusName, date);
 		}
 }
