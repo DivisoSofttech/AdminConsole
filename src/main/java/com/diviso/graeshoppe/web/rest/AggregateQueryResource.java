@@ -76,7 +76,7 @@ public class AggregateQueryResource {
 	    	return aggregateQueryService.findOrderCountByDateAndStatusName(statusName,date);
 	    }
 	    
-	    @GetMapping("/orderby-satatus/{statusName}")
+	    @GetMapping("/orderby-status/{statusName}")
 	    public Long findOrderCountByStatusName(@PathVariable String statusName){
 	    	return aggregateQueryService.findOrderCountByStatusName(statusName);
 	    }
@@ -84,5 +84,10 @@ public class AggregateQueryResource {
 		@GetMapping("/findStore/{searchTerm}")
 		public Page<Store> findStoreBySearchTerm(@PathVariable String searchTerm, Pageable pageable) {
 			return aggregateQueryService.findStoreBySearchTerm(searchTerm, pageable);
+		}
+		
+	    @GetMapping("/order/{from}/{to}")
+		public Page<Order> findOrderByDatebetween(@PathVariable Instant from,@PathVariable Instant to){
+			return aggregateQueryService.findOrderByDatebetween(from,to);
 		}
 }

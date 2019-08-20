@@ -127,4 +127,13 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 		return elasticsearchOperations.queryForPage(searchQuery, Store.class);
 	}
 
+	@Override
+	public Page<Order> findOrderByDatebetween(Instant from, Instant to) {
+		
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(QueryBuilders.boolQuery()
+				.must(rangeQuery("date").gte(from).lte(to))).build();
+
+		return elasticsearchOperations.queryForPage(searchQuery, Order.class);
+	}
+
 }

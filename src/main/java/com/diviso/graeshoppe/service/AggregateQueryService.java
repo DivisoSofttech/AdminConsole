@@ -31,4 +31,6 @@ public interface AggregateQueryService {
 
 	public Page<Store> findStoreBySearchTerm(String searchTerm, Pageable pageable);
 
+	public Page<Order> findOrderByDatebetween(Instant from, Instant to);
+
 }
