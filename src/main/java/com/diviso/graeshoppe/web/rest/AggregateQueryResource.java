@@ -20,12 +20,13 @@ import com.diviso.graeshoppe.client.offer_resource.api.DeductionValueTypeResourc
 import com.diviso.graeshoppe.client.offer_resource.model.DeductionValueTypeDTO;
 import com.diviso.graeshoppe.client.offer_resource.model.OfferDTO;
 import com.diviso.graeshoppe.client.order.model.Order;
+import com.diviso.graeshoppe.client.store.domain.Store;
 import com.diviso.graeshoppe.service.AggregateQueryService;
 /**
  * REST controller for managing Offer query service.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/query")
 public class AggregateQueryResource {
 	
 	 private final Logger log = LoggerFactory.getLogger(AggregateQueryResource.class);
@@ -42,7 +43,7 @@ public class AggregateQueryResource {
 	     * @param pageable the pagination information
 	     * @return the ResponseEntity with status 200 (OK) and the list of deductionValueTypes in body
 	     */
-	    @GetMapping("/query/offers/get-all-deduction-value-types")
+	    @GetMapping("/offers/get-all-deduction-value-types")
 	    public ResponseEntity<List<DeductionValueTypeDTO>> getAllDeductionValueTypes(Pageable pageable) {
 	        log.debug("REST request to get a page of DeductionValueTypes");
 	        List<DeductionValueTypeDTO> deductionValueList = aggregateQueryResourceApi.getAllDeductionValueTypesUsingGET(null, null, null, null, null, null, null, null, null, null).getBody();
@@ -56,7 +57,7 @@ public class AggregateQueryResource {
 	     * @param pageable the pagination information
 	     * @return the ResponseEntity with status 200 (OK) and the list of offers in body
 	     */
-	    @GetMapping("/query/offers/get-all-offers")
+	    @GetMapping("/offers/get-all-offers")
 	    public ResponseEntity<List<OfferDTO>> getAllOffers(Pageable pageable) {
 	        log.debug("REST request to get a page of Offers");
 	        List<OfferDTO> offerList = aggregateQueryResourceApi.getAllOffersUsingGET(null, null, null, null, null, null, null, null, null, null).getBody(); 
@@ -80,4 +81,8 @@ public class AggregateQueryResource {
 	    	return aggregateQueryService.findOrderCountByStatusName(statusName);
 	    }
 	    
+		@GetMapping("/findStore/{searchTerm}")
+		public Page<Store> findStoreBySearchTerm(@PathVariable String searchTerm, Pageable pageable) {
+			return aggregateQueryService.findStoreBySearchTerm(searchTerm, pageable);
+		}
 }

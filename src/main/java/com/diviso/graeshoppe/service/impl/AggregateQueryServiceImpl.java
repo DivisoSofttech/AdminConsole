@@ -14,12 +14,14 @@ import static org.elasticsearch.index.query.QueryBuilders.rangeQuery;
 import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
 import com.diviso.graeshoppe.client.order.model.Order;
+import com.diviso.graeshoppe.client.store.domain.Store;
 import com.diviso.graeshoppe.service.AggregateQueryService;
 import com.github.vanroy.springdata.jest.JestElasticsearchTemplate;
 import com.github.vanroy.springdata.jest.aggregation.AggregatedPage;
@@ -113,6 +115,16 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 				.get().getCount();
 
 		return count;
+	}
+
+	
+	@Override
+	public Page<Store> findStoreBySearchTerm(String searchTerm, Pageable pageable) {
+
+		SearchQuery searchQuery = new NativeSearchQueryBuilder()
+				.withQuery(matchQuery("name", searchTerm).prefixLength(3)).build();
+
+		return elasticsearchOperations.queryForPage(searchQuery, Store.class);
 	}
 
 }
