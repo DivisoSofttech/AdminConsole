@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.elasticsearch.action.search.SearchType.QUERY_THEN_FETCH;
 import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
@@ -20,6 +22,7 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
 import com.diviso.graeshoppe.client.order.model.Order;
+
 import com.diviso.graeshoppe.service.AggregateQueryService;
 import com.github.vanroy.springdata.jest.JestElasticsearchTemplate;
 import com.github.vanroy.springdata.jest.aggregation.AggregatedPage;
@@ -40,7 +43,7 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 	@Autowired
 	private  JestElasticsearchTemplate elasticsearchTemplate;
 	
-	
+	private final Logger log = LoggerFactory.getLogger(AggregateQueryServiceImpl.class);
 
 	/* (non-Javadoc)
 	 * @see com.diviso.graeshoppe.service.QueryService#findDeliveryinfobydatebetween(java.time.Instant, java.time.Instant)
@@ -113,6 +116,18 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 				.get().getCount();
 
 		return count;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.diviso.graeshoppe.service.AggregateQueryService#getOrderCountByDateAndStatusName(java.lang.String, java.time.Instant)
+	 */
+	@Override
+	public Long getOrderCountByDateAndStatusName(String statusName, Instant date) {
+		
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(QueryBuilders.boolQuery()
+				.must(termQuery("status.name", statusName)).must(termQuery("date", date))).build();
+
+		return  new Long(elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent().size());
 	}
 
 }

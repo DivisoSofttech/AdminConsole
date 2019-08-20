@@ -27,4 +27,10 @@ public interface AggregateQueryService {
 	 */
 	public Long findOrderCountByStatusName(String statusName);
 
+	/**
+	 * @param statusName
+	 * @param date
+	 */
+	public Long getOrderCountByDateAndStatusName(String statusName, Instant date);
+
 }
