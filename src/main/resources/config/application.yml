@@ -209,4 +209,12 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+application:
+
+OfferResource:
+   url: dev.ci2.divisosofttech.com:8095/Offer
+   
+store:
+   url: dev.ci1.divisosofttech.com:8071
+   
+

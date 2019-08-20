@@ -3,8 +3,10 @@ package com.diviso.graeshoppe.service;
 import java.time.Instant;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.diviso.graeshoppe.client.order.model.Order;
+import com.diviso.graeshoppe.client.store.domain.Store;
 
 public interface AggregateQueryService {
 
@@ -27,10 +29,13 @@ public interface AggregateQueryService {
 	 */
 	public Long findOrderCountByStatusName(String statusName);
 
+	public Page<Store> findStoreBySearchTerm(String searchTerm, Pageable pageable);
+
+	public Page<Order> findOrderByDatebetween(Instant from, Instant to);
+
 	/**
 	 * @param statusName
 	 * @param date
 	 */
 	public Long getOrderCountByDateAndStatusName(String statusName, Instant date);
-
 }

@@ -20,77 +20,82 @@ import com.diviso.graeshoppe.client.offer_resource.api.DeductionValueTypeResourc
 import com.diviso.graeshoppe.client.offer_resource.model.DeductionValueTypeDTO;
 import com.diviso.graeshoppe.client.offer_resource.model.OfferDTO;
 import com.diviso.graeshoppe.client.order.model.Order;
+import com.diviso.graeshoppe.client.store.domain.Store;
 import com.diviso.graeshoppe.service.AggregateQueryService;
 
 /**
  * REST controller for managing Offer query service.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/query")
 public class AggregateQueryResource {
 
-	private final Logger log = LoggerFactory.getLogger(AggregateQueryResource.class);
+	
+	 private final Logger log = LoggerFactory.getLogger(AggregateQueryResource.class);
 
-	@Autowired
-	private AggregateQueryResourceApi aggregateQueryResourceApi;
+	 @Autowired
+	 private AggregateQueryResourceApi aggregateQueryResourceApi;
+	 
+	 @Autowired
+	 private AggregateQueryService aggregateQueryService;
+	 	 
+	 /**
+	     * GET  /deduction-value-types : get all the deductionValueTypes of offers.
+	     *
+	     * @param pageable the pagination information
+	     * @return the ResponseEntity with status 200 (OK) and the list of deductionValueTypes in body
+	     */
+	    @GetMapping("/offers/get-all-deduction-value-types")
+	    public ResponseEntity<List<DeductionValueTypeDTO>> getAllDeductionValueTypes(Pageable pageable) {
+	        log.debug("REST request to get a page of DeductionValueTypes");
+	        List<DeductionValueTypeDTO> deductionValueList = aggregateQueryResourceApi.getAllDeductionValueTypesUsingGET(null, null, null, null, null, null, null, null, null, null).getBody();
+	        		
+	        return ResponseEntity.ok().body(deductionValueList);
+	    }
+	    
+	    /**
+	     * GET  /offers : get all the offers.
+	     *
+	     * @param pageable the pagination information
+	     * @return the ResponseEntity with status 200 (OK) and the list of offers in body
+	     */
+	    @GetMapping("/offers/get-all-offers")
+	    public ResponseEntity<List<OfferDTO>> getAllOffers(Pageable pageable) {
+	        log.debug("REST request to get a page of Offers");
+	        List<OfferDTO> offerList = aggregateQueryResourceApi.getAllOffersUsingGET(null, null, null, null, null, null, null, null, null, null).getBody(); 
+	       
+	        return ResponseEntity.ok().body(offerList);
+	    }
+	    
+	    
+	    @GetMapping("/order/{from}/{to}/{storeId}")
+		public Page<Order> findOrderByDatebetweenAndStoreId(@PathVariable Instant from,@PathVariable Instant to,@PathVariable String storeId){
+			return aggregateQueryService.findOrderByDatebetweenAndStoreId(from,to,storeId);
+		}
+	     
+	    @GetMapping("/orderby-date-status-name/{statusName}/{date}")
+	    public Long findOrderCountByDateAndStatusName(@PathVariable String statusName,@PathVariable Instant date){
+	    	return aggregateQueryService.findOrderCountByDateAndStatusName(statusName,date);
+	    }
+	    
+	    @GetMapping("/orderby-status/{statusName}")
+	    public Long findOrderCountByStatusName(@PathVariable String statusName){
+	    	return aggregateQueryService.findOrderCountByStatusName(statusName);
+	    }
+	    
+		@GetMapping("/findStore/{searchTerm}")
+		public Page<Store> findStoreBySearchTerm(@PathVariable String searchTerm, Pageable pageable) {
+			return aggregateQueryService.findStoreBySearchTerm(searchTerm, pageable);
+		}
+		
+	    @GetMapping("/order/{from}/{to}")
+		public Page<Order> findOrderByDatebetween(@PathVariable Instant from,@PathVariable Instant to){
+			return aggregateQueryService.findOrderByDatebetween(from,to);
+		}
 
-	@Autowired
-	private AggregateQueryService aggregateQueryService;
-
-	/**
-	 * GET /deduction-value-types : get all the deductionValueTypes of offers.
-	 *
-	 * @param pageable
-	 *            the pagination information
-	 * @return the ResponseEntity with status 200 (OK) and the list of
-	 *         deductionValueTypes in body
-	 */
-	@GetMapping("/query/offers/get-all-deduction-value-types")
-	public ResponseEntity<List<DeductionValueTypeDTO>> getAllDeductionValueTypes(Pageable pageable) {
-		log.debug("REST request to get a page of DeductionValueTypes");
-		List<DeductionValueTypeDTO> deductionValueList = aggregateQueryResourceApi
-				.getAllDeductionValueTypesUsingGET(null, null, null, null, null, null, null, null, null, null)
-				.getBody();
-
-		return ResponseEntity.ok().body(deductionValueList);
-	}
-
-	/**
-	 * GET /offers : get all the offers.
-	 *
-	 * @param pageable
-	 *            the pagination information
-	 * @return the ResponseEntity with status 200 (OK) and the list of offers in
-	 *         body
-	 */
-	@GetMapping("/query/offers/get-all-offers")
-	public ResponseEntity<List<OfferDTO>> getAllOffers(Pageable pageable) {
-		log.debug("REST request to get a page of Offers");
-		List<OfferDTO> offerList = aggregateQueryResourceApi
-				.getAllOffersUsingGET(null, null, null, null, null, null, null, null, null, null).getBody();
-
-		return ResponseEntity.ok().body(offerList);
-	}
-
-	@GetMapping("/order/{from}/{to}/{storeId}")
-	public Page<Order> findOrderByDatebetweenAndStoreId(@PathVariable Instant from, @PathVariable Instant to,
-			@PathVariable String storeId) {
-		return aggregateQueryService.findOrderByDatebetweenAndStoreId(from, to, storeId);
-	}
-
-	@GetMapping("/orderby-date-status-name/{statusName}/{date}")
-	public Long findOrderCountByDateAndStatusName(@PathVariable String statusName, @PathVariable Instant date) {
-		return aggregateQueryService.findOrderCountByDateAndStatusName(statusName, date);
-	}
-
-	@GetMapping("/getorderby-date-status-name/{statusName}/{date}")
-	public Long getOrderCountByDateAndStatusName(@PathVariable String statusName, @PathVariable Instant date) {
-		return aggregateQueryService.getOrderCountByDateAndStatusName(statusName, date);
-	}
-
-	@GetMapping("/orderby-satatus/{statusName}")
-	public Long findOrderCountByStatusName(@PathVariable String statusName) {
-		return aggregateQueryService.findOrderCountByStatusName(statusName);
-	}
-
+       //.................alteranate of findOrderCountByDateAndStatusName.........
+		@GetMapping("/getorderby-date-status-name/{statusName}/{date}")
+		public Long getOrderCountByDateAndStatusName(@PathVariable String statusName, @PathVariable Instant date) {
+			return aggregateQueryService.getOrderCountByDateAndStatusName(statusName, date);
+		}
 }
