@@ -86,7 +86,7 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 
 		TermsAggregation orderAgg = result.getAggregation("date", TermsAggregation.class);
 		List<Entry> storeBasedEntry = new ArrayList<Entry>();
-		log.info(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,," +orderAgg.getBuckets() );
+		log.info(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,," + orderAgg.getBuckets());
 		orderAgg.getBuckets().forEach(bucket -> {
 
 			List<Entry> listStore = bucket.getAggregation("statusName", TermsAggregation.class).getBuckets();
@@ -160,22 +160,24 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 	@Override
 	public Long getOrderCountByDateAndStatusName(String statusName, Instant date) {
 		log.info(".............." + statusName + ".............." + date);
-		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(
-				QueryBuilders.boolQuery().must(termQuery("status.name", statusName)))
-				.build();
-		
-		List<Order> ordersOFDate=new ArrayList<Order>();
-		
-		elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent().forEach(o->{
-			if(Date.from(o.getDate()).equals(Date.from(date))){
+		SearchQuery searchQuery = new NativeSearchQueryBuilder()
+				.withQuery(QueryBuilders.boolQuery().must(termQuery("status.name", statusName))).build();
+
+		List<Order> ordersOFDate = new ArrayList<Order>();
+
+		elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent().forEach(o -> {
+			
+			log.info("............o........."+Date.from(o.getDate()).toString()+"......p....."+Date.from(date).toString());
+			if (Date.from(o.getDate()).toString().equals(Date.from(date).toString())) {
 				ordersOFDate.add(o);
 			}
 		});
-		
+
 		log.info(
 				"......................" + elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent());
-		//return (long) elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent().size();
-		return  (long) ordersOFDate.size();
+		// return (long) elasticsearchOperations.queryForPage(searchQuery,
+		// Order.class).getContent().size();
+		return (long) ordersOFDate.size();
 	}
 
 }
