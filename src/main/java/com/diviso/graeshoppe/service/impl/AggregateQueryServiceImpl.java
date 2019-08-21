@@ -166,9 +166,11 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 		List<Order> ordersOFDate = new ArrayList<Order>();
 
 		elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent().forEach(o -> {
-			
-			log.info("............o........."+Date.from(o.getDate()).toString()+"......p....."+Date.from(date).toString());
-			if (Date.from(o.getDate()).toString().equals(Date.from(date).toString())) {
+
+			log.info("............o........." + Date.from(o.getDate()).toString() + "......p....."
+					+ Date.from(date).toString());
+			if (Date.from(o.getDate()).toString().subSequence(4, 10)
+					.equals(Date.from(date).toString().subSequence(4, 10))) {
 				ordersOFDate.add(o);
 			}
 		});
