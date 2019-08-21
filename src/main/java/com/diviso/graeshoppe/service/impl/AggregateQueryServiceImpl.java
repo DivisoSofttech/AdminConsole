@@ -89,18 +89,18 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 
 			List<Entry> listStore = bucket.getAggregation("statusName", TermsAggregation.class).getBuckets();
 
-			listStore.forEach(s -> {
+			for(int i=0;i<listStore.size();i++){
 
 				if (bucket.getKey().equals(date.toString())) {
-					if (s.getKey().equals(statusName)) {
+					if (listStore.get(i).getKey().equals(statusName)) {
 
 						storeBasedEntry
 								.add(bucket.getAggregation("statusName", TermsAggregation.class).getBuckets().get(i));
 					}
 				}
 
-				i++;
-			});
+		
+			}
 
 		});
 		storeBasedEntry.forEach(e -> {
