@@ -85,6 +85,7 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 
 		TermsAggregation orderAgg = result.getAggregation("date", TermsAggregation.class);
 		List<Entry> storeBasedEntry = new ArrayList<Entry>();
+		log.info(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,," +orderAgg.getBuckets() );
 		orderAgg.getBuckets().forEach(bucket -> {
 
 			List<Entry> listStore = bucket.getAggregation("statusName", TermsAggregation.class).getBuckets();
