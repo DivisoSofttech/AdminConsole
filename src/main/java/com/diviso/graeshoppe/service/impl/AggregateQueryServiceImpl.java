@@ -2,6 +2,7 @@ package com.diviso.graeshoppe.service.impl;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.elasticsearch.index.query.QueryBuilders;
@@ -160,11 +161,21 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 	public Long getOrderCountByDateAndStatusName(String statusName, Instant date) {
 		log.info(".............." + statusName + ".............." + date);
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(
-				QueryBuilders.boolQuery().must(termQuery("status.name", statusName)).must(termQuery("date", date)))
+				QueryBuilders.boolQuery().must(termQuery("status.name", statusName)))
 				.build();
+		
+		List<Order> ordersOFDate=new ArrayList<Order>();
+		
+		elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent().forEach(o->{
+			if(Date.from(o.getDate()).equals(Date.from(date))){
+				ordersOFDate.add(o);
+			}
+		});
+		
 		log.info(
 				"......................" + elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent());
-		return (long) elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent().size();
+		//return (long) elasticsearchOperations.queryForPage(searchQuery, Order.class).getContent().size();
+		return  (long) ordersOFDate.size();
 	}
 
 }
