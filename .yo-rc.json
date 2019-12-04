@@ -33,8 +33,8 @@
     },
     "generator-jhipster-swagger-cli": {
         "promptValues": {
-            "inputSpec": "http://35.239.128.233:8088/v2/api-docs ",
-            "cliName": "order"
+            "inputSpec": "http://35.238.35.19:8081/v2/api-docs",
+            "cliName": "administration"
         },
         "apis": {
             "OfferResource": {

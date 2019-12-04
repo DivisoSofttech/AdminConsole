@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.diviso.graeshoppe.client.administration.api.BannerResourceApi;
 import com.diviso.graeshoppe.client.offer_resource.api.AggregateQueryResourceApi;
 import com.diviso.graeshoppe.client.offer_resource.api.DeductionValueTypeResourceApi;
 import com.diviso.graeshoppe.client.offer_resource.model.DeductionValueTypeDTO;
@@ -38,6 +39,9 @@ public class AggregateQueryResource {
 	 
 	 @Autowired
 	 private AggregateQueryService aggregateQueryService;
+	 
+	 @Autowired
+	 private BannerResourceApi bannerResourceApi;
 	 	 
 	 /**
 	     * GET  /deduction-value-types : get all the deductionValueTypes of offers.
@@ -99,4 +103,8 @@ public class AggregateQueryResource {
 			log.info(".............."+statusName+".............."+date);
 			return aggregateQueryService.getOrderCountByDateAndStatusName(statusName, date);
 		}
+		
+		
+		
+
 }
