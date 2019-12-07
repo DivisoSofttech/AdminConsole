@@ -14,9 +14,12 @@ import javax.validation.constraints.*;
  * CancellationRequestDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-03T16:52:52.203+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-07T13:44:49.848+05:30[Asia/Calcutta]")
 
 public class CancellationRequestDTO   {
+  @JsonProperty("amount")
+  private Double amount = null;
+
   @JsonProperty("customerEmail")
   private String customerEmail = null;
 
@@ -35,6 +38,12 @@ public class CancellationRequestDTO   {
   @JsonProperty("paymentId")
   private String paymentId = null;
 
+  @JsonProperty("phoneCode")
+  private Integer phoneCode = null;
+
+  @JsonProperty("reference")
+  private String reference = null;
+
   @JsonProperty("refoundDetailsId")
   private Long refoundDetailsId = null;
 
@@ -46,6 +55,26 @@ public class CancellationRequestDTO   {
 
   @JsonProperty("storePhone")
   private Long storePhone = null;
+
+  public CancellationRequestDTO amount(Double amount) {
+    this.amount = amount;
+    return this;
+  }
+
+  /**
+   * Get amount
+   * @return amount
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Double getAmount() {
+    return amount;
+  }
+
+  public void setAmount(Double amount) {
+    this.amount = amount;
+  }
 
   public CancellationRequestDTO customerEmail(String customerEmail) {
     this.customerEmail = customerEmail;
@@ -168,6 +197,46 @@ public class CancellationRequestDTO   {
     this.paymentId = paymentId;
   }
 
+  public CancellationRequestDTO phoneCode(Integer phoneCode) {
+    this.phoneCode = phoneCode;
+    return this;
+  }
+
+  /**
+   * Get phoneCode
+   * @return phoneCode
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Integer getPhoneCode() {
+    return phoneCode;
+  }
+
+  public void setPhoneCode(Integer phoneCode) {
+    this.phoneCode = phoneCode;
+  }
+
+  public CancellationRequestDTO reference(String reference) {
+    this.reference = reference;
+    return this;
+  }
+
+  /**
+   * Get reference
+   * @return reference
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getReference() {
+    return reference;
+  }
+
+  public void setReference(String reference) {
+    this.reference = reference;
+  }
+
   public CancellationRequestDTO refoundDetailsId(Long refoundDetailsId) {
     this.refoundDetailsId = refoundDetailsId;
     return this;
@@ -258,12 +327,15 @@ public class CancellationRequestDTO   {
       return false;
     }
     CancellationRequestDTO cancellationRequestDTO = (CancellationRequestDTO) o;
-    return Objects.equals(this.customerEmail, cancellationRequestDTO.customerEmail) &&
+    return Objects.equals(this.amount, cancellationRequestDTO.amount) &&
+        Objects.equals(this.customerEmail, cancellationRequestDTO.customerEmail) &&
         Objects.equals(this.customerPhone, cancellationRequestDTO.customerPhone) &&
         Objects.equals(this.date, cancellationRequestDTO.date) &&
         Objects.equals(this.id, cancellationRequestDTO.id) &&
         Objects.equals(this.orderId, cancellationRequestDTO.orderId) &&
         Objects.equals(this.paymentId, cancellationRequestDTO.paymentId) &&
+        Objects.equals(this.phoneCode, cancellationRequestDTO.phoneCode) &&
+        Objects.equals(this.reference, cancellationRequestDTO.reference) &&
         Objects.equals(this.refoundDetailsId, cancellationRequestDTO.refoundDetailsId) &&
         Objects.equals(this.status, cancellationRequestDTO.status) &&
         Objects.equals(this.storeEmail, cancellationRequestDTO.storeEmail) &&
@@ -272,7 +344,7 @@ public class CancellationRequestDTO   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(customerEmail, customerPhone, date, id, orderId, paymentId, refoundDetailsId, status, storeEmail, storePhone);
+    return Objects.hash(amount, customerEmail, customerPhone, date, id, orderId, paymentId, phoneCode, reference, refoundDetailsId, status, storeEmail, storePhone);
   }
 
   @Override
@@ -280,12 +352,15 @@ public class CancellationRequestDTO   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CancellationRequestDTO {\n");
     
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    customerEmail: ").append(toIndentedString(customerEmail)).append("\n");
     sb.append("    customerPhone: ").append(toIndentedString(customerPhone)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
     sb.append("    paymentId: ").append(toIndentedString(paymentId)).append("\n");
+    sb.append("    phoneCode: ").append(toIndentedString(phoneCode)).append("\n");
+    sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
     sb.append("    refoundDetailsId: ").append(toIndentedString(refoundDetailsId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    storeEmail: ").append(toIndentedString(storeEmail)).append("\n");

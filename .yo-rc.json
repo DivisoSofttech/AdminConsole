@@ -33,7 +33,7 @@
     },
     "generator-jhipster-swagger-cli": {
         "promptValues": {
-            "inputSpec": "http://35.238.35.19:8081/v2/api-docs",
+            "inputSpec": "http://localhost:8081/v2/api-docs",
             "cliName": "administration"
         },
         "apis": {

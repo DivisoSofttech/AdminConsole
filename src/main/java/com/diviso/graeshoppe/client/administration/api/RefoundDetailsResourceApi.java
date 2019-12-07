@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-03T16:52:52.203+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-07T13:44:49.848+05:30[Asia/Calcutta]")
 
 @Api(value = "RefoundDetailsResource", description = "the RefoundDetailsResource API")
 public interface RefoundDetailsResourceApi {
@@ -37,11 +37,11 @@ public interface RefoundDetailsResourceApi {
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 403, message = "Forbidden"),
         @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/refound-details",
+    @RequestMapping(value = "/api/refound-details/{orderId}",
         produces = "*/*", 
         consumes = "application/json",
         method = RequestMethod.POST)
-    ResponseEntity<RefoundDetailsDTO> createRefoundDetailsUsingPOST(@ApiParam(value = "refoundDetailsDTO" ,required=true )  @Valid @RequestBody RefoundDetailsDTO refoundDetailsDTO);
+    ResponseEntity<RefoundDetailsDTO> createRefoundDetailsUsingPOST(@ApiParam(value = "orderId",required=true) @PathVariable("orderId") String orderId,@ApiParam(value = "refoundDetailsDTO" ,required=true )  @Valid @RequestBody RefoundDetailsDTO refoundDetailsDTO);
 
 
     @ApiOperation(value = "deleteRefoundDetails", nickname = "deleteRefoundDetailsUsingDELETE", notes = "", tags={ "refound-details-resource", })
