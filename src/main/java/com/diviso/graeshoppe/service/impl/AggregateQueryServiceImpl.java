@@ -27,12 +27,15 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
-import com.diviso.graeshoppe.client.administration.model.BannerDTO;
+import com.diviso.graeshoppe.client.administration.model.Banner;
+//import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.client.store.domain.Store;
+//import com.diviso.graeshoppe.client.store.model.Banner;
 import com.diviso.graeshoppe.service.AggregateQueryService;
 import com.github.vanroy.springdata.jest.JestElasticsearchTemplate;
 import com.github.vanroy.springdata.jest.aggregation.AggregatedPage;
+import com.hazelcast.map.impl.query.Query.QueryBuilder;
 
 import io.searchbox.client.JestClient;
 import io.searchbox.core.search.aggregation.TermsAggregation;
@@ -188,17 +191,13 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 	}
 
 	@Override
-	public List<BannerDTO> getAllPremiumBanners(Pageable pageable) {
-		SearchSourceBuilder builder = new SearchSourceBuilder();
-		
-		SearchRequest srq =new SearchRequest();
-		SearchResponse srs =null;
-		
-		try {
-			srs=rest
-		}
-		
-		return null;
+	public List<Banner> getAllPremiumBanners(Pageable pageable) {
+		//SearchSourceBuilder builder = new SearchSourceBuilder();
+		log.info(
+				"<<<<<<<<<<<<getAllPremiumBanners >>>>>>>>>>>");
+		SearchQuery sq =new NativeSearchQueryBuilder().withQuery(matchAllQuery()).withPageable(pageable).build();
+		// System.out.println("sizzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"+elasticsearchOperations.queryForPage(sq, Banner.class).getContent().size());
+		return elasticsearchOperations.queryForPage(sq, Banner.class).getContent();
 	}
 
 }

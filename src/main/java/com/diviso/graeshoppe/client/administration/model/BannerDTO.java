@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.Lob;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -27,6 +29,7 @@ public class BannerDTO   {
   @JsonProperty("id")
   private Long id = null;
 
+  @Lob
   @JsonProperty("image")
   private byte[] image = null;
 

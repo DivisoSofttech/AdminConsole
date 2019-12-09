@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.diviso.graeshoppe.client.administration.model.Banner;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.client.store.domain.Store;
+//import com.diviso.graeshoppe.client.store.model.Banner;
 
 public interface AggregateQueryService {
 
@@ -41,5 +43,5 @@ public interface AggregateQueryService {
 	 */
 	public Long getOrderCountByDateAndStatusName(String statusName, Instant date);
 
-	public List<BannerDTO> getAllPremiumBanners(Pageable pageable);
+	public List<Banner> getAllPremiumBanners(Pageable pageable);
 }

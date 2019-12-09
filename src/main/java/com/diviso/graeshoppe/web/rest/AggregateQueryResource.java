@@ -16,13 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.diviso.graeshoppe.client.administration.api.BannerResourceApi;
-import com.diviso.graeshoppe.client.administration.model.BannerDTO;
+import com.diviso.graeshoppe.client.administration.model.Banner;
+//import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.offer_resource.api.AggregateQueryResourceApi;
 import com.diviso.graeshoppe.client.offer_resource.api.DeductionValueTypeResourceApi;
 import com.diviso.graeshoppe.client.offer_resource.model.DeductionValueTypeDTO;
 import com.diviso.graeshoppe.client.offer_resource.model.OfferDTO;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.client.store.domain.Store;
+//import com.diviso.graeshoppe.client.store.model.Banner;
 import com.diviso.graeshoppe.service.AggregateQueryService;
 
 /**
@@ -113,10 +115,11 @@ public class AggregateQueryResource {
 	     * @return the ResponseEntity with status 200 (OK) and the list of banners in body
 	     */
 	    @GetMapping("/banners/get-all-banners")
-	    public ResponseEntity<List<BannerDTO>> getAllBanners(Pageable pageable) {
+	    public ResponseEntity<List<Banner>> getAllBanners(Pageable pageable) {
 	        log.debug("REST request to get a page of DeductionValueTypes");
-	        List<BannerDTO> bannerList = aggregateQueryService.getAllPremiumBanners(pageable);
-	        return ResponseEntity.ok().body(bannerList);
+	        List<Banner> list = aggregateQueryService.getAllPremiumBanners(pageable);
+	        return ResponseEntity.ok().body(list);
+	       
 	    }
 	    
 
