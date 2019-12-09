@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +27,7 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
+import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.client.store.domain.Store;
 import com.diviso.graeshoppe.service.AggregateQueryService;
@@ -180,6 +185,20 @@ public class AggregateQueryServiceImpl implements AggregateQueryService {
 		// return (long) elasticsearchOperations.queryForPage(searchQuery,
 		// Order.class).getContent().size();
 		return (long) ordersOFDate.size();
+	}
+
+	@Override
+	public List<BannerDTO> getAllPremiumBanners(Pageable pageable) {
+		SearchSourceBuilder builder = new SearchSourceBuilder();
+		
+		SearchRequest srq =new SearchRequest();
+		SearchResponse srs =null;
+		
+		try {
+			srs=rest
+		}
+		
+		return null;
 	}
 
 }

@@ -1,10 +1,12 @@
 package com.diviso.graeshoppe.service;
 
 import java.time.Instant;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.client.store.domain.Store;
 
@@ -38,4 +40,6 @@ public interface AggregateQueryService {
 	 * @param date
 	 */
 	public Long getOrderCountByDateAndStatusName(String statusName, Instant date);
+
+	public List<BannerDTO> getAllPremiumBanners(Pageable pageable);
 }

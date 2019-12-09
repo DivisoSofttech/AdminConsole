@@ -8,6 +8,8 @@ package com.diviso.graeshoppe.client.offer_resource.api;
 import com.diviso.graeshoppe.client.offer_resource.model.DeductionValueTypeDTO;
 import com.diviso.graeshoppe.client.offer_resource.model.OfferDTO;
 import io.swagger.annotations.*;
+
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -77,5 +79,8 @@ public interface AggregateQueryResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<OfferDTO> getOfferByIdUsingGET(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
+
+
+
 
 }
