@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * RefoundDetailsDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-03T16:52:52.203+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-07T13:44:49.848+05:30[Asia/Calcutta]")
 
 public class RefoundDetailsDTO   {
   @JsonProperty("id")

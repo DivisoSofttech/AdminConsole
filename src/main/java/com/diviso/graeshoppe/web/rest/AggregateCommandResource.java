@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,9 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.diviso.graeshoppe.client.administration.api.BannerResourceApi;
+import com.diviso.graeshoppe.client.administration.api.CancellationRequestResourceApi;
+import com.diviso.graeshoppe.client.administration.api.RefoundDetailsResourceApi;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
+import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
+import com.diviso.graeshoppe.client.administration.model.RefoundDetailsDTO;
 import com.diviso.graeshoppe.client.offer_resource.api.AggregateCommandResourceApi;
 import com.diviso.graeshoppe.client.offer_resource.model.OfferModel;
+import com.diviso.graeshoppe.client.payment.api.BraintreeCommandResourceApi;
+import com.diviso.graeshoppe.client.payment.api.PaymentResourceApiClient;
+import com.diviso.graeshoppe.client.payment.model.RefundResponse;
 
 @RestController
 @RequestMapping("/api")
@@ -32,6 +40,17 @@ public class AggregateCommandResource {
 	
 	@Autowired
 	private BannerResourceApi bannerResourceApi;
+	
+	@Autowired
+	private CancellationRequestResourceApi cancellationRequestApi;
+	
+	@Autowired
+	private RefoundDetailsResourceApi refoundDetailsResourceApi;
+	
+	
+	@Autowired
+	private BraintreeCommandResourceApi braintreeCommandResourceApi;
+	
 	
 	 /**
      * POST  /command/offers/create-offer : Create a new offer.
@@ -95,6 +114,35 @@ public class AggregateCommandResource {
       
        return bannerResourceApi.deleteBannerUsingDELETE(id);
        
+  
+   }
+   
+   
+   @PostMapping("/command/create/cancellationRequest")
+   public ResponseEntity<CancellationRequestDTO> createCancellationRequest(@RequestBody CancellationRequestDTO cancellationRequestDTO) throws URISyntaxException {
+       log.debug("REST request to save cancellationRequest : {}", cancellationRequestDTO);
+      
+     return  this.cancellationRequestApi.createCancellationRequestUsingPOST(cancellationRequestDTO);
+        
+  
+   }
+   
+   @PostMapping("/command/create/refundDetails/{orderId}/{paymentId}")
+   public ResponseEntity<RefoundDetailsDTO> createRefundDetails(@RequestBody RefoundDetailsDTO refundDetailsDTO,@PathVariable String orderId,@PathVariable String paymentId) throws URISyntaxException {
+       log.debug("REST request to save createRefundDetails : {}", refundDetailsDTO+"\n ## orderId = "+orderId+"\n ## paymentId  "+paymentId);
+      
+      
+       /* creating an refund request in payment microservice */
+       
+      RefundResponse refundResponse = braintreeCommandResourceApi.createRefundUsingPOST(paymentId).getBody();
+      
+      /* transaction id of refund request is set as refund id in refundDetails */
+      
+      refundDetailsDTO.setRefundId(refundResponse.getTransactionId());
+      
+      
+     return  this.refoundDetailsResourceApi.createRefoundDetailsUsingPOST(orderId, refundDetailsDTO);
+        
   
    }
 
