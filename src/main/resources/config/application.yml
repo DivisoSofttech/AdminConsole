@@ -217,4 +217,6 @@ OfferResource:
 store:
    url: dev.ci1.divisosofttech.com:8071
    
-
+administration:
+   url: 104.198.222.106:8081
+   
