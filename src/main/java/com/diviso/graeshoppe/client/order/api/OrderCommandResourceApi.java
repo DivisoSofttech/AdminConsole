@@ -26,7 +26,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-08-19T15:28:24.559733200+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-26T12:53:23.204+05:30[Asia/Calcutta]")
 
 @Api(value = "OrderCommandResource", description = "the OrderCommandResource API")
 public interface OrderCommandResourceApi {
@@ -78,6 +78,18 @@ public interface OrderCommandResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<OrderDTO> getOrderUsingGET(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
+
+
+    @ApiOperation(value = "publishOrderToMessagebroker", nickname = "publishOrderToMessagebrokerUsingPOST", notes = "", tags={ "order-command-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK"),
+        @ApiResponse(code = 201, message = "Created"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/pulishMessage/{orderId}",
+        method = RequestMethod.POST)
+    ResponseEntity<Void> publishOrderToMessagebrokerUsingPOST(@ApiParam(value = "orderId",required=true) @PathVariable("orderId") String orderId);
 
 
     @ApiOperation(value = "searchOrders", nickname = "searchOrdersUsingGET", notes = "", response = OrderDTO.class, responseContainer = "List", tags={ "order-command-resource", })

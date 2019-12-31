@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * User
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-07T13:44:49.848+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-30T14:02:00.749+05:30[Asia/Calcutta]")
 
 public class User   {
   @JsonProperty("activated")
@@ -152,7 +152,7 @@ public class User   {
   **/
   @ApiModelProperty(value = "")
 
-@Size(min=2,max=6) 
+@Size(min=2,max=10) 
   public String getLangKey() {
     return langKey;
   }

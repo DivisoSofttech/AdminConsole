@@ -7,17 +7,14 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
-
-import javax.persistence.Lob;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Task Banner. @author Neeraja.M.
+ * BannerDTO
  */
-@ApiModel(description = "Task Banner. @author Neeraja.M.")
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-07T13:44:49.848+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-30T14:02:00.749+05:30[Asia/Calcutta]")
 
 public class BannerDTO   {
   @JsonProperty("cost")
@@ -29,7 +26,6 @@ public class BannerDTO   {
   @JsonProperty("id")
   private Long id = null;
 
-  @Lob
   @JsonProperty("image")
   private byte[] image = null;
 

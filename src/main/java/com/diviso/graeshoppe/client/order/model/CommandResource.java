@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * CommandResource
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-08-19T15:28:24.559733200+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-26T12:53:23.204+05:30[Asia/Calcutta]")
 
 public class CommandResource   {
   @JsonProperty("nextTaskId")

@@ -5,6 +5,7 @@
  */
 package com.diviso.graeshoppe.client.store.api;
 
+import com.diviso.graeshoppe.client.store.model.StoreSettingsDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,14 +20,12 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.diviso.graeshoppe.client.store.model.StoreSettingsDTO;
-
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-08-02T11:19:44.906+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-26T12:53:13.446+05:30[Asia/Calcutta]")
 
 @Api(value = "StoreSettingsResource", description = "the StoreSettingsResource API")
 public interface StoreSettingsResourceApi {

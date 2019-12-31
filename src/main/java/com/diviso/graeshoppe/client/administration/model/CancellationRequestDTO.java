@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
  * CancellationRequestDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-07T13:44:49.848+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-30T14:02:00.749+05:30[Asia/Calcutta]")
 
 public class CancellationRequestDTO   {
   @JsonProperty("amount")
@@ -44,8 +44,8 @@ public class CancellationRequestDTO   {
   @JsonProperty("reference")
   private String reference = null;
 
-  @JsonProperty("refoundDetailsId")
-  private Long refoundDetailsId = null;
+  @JsonProperty("refundDetailsId")
+  private Long refundDetailsId = null;
 
   @JsonProperty("status")
   private String status = null;
@@ -237,24 +237,24 @@ public class CancellationRequestDTO   {
     this.reference = reference;
   }
 
-  public CancellationRequestDTO refoundDetailsId(Long refoundDetailsId) {
-    this.refoundDetailsId = refoundDetailsId;
+  public CancellationRequestDTO refundDetailsId(Long refundDetailsId) {
+    this.refundDetailsId = refundDetailsId;
     return this;
   }
 
   /**
-   * Get refoundDetailsId
-   * @return refoundDetailsId
+   * Get refundDetailsId
+   * @return refundDetailsId
   **/
   @ApiModelProperty(value = "")
 
 
-  public Long getRefoundDetailsId() {
-    return refoundDetailsId;
+  public Long getRefundDetailsId() {
+    return refundDetailsId;
   }
 
-  public void setRefoundDetailsId(Long refoundDetailsId) {
-    this.refoundDetailsId = refoundDetailsId;
+  public void setRefundDetailsId(Long refundDetailsId) {
+    this.refundDetailsId = refundDetailsId;
   }
 
   public CancellationRequestDTO status(String status) {
@@ -336,7 +336,7 @@ public class CancellationRequestDTO   {
         Objects.equals(this.paymentId, cancellationRequestDTO.paymentId) &&
         Objects.equals(this.phoneCode, cancellationRequestDTO.phoneCode) &&
         Objects.equals(this.reference, cancellationRequestDTO.reference) &&
-        Objects.equals(this.refoundDetailsId, cancellationRequestDTO.refoundDetailsId) &&
+        Objects.equals(this.refundDetailsId, cancellationRequestDTO.refundDetailsId) &&
         Objects.equals(this.status, cancellationRequestDTO.status) &&
         Objects.equals(this.storeEmail, cancellationRequestDTO.storeEmail) &&
         Objects.equals(this.storePhone, cancellationRequestDTO.storePhone);
@@ -344,7 +344,7 @@ public class CancellationRequestDTO   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, customerEmail, customerPhone, date, id, orderId, paymentId, phoneCode, reference, refoundDetailsId, status, storeEmail, storePhone);
+    return Objects.hash(amount, customerEmail, customerPhone, date, id, orderId, paymentId, phoneCode, reference, refundDetailsId, status, storeEmail, storePhone);
   }
 
   @Override
@@ -361,7 +361,7 @@ public class CancellationRequestDTO   {
     sb.append("    paymentId: ").append(toIndentedString(paymentId)).append("\n");
     sb.append("    phoneCode: ").append(toIndentedString(phoneCode)).append("\n");
     sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
-    sb.append("    refoundDetailsId: ").append(toIndentedString(refoundDetailsId)).append("\n");
+    sb.append("    refundDetailsId: ").append(toIndentedString(refundDetailsId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    storeEmail: ").append(toIndentedString(storeEmail)).append("\n");
     sb.append("    storePhone: ").append(toIndentedString(storePhone)).append("\n");

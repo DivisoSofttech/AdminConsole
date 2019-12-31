@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * Link
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-07T10:29:26.932+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-26T12:53:30.695+05:30[Asia/Calcutta]")
 
 public class Link   {
   @JsonProperty("cancel_url")

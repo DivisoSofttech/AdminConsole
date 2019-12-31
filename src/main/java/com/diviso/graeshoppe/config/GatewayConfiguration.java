@@ -2,11 +2,8 @@ package com.diviso.graeshoppe.config;
 
 import io.github.jhipster.config.JHipsterProperties;
 
-import com.diviso.graeshoppe.gateway.ratelimiting.RateLimitingFilter;
 import com.diviso.graeshoppe.gateway.accesscontrol.AccessControlFilter;
 import com.diviso.graeshoppe.gateway.responserewriting.SwaggerBasePathRewritingFilter;
-
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,24 +29,4 @@ public class GatewayConfiguration {
         }
     }
 
-    /**
-     * Configures the Zuul filter that limits the number of API calls per user.
-     * <p>
-     * This uses Bucket4J to limit the API calls, see {@link com.diviso.graeshoppe.gateway.ratelimiting.RateLimitingFilter}.
-     */
-    @Configuration
-    @ConditionalOnProperty("jhipster.gateway.rate-limiting.enabled")
-    public static class RateLimitingConfiguration {
-
-        private final JHipsterProperties jHipsterProperties;
-
-        public RateLimitingConfiguration(JHipsterProperties jHipsterProperties) {
-            this.jHipsterProperties = jHipsterProperties;
-        }
-
-        @Bean
-        public RateLimitingFilter rateLimitingFilter() {
-            return new RateLimitingFilter(jHipsterProperties);
-        }
-    }
 }

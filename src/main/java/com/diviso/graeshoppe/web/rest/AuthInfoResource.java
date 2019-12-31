@@ -6,42 +6,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Resource to return information about OAuth properties
+ * Resource to return information about OIDC properties
  */
 @RestController
 @RequestMapping("/api")
 public class AuthInfoResource {
 
-    @Value("${security.oauth2.client.access-token-uri:}")
-    private String accessTokenUri;
-    @Value("${security.oauth2.client.client-id:}")
+    @Value("${spring.security.oauth2.client.provider.oidc.issuer-uri:}")
+    private String issuer;
+    @Value("${spring.security.oauth2.client.registration.oidc.client-id:}")
     private String clientId;
-    @Value("${security.oauth2.client.scope:}")
-    private String scope;
+
 
     @GetMapping("/auth-info")
     public AuthInfoVM getAuthInfo() {
-        String issuer = accessTokenUri;
-        // if Keycloak, uri has protocol/openid-connect/token, chop it off
-        if (accessTokenUri.contains("/protocol")) {
-            issuer = accessTokenUri.substring(0, accessTokenUri.indexOf("/protocol"));
-        } else if (accessTokenUri.contains("/v1/token")) {
-            // If Okta, uri has /v1/token
-            issuer = accessTokenUri.substring(0, accessTokenUri.indexOf("/v1/token"));
-        }
-
-        return new AuthInfoVM(issuer, clientId, scope);
+        return new AuthInfoVM(issuer, clientId);
     }
 
     class AuthInfoVM {
         private String issuer;
         private String clientId;
-        private String scope;
 
-        AuthInfoVM(String issuer, String clientId, String scope) {
+        AuthInfoVM(String issuer, String clientId) {
             this.issuer = issuer;
             this.clientId = clientId;
-            this.scope = scope;
         }
 
         public String getIssuer() {
@@ -58,14 +46,6 @@ public class AuthInfoResource {
 
         public void setClientId(String clientId) {
             this.clientId = clientId;
-        }
-
-        public String getScope() {
-            return scope;
-        }
-
-        public void setScope(String scope) {
-            this.scope = scope;
         }
     }
 }

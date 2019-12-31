@@ -1,48 +1,48 @@
 {
-    "generator-jhipster": {
-        "promptValues": {
-            "packageName": "com.diviso.graeshoppe"
-        },
-        "jhipsterVersion": "5.8.1",
-        "applicationType": "gateway",
-        "baseName": "AdminConsole",
-        "packageName": "com.diviso.graeshoppe",
-        "packageFolder": "com/diviso/graeshoppe",
-        "serverPort": "9081",
-        "authenticationType": "oauth2",
-        "cacheProvider": "hazelcast",
-        "enableHibernateCache": false,
-        "websocket": false,
-        "databaseType": "sql",
-        "devDatabaseType": "mysql",
-        "prodDatabaseType": "mysql",
-        "searchEngine": "elasticsearch",
-        "messageBroker": false,
-        "serviceDiscoveryType": "eureka",
-        "buildTool": "maven",
-        "enableSwaggerCodegen": false,
-        "clientFramework": "angularX",
-        "useSass": false,
-        "clientPackageManager": "npm",
-        "testFrameworks": [],
-        "jhiPrefix": "jhi",
-        "entitySuffix": "",
-        "dtoSuffix": "DTO",
-        "otherModules": [],
-        "enableTranslation": false
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.diviso.graeshoppe",
+      "nativeLanguage": "en"
     },
-    "generator-jhipster-swagger-cli": {
-        "promptValues": {
-            "inputSpec": "http://localhost:8081/v2/api-docs",
-            "cliName": "administration"
-        },
-        "apis": {
-            "OfferResource": {
-                "spec": "http://dev.ci2.divisosofttech.com:8095/Offer/v2/api-docs"
-            },
-            "order": {
-                "spec": "http://35.239.128.233:8088/v2/api-docs "
-            }
-        }
+    "jhipsterVersion": "6.6.0",
+    "applicationType": "gateway",
+    "baseName": "adminconsolegateway",
+    "packageName": "com.diviso.graeshoppe",
+    "packageFolder": "com/diviso/graeshoppe",
+    "serverPort": "8074",
+    "authenticationType": "oauth2",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "creationTimestamp": 1577680825145,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "blueprints": []
+  },
+  "generator-jhipster-swagger-cli": {
+    "promptValues": {
+      "inputSpec": "http://dev.ci3.divisosofttech.com:8081/v2/api-docs",
+      "cliName": "administration"
     }
+  }
 }
