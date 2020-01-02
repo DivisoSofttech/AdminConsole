@@ -15,36 +15,28 @@ import java.util.Objects;
 /**
  * A OrderLine.
  */
-@Entity
-@Table(name = "order_line")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+
 
 public class OrderLine implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @Column(name = "product_id")
     private Long productId;
 
-    @Column(name = "quantity")
+
     private Integer quantity;
 
-    @Column(name = "price_per_unit")
     private Double pricePerUnit;
 
-    @Column(name = "total")
+
     private Double total;
 
-    @ManyToOne
-    @JsonIgnoreProperties("orderLines")
+
     private Order order;
 
-    @OneToMany(mappedBy = "orderLine")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+
     private Set<AuxilaryOrderLine> requiedAuxilaries = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

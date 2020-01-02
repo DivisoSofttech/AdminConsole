@@ -18,51 +18,37 @@ import java.util.Objects;
 /**
  * A Order.
  */
-@Entity
-@Table(name = "jhi_order")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+
 
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @Column(name = "order_id")
     private String orderId;
 
-    @Column(name = "customer_id")
     private String customerId;
 
-    @Column(name = "store_id")
     private String storeId;
 
-    @Column(name = "jhi_date")
+
     private Instant date;
 
-    @Column(name = "grand_total")
     private Double grandTotal;
 
-    @Column(name = "payment_ref")
+
     private String paymentRef;
 
-    @Column(name = "notes")
     private String notes;
 
-    @Column(name = "email")
     private String email;
 
-    @OneToOne
-    @JoinColumn(unique = true)
     private DeliveryInfo deliveryInfo;
 
-    @OneToMany(mappedBy = "order")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+
     private Set<OrderLine> orderLines = new HashSet<>();
-    @ManyToOne
-    @JsonIgnoreProperties("orders")
+
     private Status status;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
