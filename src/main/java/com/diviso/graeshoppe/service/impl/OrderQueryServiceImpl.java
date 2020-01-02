@@ -49,7 +49,7 @@ public class OrderQueryServiceImpl implements OrderQueryService{
 		log.debug("<<<<<<<<<< findByOrderByOrderId >>>>>>>>>{}",orderId);
 		List<Order> orders = new ArrayList<>();
 		QueryBuilder queryBuilders = QueryBuilders.boolQuery()
-				.must(QueryBuilders.matchAllQuery()).filter(QueryBuilders.termQuery("orderId", orderId));
+				.must(QueryBuilders.matchAllQuery()).filter(QueryBuilders.termQuery("orderId.keyword", orderId));
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryBuilders);
 		SearchRequest request = new SearchRequest("order");
