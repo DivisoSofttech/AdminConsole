@@ -10,6 +10,6 @@ public interface OrderQueryService {
 
 	ResponseEntity<Order> findOrderByOrderId(String orderId);
 
-	//ResponseEntity<List<Order>> findByOrderByOrderId(String orderId);
+	ResponseEntity<List<Order>> findByOrdersByOrderId(String orderId);
 
 }
