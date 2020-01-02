@@ -28,6 +28,7 @@ import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
 import com.diviso.graeshoppe.client.offer.model.DeductionValueTypeDTO;
 import com.diviso.graeshoppe.client.offer.model.OfferDTO;
+import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.client.report.model.AuxItem;
 import com.diviso.graeshoppe.client.report.model.OfferLine;
 import com.diviso.graeshoppe.client.report.model.OrderLine;
@@ -37,6 +38,7 @@ import com.diviso.graeshoppe.client.report.model.ReportSummary;
 import com.diviso.graeshoppe.client.store.model.Store;
 import com.diviso.graeshoppe.service.AdministrationQueryService;
 import com.diviso.graeshoppe.service.OfferQueryService;
+import com.diviso.graeshoppe.service.OrderQueryService;
 import com.diviso.graeshoppe.service.ReportQueryService;
 
 import io.swagger.annotations.ApiParam;
@@ -47,6 +49,9 @@ import io.swagger.annotations.ApiParam;
 @RestController
 @RequestMapping("/api/query")
 public class QueryResource {
+	
+	@Autowired
+	OrderQueryService orderQueryService;
 	
 	 @Autowired
 	 ReportQueryService reportQueryService;
@@ -395,6 +400,12 @@ public class QueryResource {
 			public ResponseEntity<List<AuxItem>> findAuxItemsById(@PathVariable Long id){
 				log.debug("<<<<<<<<<< findAuxItemsById >>>>>>>>>{}",id);
 				return reportQueryService.findOfferLinesById(id);
+				
+			}
+			@GetMapping("/findOrderById/{id}")
+			public ResponseEntity<Order> findOrderById(@PathVariable Long id){
+				log.debug("<<<<<<<<<< findAuxItemsById >>>>>>>>>{}",id);
+				return orderQueryService.findOrderById(id);
 				
 			}
 }
