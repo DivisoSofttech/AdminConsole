@@ -34,7 +34,7 @@ public class OrderQueryServiceImpl implements OrderQueryService{
 	RestHighLevelClient restClient;
 
 	@Override
-	public ResponseEntity<Order> findOrderById(String orderId) {
+	public ResponseEntity<Order> findOrderByOrderId(String orderId) {
 		log.debug("<<<<<<<<< findOrderById >>>>>>>>{}",orderId);
 		
 		QueryBuilder queryBuilders = QueryBuilders.termQuery("orderId.keyword", orderId);
