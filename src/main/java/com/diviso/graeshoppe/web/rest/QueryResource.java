@@ -418,7 +418,7 @@ public class QueryResource {
 
 	}
 
-	@GetMapping("/findOrdersByOrderId/{orderId")
+	@GetMapping("/findOrdersByOrderId/{orderId}")
 	public ResponseEntity<List<Order>> findOrdersByOrderId(@PathVariable String orderId) {
 		log.debug("<<<<<<<<< findOrderByOrderId >>>>>>>>>{}", orderId);
 		return orderQueryService.findByOrdersByOrderId(orderId);
