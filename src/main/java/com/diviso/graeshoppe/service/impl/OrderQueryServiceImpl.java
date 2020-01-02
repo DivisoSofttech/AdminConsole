@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.service.OrderQueryService;
 import com.diviso.graeshoppe.web.rest.util.ServiceUtility;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,6 +33,9 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 
 	@Autowired
 	RestHighLevelClient restClient;
+	
+	@Autowired
+	ObjectMapper objectMapper;
 
 	@Override
 	public ResponseEntity<Order> findOrderByOrderId(String orderId) {
@@ -47,7 +51,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	@Override
 	public ResponseEntity<List<Order>> findByOrdersByOrderId(String orderId) {
 		log.debug("<<<<<<<<<< findByOrderByOrderId >>>>>>>>>{}", orderId);
-		List<Order> orders = new ArrayList<>();
+		List<Order> orders = new ArrayList<Order>();
 		QueryBuilder queryBuilders = QueryBuilders.boolQuery().must(QueryBuilders.matchAllQuery())
 				.filter(QueryBuilders.termQuery("orderId.keyword", orderId));
 		SearchSourceBuilder builder = new SearchSourceBuilder();
@@ -60,11 +64,12 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 			response = restClient.search(request, RequestOptions.DEFAULT);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		for (SearchHit hit : response.getHits()) {
+		}SearchHit[] searchHit = response.getHits().getHits();
+		for (SearchHit hit : searchHit) {
 			Order order = new Order();
-			orders.add(order);
+			orders.add(objectMapper.convertValue(hit.getSourceAsMap(),Order.class));
 		}
+		log.debug("<<<<<<<<<<<<<<<<<outputtttt",orders);
 		return ResponseEntity.ok().body(orders);
 	}
 
