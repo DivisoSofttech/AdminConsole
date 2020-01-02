@@ -408,6 +408,11 @@ public class QueryResource {
 				return orderQueryService.findOrderById(id);
 				
 			}
+			@GetMapping("/findOrderByOrderId/{orderId")
+			public ResponseEntity<List<Order>> findOrderByOrderId(@PathVariable String orderId){
+				log.debug("<<<<<<<<< findOrderByOrderId >>>>>>>>>{}",orderId);
+				return orderQueryService.findByOrderByOrderId(orderId);
+			}
 }
 
 

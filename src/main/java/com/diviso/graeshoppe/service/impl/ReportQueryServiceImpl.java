@@ -105,7 +105,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 
 	@Override
 	public ResponseEntity<List<AuxItem>> findOfferLinesById(Long id) {
-		log.debug("<<<<<<< findOfferLinesById >>>>>",id);
+		log.debug("<<<<<<< findOfferLinesById >>>>>{}",id);
 		return queryResourceApi.findAuxItemByidUsingGET(id);
 	}
 	
