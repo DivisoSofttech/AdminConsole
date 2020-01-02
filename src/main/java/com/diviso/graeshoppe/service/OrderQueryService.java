@@ -8,8 +8,8 @@ import com.diviso.graeshoppe.client.order.model.Order;
 
 public interface OrderQueryService {
 
-	ResponseEntity<Order> findOrderById(Long id);
+	ResponseEntity<Order> findOrderById(String orderId);
 
-	ResponseEntity<List<Order>> findByOrderByOrderId(String orderId);
+	//ResponseEntity<List<Order>> findByOrderByOrderId(String orderId);
 
 }

@@ -402,17 +402,18 @@ public class QueryResource {
 				return reportQueryService.findOfferLinesById(id);
 				
 			}
-			@GetMapping("/findOrderById/{id}")
-			public ResponseEntity<Order> findOrderById(@PathVariable Long id){
-				log.debug("<<<<<<<<<< findOrderById >>>>>>>>>{}",id);
-				return orderQueryService.findOrderById(id);
+			@GetMapping("/findOrderByorderId/{orderid}")
+			public ResponseEntity<Order> findOrderById(@PathVariable String orderId){
+				log.debug("<<<<<<<<<< findOrderById >>>>>>>>>{}",orderId);
+				return orderQueryService.findOrderById(orderId);
 				
 			}
-			@GetMapping("/findOrderByOrderId/{orderId")
-			public ResponseEntity<List<Order>> findOrderByOrderId(@PathVariable String orderId){
-				log.debug("<<<<<<<<< findOrderByOrderId >>>>>>>>>{}",orderId);
-				return orderQueryService.findByOrderByOrderId(orderId);
-			}
+	/*
+	 * @GetMapping("/findOrderByOrderId/{orderId") public
+	 * ResponseEntity<List<Order>> findOrderByOrderId(@PathVariable String orderId){
+	 * log.debug("<<<<<<<<< findOrderByOrderId >>>>>>>>>{}",orderId); return
+	 * orderQueryService.findByOrderByOrderId(orderId); }
+	 */
 }
 
 
