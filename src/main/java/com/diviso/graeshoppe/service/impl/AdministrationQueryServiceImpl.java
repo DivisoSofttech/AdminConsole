@@ -191,14 +191,14 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 	}
 
 	@Override
-	public ResponseEntity<Page<Banner>> findBannerByStoreId(String storeId,Pageable pageable) {
+	public Page<Banner> findBannerByStoreId(String storeId,Pageable pageable) {
 		log.debug("<<<<<<<<<findBannerByStoreId impl >>>>>>>{}",storeId);
 		
 		QueryBuilder queryBuilder = QueryBuilders.matchQuery("storeId", storeId).prefixLength(3);
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryBuilder);
-		SearchResponse response = serviceUtility.searchResponseForPage("premium_banner", builder, pageable);
-		return ResponseEntity.ok().body(serviceUtility.getPageResult(response, pageable, new Banner()));
+		SearchResponse response = serviceUtility.searchResponseForPage("premiumbanner", builder, pageable);
+		return serviceUtility.getPageResult(response, pageable, new Banner());
 	}
 	
 

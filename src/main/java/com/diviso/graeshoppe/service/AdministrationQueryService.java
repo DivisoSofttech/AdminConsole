@@ -85,6 +85,6 @@ public interface AdministrationQueryService {
 	
 	public Page<Store> findStoreByName(String name, Pageable pageable);
 
-	public ResponseEntity<Page<Banner>> findBannerByStoreId(String storeId,Pageable pageable);
+	public Page<Banner> findBannerByStoreId(String storeId,Pageable pageable);
     
 }

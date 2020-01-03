@@ -433,7 +433,7 @@ public class QueryResource {
 	}
 
 	@GetMapping("/findBannerByStoreId/{storeId}")
-	public ResponseEntity<Page<Banner>> findBannerByStoreId(@PathVariable String storeId,Pageable pageable){
+	public Page<Banner> findBannerByStoreId(@PathVariable String storeId,Pageable pageable){
 		log.debug("<<<<<<<<< findBannerByStoreId >>>>>>>>>{}",storeId);
 		return administrationQueryService.findBannerByStoreId(storeId,pageable);
 
