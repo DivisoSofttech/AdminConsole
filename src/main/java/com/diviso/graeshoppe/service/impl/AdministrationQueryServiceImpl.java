@@ -178,8 +178,8 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 	@Override
 	public Page<Store> findStoreByName(String name, Pageable pageable) {
 		
-		log.debug("<<<<<<<<< findStoreByName>>>>>>>>>", name);
-		QueryBuilder queryDsl =matchQuery("name", name).prefixLength(3);
+		log.debug("<<<<<<<<< findStoreByName>>>>>>>>>{}", name);
+		QueryBuilder queryDsl =QueryBuilders.matchQuery("name", name).prefixLength(3);
 
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryDsl);
