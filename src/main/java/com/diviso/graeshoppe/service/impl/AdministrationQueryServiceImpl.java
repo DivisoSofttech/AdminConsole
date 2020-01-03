@@ -25,6 +25,7 @@ import com.diviso.graeshoppe.client.administration.api.CancellationRequestResour
 import com.diviso.graeshoppe.client.administration.api.CancelledOrderLineResourceApi;
 import com.diviso.graeshoppe.client.administration.api.NotificationResourceApi;
 import com.diviso.graeshoppe.client.administration.api.RefundDetailsResourceApi;
+import com.diviso.graeshoppe.client.administration.model.Banner;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
@@ -187,6 +188,17 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 
 		return serviceUtility.getPageResult(sr, pageable, new Store());
 		
+	}
+
+	@Override
+	public ResponseEntity<Page<Banner>> findBannerByStoreId(String storeId,Pageable pageable) {
+		log.debug("<<<<<<<<<findBannerByStoreId impl >>>>>>>{}",storeId);
+		
+		QueryBuilder queryBuilder = QueryBuilders.matchQuery("storeId", storeId);
+		SearchSourceBuilder builder = new SearchSourceBuilder();
+		builder.query(queryBuilder);
+		SearchResponse response = serviceUtility.searchResponseForPage("premium_banner", builder, pageable);
+		return ResponseEntity.ok().body(serviceUtility.getPageResult(response, pageable, new Banner()));
 	}
 	
 
