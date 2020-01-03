@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
+import com.diviso.graeshoppe.client.administration.model.Banner;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
@@ -83,5 +84,7 @@ public interface AdministrationQueryService {
 	ResponseEntity<List<RefundDetailsDTO>> searchRefundDetails(String query, Pageable pageable);
 	
 	public Page<Store> findStoreByName(String name, Pageable pageable);
+
+	public ResponseEntity<Page<Banner>> findBannerByStoreId(String storeId,Pageable pageable);
     
 }

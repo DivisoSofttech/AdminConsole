@@ -51,6 +51,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	@Override
 	public ResponseEntity<List<Order>> findByOrdersByOrderId(String orderId) {
 		log.debug("<<<<<<<<<< findByOrderByOrderId >>>>>>>>>{}", orderId);
+		
 		List<Order> orders = new ArrayList<Order>();
 		QueryBuilder queryBuilders = QueryBuilders.boolQuery().must(QueryBuilders.matchAllQuery())
 				.filter(QueryBuilders.termQuery("orderId.keyword", orderId));

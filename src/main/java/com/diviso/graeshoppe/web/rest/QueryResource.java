@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.diviso.graeshoppe.client.administration.model.Banner;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
@@ -425,10 +426,17 @@ public class QueryResource {
 		return orderQueryService.findByOrdersByOrderId(orderId);
 	}
 	
-	
 	@GetMapping("/ordersummary/{date}/{storeId}")
 	public ResponseEntity<PdfDTO> getOrderSummary(@PathVariable String date, @PathVariable String storeId) {
 		return reportQueryService.getOrderSummary(date, storeId);
+		
+	}
+
+	@GetMapping("/findBannerByStoreId/{storeId}")
+	public ResponseEntity<Page<Banner>> findBannerByStoreId(@PathVariable String storeId,Pageable pageable){
+		log.debug("<<<<<<<<< findBannerByStoreId >>>>>>>>>{}",storeId);
+		return administrationQueryService.findBannerByStoreId(storeId,pageable);
+
 	}
 
 }
