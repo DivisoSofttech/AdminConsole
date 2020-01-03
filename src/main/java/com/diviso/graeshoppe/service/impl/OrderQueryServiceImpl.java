@@ -33,7 +33,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 
 	@Autowired
 	RestHighLevelClient restClient;
-	
+
 	@Autowired
 	ObjectMapper objectMapper;
 
@@ -64,12 +64,13 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 			response = restClient.search(request, RequestOptions.DEFAULT);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}SearchHit[] searchHit = response.getHits().getHits();
+		}
+		SearchHit[] searchHit = response.getHits().getHits();
 		for (SearchHit hit : searchHit) {
 			Order order = new Order();
-			orders.add(objectMapper.convertValue(hit.getSourceAsMap(),Order.class));
+			orders.add(objectMapper.convertValue(hit.getSourceAsMap(), Order.class));
 		}
-		log.debug("<<<<<<<<<<<<<<<<<outputtttt",orders);
+		log.debug("<<<<<<<<<<<<<<<<<outputtttt", orders);
 		return ResponseEntity.ok().body(orders);
 	}
 
