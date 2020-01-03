@@ -40,6 +40,7 @@ import com.diviso.graeshoppe.service.AdministrationQueryService;
 import com.diviso.graeshoppe.service.OfferQueryService;
 import com.diviso.graeshoppe.service.OrderQueryService;
 import com.diviso.graeshoppe.service.ReportQueryService;
+import com.diviso.graeshoppe.service.dto.PdfDTO;
 
 import io.swagger.annotations.ApiParam;
 
@@ -422,6 +423,12 @@ public class QueryResource {
 	public ResponseEntity<List<Order>> findOrdersByOrderId(@PathVariable String orderId) {
 		log.debug("<<<<<<<<< findOrdersByOrderId >>>>>>>>>{}", orderId);
 		return orderQueryService.findByOrdersByOrderId(orderId);
+	}
+	
+	
+	@GetMapping("/ordersummary/{date}/{storeId}")
+	public ResponseEntity<PdfDTO> getOrderSummary(@PathVariable String date, @PathVariable String storeId) {
+		return reportQueryService.getOrderSummary(date, storeId);
 	}
 
 }
