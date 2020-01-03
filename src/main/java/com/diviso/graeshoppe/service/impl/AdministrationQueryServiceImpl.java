@@ -8,6 +8,8 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.FieldSortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -199,6 +202,18 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 		builder.query(queryBuilder);
 		SearchResponse response = serviceUtility.searchResponseForPage("premiumbanner", builder, pageable);
 		return serviceUtility.getPageResult(response, pageable, new Banner());
+	}
+
+	@Override
+	public ResponseEntity<List<CancellationRequestDTO>> findAllCancellationRequests(Pageable pageable) {
+		log.debug("<<<<<<<<<< findCancellationRequestByOrderId >>>>>>>impl {}",pageable);
+		
+		ArrayList<Order> list=new ArrayList<Order>();
+		pageable.getSort().stream().forEach(list::add);
+		List<String> sortlist=new ArrayList<String>();
+		list.stream().map(x->x.toString()).forEach(sortlist::add);
+		
+		return cancellationRequestResourceApi.getAllCancellationRequestsUsingGET(pageable.getPageNumber(), pageable.getPageSize(), sortlist);
 	}
 	
 

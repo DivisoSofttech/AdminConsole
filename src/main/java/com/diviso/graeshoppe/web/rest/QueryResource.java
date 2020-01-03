@@ -438,5 +438,12 @@ public class QueryResource {
 		return administrationQueryService.findBannerByStoreId(storeId,pageable);
 
 	}
+	@GetMapping("/findAllCancellationRequests")
+	public ResponseEntity<List<CancellationRequestDTO>> findAllCancellationRequests(Pageable pageable){
+		log.debug("<<<<<<<<<< findCancellationRequest >>>>>>>>{}",pageable);
+		
+		return administrationQueryService.findAllCancellationRequests(pageable);
+		
+	}
 
 }
