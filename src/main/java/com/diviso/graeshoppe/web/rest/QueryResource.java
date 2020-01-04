@@ -27,6 +27,7 @@ import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.DataResponse;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
+import com.diviso.graeshoppe.client.customer.model.Customer;
 import com.diviso.graeshoppe.client.offer.model.DeductionValueTypeDTO;
 import com.diviso.graeshoppe.client.offer.model.OfferDTO;
 import com.diviso.graeshoppe.client.order.model.Order;
@@ -38,6 +39,7 @@ import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
 import com.diviso.graeshoppe.client.store.model.Store;
 import com.diviso.graeshoppe.service.AdministrationQueryService;
+import com.diviso.graeshoppe.service.CustomerQueryService;
 import com.diviso.graeshoppe.service.OfferQueryService;
 import com.diviso.graeshoppe.service.OrderQueryService;
 import com.diviso.graeshoppe.service.ReportQueryService;
@@ -63,6 +65,9 @@ public class QueryResource {
 
 	@Autowired
 	AdministrationQueryService administrationQueryService;
+	
+	@Autowired
+	CustomerQueryService customerQueryService;
 
 	private final Logger log = LoggerFactory.getLogger(QueryResource.class);
 
@@ -443,7 +448,14 @@ public class QueryResource {
 		log.debug("<<<<<<<<<< findCancellationRequest >>>>>>>>{}",pageable);
 		
 		return administrationQueryService.findAllCancellationRequests(pageable);
+	}
+	@GetMapping("/findCustomerByIdpCode")
+	public ResponseEntity<Customer> findCustomerByIdpCode(@PathVariable String idpCode){
+		log.debug("<<<<<<<<<< findCancellationRequest >>>>>>>>{}",idpCode);
+		
+		return customerQueryService.findCustomerByIdpCode(idpCode);
 		
 	}
+	
 
 }
