@@ -86,5 +86,7 @@ public interface AdministrationQueryService {
 	public Page<Store> findStoreByName(String name, Pageable pageable);
 
 	public Page<Banner> findBannerByStoreId(String storeId,Pageable pageable);
+
+	public ResponseEntity<List<CancellationRequestDTO>> findAllCancellationRequests(Pageable pageable);
     
 }
