@@ -49,5 +49,13 @@ public interface ReportQueryService {
 
 	public ResponseEntity<List<AuxItem>> findOfferLinesById(Long id);
 
-	public ResponseEntity<PdfDTO> getOrderSummary(String date, String storeId);
+	public ResponseEntity<PdfDTO> getOrderSummaryByDateAndStoreName(String date, String storeId);
+
+	public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(String date, String methodOfOrder, String storeId);
+
+	public ResponseEntity<PdfDTO> getAllOrdersBetweenDates(String fromDate, String toDate);
+
+	public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(String date, String paymentStatus, String storeId);
+	
+	
 }
