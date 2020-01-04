@@ -426,17 +426,38 @@ public class QueryResource {
 		return orderQueryService.findByOrdersByOrderId(orderId);
 	}
 	
-	@GetMapping("/ordersummary/{date}/{storeId}")
-	public ResponseEntity<PdfDTO> getOrderSummary(@PathVariable String date, @PathVariable String storeId) {
-		return reportQueryService.getOrderSummary(date, storeId);
-		
-	}
-
 	@GetMapping("/findBannerByStoreId/{storeId}")
 	public Page<Banner> findBannerByStoreId(@PathVariable String storeId,Pageable pageable){
 		log.debug("<<<<<<<<< findBannerByStoreId >>>>>>>>>{}",storeId);
 		return administrationQueryService.findBannerByStoreId(storeId,pageable);
 
 	}
+	
+	@GetMapping("/getOrderSummaryByDateAndStoreName/{date}/{storeId}")
+	public ResponseEntity<PdfDTO> getOrderSummaryByDateAndStoreName(@PathVariable String date, @PathVariable String storeId) {
+		return reportQueryService.getOrderSummaryByDateAndStoreName(date, storeId);
+		
+	}
+
+
+	@GetMapping("/getAllOrdersByMethodOfOrder/{date}/{storeId}")
+	public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(String date, String methodOfOrder, String storeId){
+		
+		return reportQueryService.getAllOrdersByMethodOfOrder(date, methodOfOrder, storeId);
+	}
+
+	@GetMapping("/getAllOrdersBetweenDates/{date}/{storeId}")
+	public ResponseEntity<PdfDTO> getAllOrdersBetweenDates(String fromDate, String toDate){
+		
+		return reportQueryService.getAllOrdersBetweenDates(fromDate, toDate);
+	}
+
+	@GetMapping("/getAllOrdersByPaymentStatus/{date}/{storeId}")
+	public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(String date, String paymentStatus, String storeId){
+		
+		return reportQueryService.getAllOrdersByPaymentStatus(date, paymentStatus, storeId);
+	}
+	
+	
 
 }
