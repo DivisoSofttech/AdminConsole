@@ -449,7 +449,7 @@ public class QueryResource {
 		
 		return administrationQueryService.findAllCancellationRequests(pageable);
 	}
-	@GetMapping("/findCustomerByIdpCode")
+	@GetMapping("/findCustomerByIdpCode/{idpCode}")
 	public ResponseEntity<Customer> findCustomerByIdpCode(@PathVariable String idpCode){
 		log.debug("<<<<<<<<<< findCancellationRequest >>>>>>>>{}",idpCode);
 		
