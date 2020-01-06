@@ -444,20 +444,20 @@ public class QueryResource {
 		
 	}
 
-	@GetMapping("/getAllOrdersByMethodOfOrder/{date}/{storeId}")
-	public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(@PathVariable String date, @PathVariable String methodOfOrder, String storeId){
+	@GetMapping("/getAllOrdersByMethodOfOrder/{date}/{methodOfOrder}/{storeId}")
+	public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(@PathVariable String date,@PathVariable String methodOfOrder,@PathVariable String storeId){
 		
 		return reportQueryService.getAllOrdersByMethodOfOrder(date, methodOfOrder, storeId);
 	}
 
-	@GetMapping("/getAllOrdersBetweenDates/{date}/{storeId}")
+	@GetMapping("/getAllOrdersBetweenDates/{fromDate}/{toDate}")
 	public ResponseEntity<PdfDTO> getAllOrdersBetweenDates(@PathVariable String fromDate, @PathVariable String toDate){
 		
 		return reportQueryService.getAllOrdersBetweenDates(fromDate, toDate);
 	}
 
-	@GetMapping("/getAllOrdersByPaymentStatus/{date}/{storeId}")
-	public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(@PathVariable String date, @PathVariable String paymentStatus,@PathVariable String storeId){
+	@GetMapping("/getAllOrdersByPaymentStatus/{date}/{paymentStatus}/{storeId}")
+	public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(@PathVariable String date,@PathVariable String paymentStatus,@PathVariable String storeId){
 		
 		return reportQueryService.getAllOrdersByPaymentStatus(date, paymentStatus, storeId);
 	}
