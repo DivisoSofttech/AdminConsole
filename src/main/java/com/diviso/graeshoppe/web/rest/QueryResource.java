@@ -445,19 +445,19 @@ public class QueryResource {
 	}
 
 	@GetMapping("/getAllOrdersByMethodOfOrder/{date}/{storeId}")
-	public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(String date, String methodOfOrder, String storeId){
+	public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(@PathVariable String date, @PathVariable String methodOfOrder, String storeId){
 		
 		return reportQueryService.getAllOrdersByMethodOfOrder(date, methodOfOrder, storeId);
 	}
 
 	@GetMapping("/getAllOrdersBetweenDates/{date}/{storeId}")
-	public ResponseEntity<PdfDTO> getAllOrdersBetweenDates(String fromDate, String toDate){
+	public ResponseEntity<PdfDTO> getAllOrdersBetweenDates(@PathVariable String fromDate, @PathVariable String toDate){
 		
 		return reportQueryService.getAllOrdersBetweenDates(fromDate, toDate);
 	}
 
 	@GetMapping("/getAllOrdersByPaymentStatus/{date}/{storeId}")
-	public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(String date, String paymentStatus, String storeId){
+	public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(@PathVariable String date, @PathVariable String paymentStatus,@PathVariable String storeId){
 		
 		return reportQueryService.getAllOrdersByPaymentStatus(date, paymentStatus, storeId);
 	}
