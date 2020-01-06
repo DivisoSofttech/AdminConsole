@@ -17,12 +17,15 @@ import javax.validation.constraints.*;
  * PageOfOrderMaster
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-26T12:52:53.808+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-06T11:32:14.969+05:30[Asia/Kolkata]")
 
 public class PageOfOrderMaster   {
   @JsonProperty("content")
   @Valid
   private List<OrderMaster> content = null;
+
+  @JsonProperty("empty")
+  private Boolean empty = null;
 
   @JsonProperty("first")
   private Boolean first = null;
@@ -75,6 +78,26 @@ public class PageOfOrderMaster   {
 
   public void setContent(List<OrderMaster> content) {
     this.content = content;
+  }
+
+  public PageOfOrderMaster empty(Boolean empty) {
+    this.empty = empty;
+    return this;
+  }
+
+  /**
+   * Get empty
+   * @return empty
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Boolean isEmpty() {
+    return empty;
+  }
+
+  public void setEmpty(Boolean empty) {
+    this.empty = empty;
   }
 
   public PageOfOrderMaster first(Boolean first) {
@@ -249,6 +272,7 @@ public class PageOfOrderMaster   {
     }
     PageOfOrderMaster pageOfOrderMaster = (PageOfOrderMaster) o;
     return Objects.equals(this.content, pageOfOrderMaster.content) &&
+        Objects.equals(this.empty, pageOfOrderMaster.empty) &&
         Objects.equals(this.first, pageOfOrderMaster.first) &&
         Objects.equals(this.last, pageOfOrderMaster.last) &&
         Objects.equals(this.number, pageOfOrderMaster.number) &&
@@ -261,7 +285,7 @@ public class PageOfOrderMaster   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(content, first, last, number, numberOfElements, size, sort, totalElements, totalPages);
+    return Objects.hash(content, empty, first, last, number, numberOfElements, size, sort, totalElements, totalPages);
   }
 
   @Override
@@ -270,6 +294,7 @@ public class PageOfOrderMaster   {
     sb.append("class PageOfOrderMaster {\n");
     
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    empty: ").append(toIndentedString(empty)).append("\n");
     sb.append("    first: ").append(toIndentedString(first)).append("\n");
     sb.append("    last: ").append(toIndentedString(last)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");

@@ -3,9 +3,11 @@ package com.diviso.graeshoppe.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.diviso.graeshoppe.client.administration.model.CancellationRequest;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.service.OrderQueryService;
 import com.diviso.graeshoppe.web.rest.util.ServiceUtility;
@@ -22,6 +24,8 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.*;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class OrderQueryServiceImpl implements OrderQueryService {
@@ -74,5 +78,19 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		log.debug("<<<<<<<<<<<<<<<<<outputtttt", orders);
 		return ResponseEntity.ok().body(orders);
 	}
+	public Page<CancellationRequest> findCancellationRequestByStatus(String statusName,Pageable pageable){
+		QueryBuilder dslQuery = QueryBuilders.boolQuery().filter(QueryBuilders.termQuery("status.keyword",statusName));
+		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+		searchSourceBuilder.query(dslQuery);
+		SearchResponse searchResponse = serviceUtility.searchResponseForPage("store", searchSourceBuilder, pageable);
+
+		Page<CancellationRequest> cancellationRequestPage = serviceUtility.getPageResult(searchResponse, pageable, new CancellationRequest());
+
+		log.debug("output", cancellationRequestPage);
+
+		return cancellationRequestPage;
+	}
+
+
 
 }

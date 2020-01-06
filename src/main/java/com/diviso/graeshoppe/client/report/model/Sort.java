@@ -13,14 +13,37 @@ import javax.validation.constraints.*;
  * Sort
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-26T12:52:53.808+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-06T11:32:14.969+05:30[Asia/Kolkata]")
 
 public class Sort   {
+  @JsonProperty("empty")
+  private Boolean empty = null;
+
   @JsonProperty("sorted")
   private Boolean sorted = null;
 
   @JsonProperty("unsorted")
   private Boolean unsorted = null;
+
+  public Sort empty(Boolean empty) {
+    this.empty = empty;
+    return this;
+  }
+
+  /**
+   * Get empty
+   * @return empty
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Boolean isEmpty() {
+    return empty;
+  }
+
+  public void setEmpty(Boolean empty) {
+    this.empty = empty;
+  }
 
   public Sort sorted(Boolean sorted) {
     this.sorted = sorted;
@@ -72,13 +95,14 @@ public class Sort   {
       return false;
     }
     Sort sort = (Sort) o;
-    return Objects.equals(this.sorted, sort.sorted) &&
+    return Objects.equals(this.empty, sort.empty) &&
+        Objects.equals(this.sorted, sort.sorted) &&
         Objects.equals(this.unsorted, sort.unsorted);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sorted, unsorted);
+    return Objects.hash(empty, sorted, unsorted);
   }
 
   @Override
@@ -86,6 +110,7 @@ public class Sort   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Sort {\n");
     
+    sb.append("    empty: ").append(toIndentedString(empty)).append("\n");
     sb.append("    sorted: ").append(toIndentedString(sorted)).append("\n");
     sb.append("    unsorted: ").append(toIndentedString(unsorted)).append("\n");
     sb.append("}");

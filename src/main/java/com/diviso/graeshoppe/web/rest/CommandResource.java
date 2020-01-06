@@ -1,5 +1,7 @@
 package com.diviso.graeshoppe.web.rest;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
+import com.diviso.graeshoppe.client.administration.model.CancelledAuxilaryOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
@@ -228,6 +231,20 @@ public class CommandResource {
 			return administrationCommandService.createRefundDetails(refundDetailsDTO,orderId);
 			 
 		 }
+		 @PostMapping("/createCancelledOrderLineByList")
+		 public void createCancelledOrderLineByList(@RequestBody List<CancelledOrderLineDTO> cancelledOrderLineDTOList){
+			 log.debug("<<<<<<<<<<< createCancelledOrderLine >>>>>>>>>",cancelledOrderLineDTOList);
+			 administrationCommandService.createCancelledOrderLineByList(cancelledOrderLineDTOList);
+			 
+		 }
+		 @PostMapping("/createCancelledAuxilaryOrderLineByList")
+		 public void createCancelledAuxilaryOrderLineByList(@RequestBody List<CancelledAuxilaryOrderLineDTO> cancelledAuxilaryOrderLineDTOList){
+			 log.debug("<<<<<<<<<<< createCancelledAuxilaryOrderLine >>>>>>>>>",cancelledAuxilaryOrderLineDTOList);
+			 administrationCommandService.createCancelledAuxOrderLineByList(cancelledAuxilaryOrderLineDTOList);
+			 
+		 }
+		 
+		 
 		
 	    
 	    

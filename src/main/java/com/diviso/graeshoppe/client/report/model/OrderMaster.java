@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
  * OrderMaster
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-26T12:52:53.808+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-06T11:32:14.969+05:30[Asia/Kolkata]")
 
 public class OrderMaster   {
   @JsonProperty("addressType")
@@ -60,11 +60,11 @@ public class OrderMaster   {
   @JsonProperty("landmark")
   private String landmark = null;
 
+  @JsonProperty("loyaltyPoint")
+  private Long loyaltyPoint = null;
+
   @JsonProperty("methodOfOrder")
   private String methodOfOrder = null;
-
-  @JsonProperty("name")
-  private String name = null;
 
   @JsonProperty("notes")
   private String notes = null;
@@ -136,6 +136,9 @@ public class OrderMaster   {
 
   @JsonProperty("totalDue")
   private Double totalDue = null;
+
+  @JsonProperty("zoneId")
+  private String zoneId = null;
 
   public OrderMaster addressType(String addressType) {
     this.addressType = addressType;
@@ -398,6 +401,26 @@ public class OrderMaster   {
     this.landmark = landmark;
   }
 
+  public OrderMaster loyaltyPoint(Long loyaltyPoint) {
+    this.loyaltyPoint = loyaltyPoint;
+    return this;
+  }
+
+  /**
+   * Get loyaltyPoint
+   * @return loyaltyPoint
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getLoyaltyPoint() {
+    return loyaltyPoint;
+  }
+
+  public void setLoyaltyPoint(Long loyaltyPoint) {
+    this.loyaltyPoint = loyaltyPoint;
+  }
+
   public OrderMaster methodOfOrder(String methodOfOrder) {
     this.methodOfOrder = methodOfOrder;
     return this;
@@ -416,26 +439,6 @@ public class OrderMaster   {
 
   public void setMethodOfOrder(String methodOfOrder) {
     this.methodOfOrder = methodOfOrder;
-  }
-
-  public OrderMaster name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public OrderMaster notes(String notes) {
@@ -919,6 +922,26 @@ public class OrderMaster   {
     this.totalDue = totalDue;
   }
 
+  public OrderMaster zoneId(String zoneId) {
+    this.zoneId = zoneId;
+    return this;
+  }
+
+  /**
+   * Get zoneId
+   * @return zoneId
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getZoneId() {
+    return zoneId;
+  }
+
+  public void setZoneId(String zoneId) {
+    this.zoneId = zoneId;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -942,8 +965,8 @@ public class OrderMaster   {
         Objects.equals(this.houseNoOrBuildingName, orderMaster.houseNoOrBuildingName) &&
         Objects.equals(this.id, orderMaster.id) &&
         Objects.equals(this.landmark, orderMaster.landmark) &&
+        Objects.equals(this.loyaltyPoint, orderMaster.loyaltyPoint) &&
         Objects.equals(this.methodOfOrder, orderMaster.methodOfOrder) &&
-        Objects.equals(this.name, orderMaster.name) &&
         Objects.equals(this.notes, orderMaster.notes) &&
         Objects.equals(this.offerLines, orderMaster.offerLines) &&
         Objects.equals(this.orderAcceptedAt, orderMaster.orderAcceptedAt) &&
@@ -966,12 +989,13 @@ public class OrderMaster   {
         Objects.equals(this.storePhone, orderMaster.storePhone) &&
         Objects.equals(this.storelocationName, orderMaster.storelocationName) &&
         Objects.equals(this.subTotal, orderMaster.subTotal) &&
-        Objects.equals(this.totalDue, orderMaster.totalDue);
+        Objects.equals(this.totalDue, orderMaster.totalDue) &&
+        Objects.equals(this.zoneId, orderMaster.zoneId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressType, allergyNote, alternatePhone, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, methodOfOrder, name, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue);
+    return Objects.hash(addressType, allergyNote, alternatePhone, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
   }
 
   @Override
@@ -992,8 +1016,8 @@ public class OrderMaster   {
     sb.append("    houseNoOrBuildingName: ").append(toIndentedString(houseNoOrBuildingName)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    landmark: ").append(toIndentedString(landmark)).append("\n");
+    sb.append("    loyaltyPoint: ").append(toIndentedString(loyaltyPoint)).append("\n");
     sb.append("    methodOfOrder: ").append(toIndentedString(methodOfOrder)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
     sb.append("    offerLines: ").append(toIndentedString(offerLines)).append("\n");
     sb.append("    orderAcceptedAt: ").append(toIndentedString(orderAcceptedAt)).append("\n");
@@ -1017,6 +1041,7 @@ public class OrderMaster   {
     sb.append("    storelocationName: ").append(toIndentedString(storelocationName)).append("\n");
     sb.append("    subTotal: ").append(toIndentedString(subTotal)).append("\n");
     sb.append("    totalDue: ").append(toIndentedString(totalDue)).append("\n");
+    sb.append("    zoneId: ").append(toIndentedString(zoneId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
  * OrderLine
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-26T12:52:53.808+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-06T11:32:14.969+05:30[Asia/Kolkata]")
 
 public class OrderLine   {
   @JsonProperty("auxItems")
@@ -37,6 +37,9 @@ public class OrderLine   {
 
   @JsonProperty("orderMaster")
   private OrderMaster orderMaster = null;
+
+  @JsonProperty("productId")
+  private Long productId = null;
 
   @JsonProperty("quantity")
   private Integer quantity = null;
@@ -163,6 +166,26 @@ public class OrderLine   {
     this.orderMaster = orderMaster;
   }
 
+  public OrderLine productId(Long productId) {
+    this.productId = productId;
+    return this;
+  }
+
+  /**
+   * Get productId
+   * @return productId
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getProductId() {
+    return productId;
+  }
+
+  public void setProductId(Long productId) {
+    this.productId = productId;
+  }
+
   public OrderLine quantity(Integer quantity) {
     this.quantity = quantity;
     return this;
@@ -218,13 +241,14 @@ public class OrderLine   {
         Objects.equals(this.id, orderLine.id) &&
         Objects.equals(this.item, orderLine.item) &&
         Objects.equals(this.orderMaster, orderLine.orderMaster) &&
+        Objects.equals(this.productId, orderLine.productId) &&
         Objects.equals(this.quantity, orderLine.quantity) &&
         Objects.equals(this.total, orderLine.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(auxItems, comboItems, id, item, orderMaster, quantity, total);
+    return Objects.hash(auxItems, comboItems, id, item, orderMaster, productId, quantity, total);
   }
 
   @Override
@@ -237,6 +261,7 @@ public class OrderLine   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    item: ").append(toIndentedString(item)).append("\n");
     sb.append("    orderMaster: ").append(toIndentedString(orderMaster)).append("\n");
+    sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");

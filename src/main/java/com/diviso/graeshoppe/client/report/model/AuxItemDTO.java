@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * AuxItemDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-26T12:52:53.808+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-06T11:32:14.969+05:30[Asia/Kolkata]")
 
 public class AuxItemDTO   {
   @JsonProperty("auxItem")
@@ -24,6 +24,9 @@ public class AuxItemDTO   {
 
   @JsonProperty("orderLineId")
   private Long orderLineId = null;
+
+  @JsonProperty("productId")
+  private Long productId = null;
 
   @JsonProperty("quantity")
   private Integer quantity = null;
@@ -91,6 +94,26 @@ public class AuxItemDTO   {
     this.orderLineId = orderLineId;
   }
 
+  public AuxItemDTO productId(Long productId) {
+    this.productId = productId;
+    return this;
+  }
+
+  /**
+   * Get productId
+   * @return productId
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getProductId() {
+    return productId;
+  }
+
+  public void setProductId(Long productId) {
+    this.productId = productId;
+  }
+
   public AuxItemDTO quantity(Integer quantity) {
     this.quantity = quantity;
     return this;
@@ -144,13 +167,14 @@ public class AuxItemDTO   {
     return Objects.equals(this.auxItem, auxItemDTO.auxItem) &&
         Objects.equals(this.id, auxItemDTO.id) &&
         Objects.equals(this.orderLineId, auxItemDTO.orderLineId) &&
+        Objects.equals(this.productId, auxItemDTO.productId) &&
         Objects.equals(this.quantity, auxItemDTO.quantity) &&
         Objects.equals(this.total, auxItemDTO.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(auxItem, id, orderLineId, quantity, total);
+    return Objects.hash(auxItem, id, orderLineId, productId, quantity, total);
   }
 
   @Override
@@ -161,6 +185,7 @@ public class AuxItemDTO   {
     sb.append("    auxItem: ").append(toIndentedString(auxItem)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    orderLineId: ").append(toIndentedString(orderLineId)).append("\n");
+    sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");

@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
+import com.diviso.graeshoppe.client.administration.model.CancelledAuxilaryOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
-
+import java.util.List;
 public interface AdministrationCommandService {
 
 	public ResponseEntity<CancellationRequestDTO> createCancellationRequest(CancellationRequestDTO cancellationRequestDTO);
@@ -53,6 +54,11 @@ public interface AdministrationCommandService {
 	ResponseEntity<RefundDetailsDTO> updateRefundDetails(RefundDetailsDTO refundDetailsDTO);
 
 	ResponseEntity<Void> deleteRefundDetails(Long id);
+	  void createCancelledOrderLineByList(List<CancelledOrderLineDTO> cancelledOrderLineDTOList);
+
+	void createCancelledAuxOrderLineByList(List<CancelledAuxilaryOrderLineDTO> cancelledAuxilaryOrderLineDTOList);
+
+	
 
 	
 }

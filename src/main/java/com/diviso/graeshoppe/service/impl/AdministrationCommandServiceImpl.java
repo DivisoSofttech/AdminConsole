@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+import com.diviso.graeshoppe.client.administration.api.CancelledAuxilaryOrderLineResourceApi;
 import com.diviso.graeshoppe.client.administration.api.BannerResourceApi;
 import com.diviso.graeshoppe.client.administration.api.CancellationRequestResourceApi;
 import com.diviso.graeshoppe.client.administration.api.CancelledOrderLineResourceApi;
@@ -13,11 +13,13 @@ import com.diviso.graeshoppe.client.administration.api.NotificationResourceApi;
 import com.diviso.graeshoppe.client.administration.api.RefundDetailsResourceApi;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
+import com.diviso.graeshoppe.client.administration.model.CancelledAuxilaryOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
+import com.diviso.graeshoppe.client.administration.model.CancelledAuxilaryOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
 import com.diviso.graeshoppe.service.AdministrationCommandService;
-
+import java.util.List;
 @Service
 public class AdministrationCommandServiceImpl implements AdministrationCommandService{
 	
@@ -39,6 +41,8 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 	@Autowired
 	RefundDetailsResourceApi refundDetailsResourceApi;
 	
+	@Autowired
+	CancelledAuxilaryOrderLineResourceApi cancelledAuxilaryOrderLineResourceApi;
 	@Override
 	public ResponseEntity<CancellationRequestDTO> createCancellationRequest(CancellationRequestDTO cancellationRequestDTO) {
 		
@@ -133,10 +137,26 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 		return refundDetailsResourceApi.deleteRefundDetailsUsingDELETE(id);
 	}
 
+	@Override
+	public void createCancelledOrderLineByList(
+			List<CancelledOrderLineDTO> cancelledOrderLineDTOList) {
+		for(CancelledOrderLineDTO cancelledOrderLineDTO:cancelledOrderLineDTOList) {
+		 cancelledOrderLineResourceApi.createCancelledOrderLineUsingPOST(cancelledOrderLineDTO);
+		}
+		
+	}
+	@Override
+	public void createCancelledAuxOrderLineByList(
+			List<CancelledAuxilaryOrderLineDTO> cancelledAuxilaryOrderLineDTOList) {
+		for(CancelledAuxilaryOrderLineDTO cancelledOrderLineDTO:cancelledAuxilaryOrderLineDTOList) {
+			cancelledAuxilaryOrderLineResourceApi.createCancelledAuxilaryOrderLineUsingPOST(cancelledOrderLineDTO);
+		}
+		
+	}
 	
 	
 	
-	
+
 	
 	
 	

@@ -1,5 +1,5 @@
 package com.diviso.graeshoppe.web.rest;
-
+import com.diviso.graeshoppe.client.administration.model.CancellationRequest;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -476,6 +476,10 @@ public class QueryResource {
 		
 		return customerQueryService.findCustomerByIdpCode(idpCode);
 	}
-	
-
+	@GetMapping("/findCancellationRequestByStatus/{statusName}")
+	public Page<CancellationRequest> findCancellationRequestByStatus(@PathVariable String statusName,Pageable pageable){
+		log.debug("<<<<<<<<<< findCancellationRequestByStatus>>>>>>>>{}",statusName);
+		
+		return orderQueryService.findCancellationRequestByStatus(statusName,pageable);
+	}
 }
