@@ -10,12 +10,12 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * CancelledOrderLineDTO
+ * CancelledAuxilaryOrderLineDTO
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-06T11:11:39.086+05:30[Asia/Calcutta]")
 
-public class CancelledOrderLineDTO   {
+public class CancelledAuxilaryOrderLineDTO   {
   @JsonProperty("ammount")
   private Double ammount = null;
 
@@ -40,7 +40,7 @@ public class CancelledOrderLineDTO   {
   @JsonProperty("quantity")
   private Long quantity = null;
 
-  public CancelledOrderLineDTO ammount(Double ammount) {
+  public CancelledAuxilaryOrderLineDTO ammount(Double ammount) {
     this.ammount = ammount;
     return this;
   }
@@ -60,7 +60,7 @@ public class CancelledOrderLineDTO   {
     this.ammount = ammount;
   }
 
-  public CancelledOrderLineDTO cancellationRequestId(Long cancellationRequestId) {
+  public CancelledAuxilaryOrderLineDTO cancellationRequestId(Long cancellationRequestId) {
     this.cancellationRequestId = cancellationRequestId;
     return this;
   }
@@ -80,7 +80,7 @@ public class CancelledOrderLineDTO   {
     this.cancellationRequestId = cancellationRequestId;
   }
 
-  public CancelledOrderLineDTO id(Long id) {
+  public CancelledAuxilaryOrderLineDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -100,7 +100,7 @@ public class CancelledOrderLineDTO   {
     this.id = id;
   }
 
-  public CancelledOrderLineDTO itemName(String itemName) {
+  public CancelledAuxilaryOrderLineDTO itemName(String itemName) {
     this.itemName = itemName;
     return this;
   }
@@ -120,7 +120,7 @@ public class CancelledOrderLineDTO   {
     this.itemName = itemName;
   }
 
-  public CancelledOrderLineDTO orderLineId(Long orderLineId) {
+  public CancelledAuxilaryOrderLineDTO orderLineId(Long orderLineId) {
     this.orderLineId = orderLineId;
     return this;
   }
@@ -140,7 +140,7 @@ public class CancelledOrderLineDTO   {
     this.orderLineId = orderLineId;
   }
 
-  public CancelledOrderLineDTO pricePerUnit(Double pricePerUnit) {
+  public CancelledAuxilaryOrderLineDTO pricePerUnit(Double pricePerUnit) {
     this.pricePerUnit = pricePerUnit;
     return this;
   }
@@ -160,7 +160,7 @@ public class CancelledOrderLineDTO   {
     this.pricePerUnit = pricePerUnit;
   }
 
-  public CancelledOrderLineDTO productId(Long productId) {
+  public CancelledAuxilaryOrderLineDTO productId(Long productId) {
     this.productId = productId;
     return this;
   }
@@ -180,7 +180,7 @@ public class CancelledOrderLineDTO   {
     this.productId = productId;
   }
 
-  public CancelledOrderLineDTO quantity(Long quantity) {
+  public CancelledAuxilaryOrderLineDTO quantity(Long quantity) {
     this.quantity = quantity;
     return this;
   }
@@ -209,15 +209,15 @@ public class CancelledOrderLineDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CancelledOrderLineDTO cancelledOrderLineDTO = (CancelledOrderLineDTO) o;
-    return Objects.equals(this.ammount, cancelledOrderLineDTO.ammount) &&
-        Objects.equals(this.cancellationRequestId, cancelledOrderLineDTO.cancellationRequestId) &&
-        Objects.equals(this.id, cancelledOrderLineDTO.id) &&
-        Objects.equals(this.itemName, cancelledOrderLineDTO.itemName) &&
-        Objects.equals(this.orderLineId, cancelledOrderLineDTO.orderLineId) &&
-        Objects.equals(this.pricePerUnit, cancelledOrderLineDTO.pricePerUnit) &&
-        Objects.equals(this.productId, cancelledOrderLineDTO.productId) &&
-        Objects.equals(this.quantity, cancelledOrderLineDTO.quantity);
+    CancelledAuxilaryOrderLineDTO cancelledAuxilaryOrderLineDTO = (CancelledAuxilaryOrderLineDTO) o;
+    return Objects.equals(this.ammount, cancelledAuxilaryOrderLineDTO.ammount) &&
+        Objects.equals(this.cancellationRequestId, cancelledAuxilaryOrderLineDTO.cancellationRequestId) &&
+        Objects.equals(this.id, cancelledAuxilaryOrderLineDTO.id) &&
+        Objects.equals(this.itemName, cancelledAuxilaryOrderLineDTO.itemName) &&
+        Objects.equals(this.orderLineId, cancelledAuxilaryOrderLineDTO.orderLineId) &&
+        Objects.equals(this.pricePerUnit, cancelledAuxilaryOrderLineDTO.pricePerUnit) &&
+        Objects.equals(this.productId, cancelledAuxilaryOrderLineDTO.productId) &&
+        Objects.equals(this.quantity, cancelledAuxilaryOrderLineDTO.quantity);
   }
 
   @Override
@@ -228,7 +228,7 @@ public class CancelledOrderLineDTO   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CancelledOrderLineDTO {\n");
+    sb.append("class CancelledAuxilaryOrderLineDTO {\n");
     
     sb.append("    ammount: ").append(toIndentedString(ammount)).append("\n");
     sb.append("    cancellationRequestId: ").append(toIndentedString(cancellationRequestId)).append("\n");
