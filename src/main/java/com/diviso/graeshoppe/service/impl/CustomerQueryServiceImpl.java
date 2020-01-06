@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 import com.diviso.graeshoppe.client.customer.api.CustomerResourceApi;
 import com.diviso.graeshoppe.client.customer.model.Customer;
 import com.diviso.graeshoppe.service.CustomerQueryService;
-import com.diviso.graeshoppe.web.rest.util.ServiceUtility;
-
+import com.diviso.graeshoppe.config.elasticsearch.ServiceUtility ;
 @Service
 public class CustomerQueryServiceImpl implements CustomerQueryService{
 	

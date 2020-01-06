@@ -37,7 +37,7 @@ import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
 import com.diviso.graeshoppe.client.store.model.Store;
 import com.diviso.graeshoppe.service.AdministrationQueryService;
-import com.diviso.graeshoppe.web.rest.util.ServiceUtility;
+import com.diviso.graeshoppe.config.elasticsearch.ServiceUtility ;
 
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;

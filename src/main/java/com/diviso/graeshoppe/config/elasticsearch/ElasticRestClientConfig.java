@@ -1,4 +1,4 @@
-package com.diviso.graeshoppe.customerappgateway.config.elasticsearch;
+package com.diviso.graeshoppe.config.elasticsearch;
 
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;

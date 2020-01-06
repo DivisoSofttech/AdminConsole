@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequest;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.service.OrderQueryService;
-import com.diviso.graeshoppe.web.rest.util.ServiceUtility;
+import com.diviso.graeshoppe.config.elasticsearch.ServiceUtility ;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
