@@ -79,10 +79,10 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		return ResponseEntity.ok().body(orders);
 	}
 	public Page<CancellationRequest> findCancellationRequestByStatus(String statusName,Pageable pageable){
-		QueryBuilder dslQuery = QueryBuilders.boolQuery().filter(QueryBuilders.termQuery("status.keyword",statusName));
+		QueryBuilder dslQuery = QueryBuilders.boolQuery().must(QueryBuilders.matchAllQuery()).filter(QueryBuilders.termQuery("status.keyword",statusName));
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 		searchSourceBuilder.query(dslQuery);
-		SearchResponse searchResponse = serviceUtility.searchResponseForPage("store", searchSourceBuilder, pageable);
+		SearchResponse searchResponse = serviceUtility.searchResponseForPage("cancellationrequest", searchSourceBuilder, pageable);
 
 		Page<CancellationRequest> cancellationRequestPage = serviceUtility.getPageResult(searchResponse, pageable, new CancellationRequest());
 
