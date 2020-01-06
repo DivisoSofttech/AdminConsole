@@ -8,6 +8,8 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.FieldSortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,7 @@ import com.diviso.graeshoppe.client.administration.api.CancellationRequestResour
 import com.diviso.graeshoppe.client.administration.api.CancelledOrderLineResourceApi;
 import com.diviso.graeshoppe.client.administration.api.NotificationResourceApi;
 import com.diviso.graeshoppe.client.administration.api.RefundDetailsResourceApi;
+import com.diviso.graeshoppe.client.administration.model.Banner;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
@@ -178,8 +182,8 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 	@Override
 	public Page<Store> findStoreByName(String name, Pageable pageable) {
 		
-		log.debug("<<<<<<<<< findStoreByName>>>>>>>>>", name);
-		QueryBuilder queryDsl =matchQuery("name", name).prefixLength(3);
+		log.debug("<<<<<<<<< findStoreByName>>>>>>>>>{}", name);
+		QueryBuilder queryDsl =QueryBuilders.matchQuery("name", name).prefixLength(3);
 
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryDsl);
@@ -187,6 +191,29 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 
 		return serviceUtility.getPageResult(sr, pageable, new Store());
 		
+	}
+
+	@Override
+	public Page<Banner> findBannerByStoreId(String storeId,Pageable pageable) {
+		log.debug("<<<<<<<<<findBannerByStoreId impl >>>>>>>{}",storeId);
+		
+		QueryBuilder queryBuilder = QueryBuilders.matchQuery("storeId", storeId).prefixLength(3);
+		SearchSourceBuilder builder = new SearchSourceBuilder();
+		builder.query(queryBuilder);
+		SearchResponse response = serviceUtility.searchResponseForPage("premiumbanner", builder, pageable);
+		return serviceUtility.getPageResult(response, pageable, new Banner());
+	}
+
+	@Override
+	public ResponseEntity<List<CancellationRequestDTO>> findAllCancellationRequests(Pageable pageable) {
+		log.debug("<<<<<<<<<< findCancellationRequestByOrderId >>>>>>>impl {}",pageable);
+		
+		ArrayList<Order> list=new ArrayList<Order>();
+		pageable.getSort().stream().forEach(list::add);
+		List<String> sortlist=new ArrayList<String>();
+		list.stream().map(x->x.toString()).forEach(sortlist::add);
+		
+		return cancellationRequestResourceApi.getAllCancellationRequestsUsingGET(pageable.getPageNumber(), pageable.getPageSize(), sortlist);
 	}
 	
 

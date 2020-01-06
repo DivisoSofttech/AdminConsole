@@ -1,4 +1,4 @@
-package com.diviso.graeshoppe.client.store.model;
+package com.diviso.graeshoppe.client.customer.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,19 +10,16 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * PropreitorDTO
+ * UniqueCustomerIDDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-26T12:53:13.446+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-04T09:54:49.242+05:30[Asia/Calcutta]")
 
-public class PropreitorDTO   {
+public class UniqueCustomerIDDTO   {
   @JsonProperty("id")
   private Long id = null;
 
-  @JsonProperty("name")
-  private String name = null;
-
-  public PropreitorDTO id(Long id) {
+  public UniqueCustomerIDDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -42,26 +39,6 @@ public class PropreitorDTO   {
     this.id = id;
   }
 
-  public PropreitorDTO name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -71,23 +48,21 @@ public class PropreitorDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PropreitorDTO propreitorDTO = (PropreitorDTO) o;
-    return Objects.equals(this.id, propreitorDTO.id) &&
-        Objects.equals(this.name, propreitorDTO.name);
+    UniqueCustomerIDDTO uniqueCustomerIDDTO = (UniqueCustomerIDDTO) o;
+    return Objects.equals(this.id, uniqueCustomerIDDTO.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PropreitorDTO {\n");
+    sb.append("class UniqueCustomerIDDTO {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

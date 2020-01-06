@@ -17,6 +17,7 @@ import com.diviso.graeshoppe.client.report.model.OrderLine;
 import com.diviso.graeshoppe.client.report.model.OrderMaster;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
+import com.diviso.graeshoppe.service.dto.PdfDTO;
 
 public interface ReportQueryService {
 
@@ -47,4 +48,14 @@ public interface ReportQueryService {
 	public ResponseEntity<List<OfferLine>> findOfferLinesByOrderNumber(String orderId);
 
 	public ResponseEntity<List<AuxItem>> findOfferLinesById(Long id);
+
+	public ResponseEntity<PdfDTO> getOrderSummaryByDateAndStoreName(String date, String storeId);
+
+	public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(String date, String methodOfOrder, String storeId);
+
+	public ResponseEntity<PdfDTO> getAllOrdersBetweenDates(String fromDate, String toDate);
+
+	public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(String date, String paymentStatus, String storeId);
+	
+	
 }

@@ -1,14 +1,11 @@
 package com.diviso.graeshoppe.service.impl;
 
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,11 +14,10 @@ import com.diviso.graeshoppe.client.report.api.QueryResourceApi;
 import com.diviso.graeshoppe.client.report.model.AuxItem;
 import com.diviso.graeshoppe.client.report.model.OfferLine;
 import com.diviso.graeshoppe.client.report.model.OrderLine;
-import com.diviso.graeshoppe.client.report.model.OrderMaster;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
 import com.diviso.graeshoppe.service.ReportQueryService;
-import com.diviso.graeshoppe.web.rest.QueryResource;
+import com.diviso.graeshoppe.service.dto.PdfDTO;
 
 @Service
 public class ReportQueryServiceImpl implements ReportQueryService {
@@ -105,11 +101,45 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 
 	@Override
 	public ResponseEntity<List<AuxItem>> findOfferLinesById(Long id) {
-		log.debug("<<<<<<< findOfferLinesById >>>>>",id);
+		log.debug("<<<<<<< findOfferLinesById >>>>>{}",id);
 		return queryResourceApi.findAuxItemByidUsingGET(id);
 	}
-	
 
+
+	@Override
+	public ResponseEntity<PdfDTO> getOrderSummaryByDateAndStoreName(String date, String storeId) {
+		PdfDTO pdf = new PdfDTO();
+		pdf.setPdf(this.queryResourceApi.getOrderSummaryByDateAndStoreNameAsPdfUsingGET(date, storeId).getBody());
+		pdf.setContentType("application/pdf");
+		return ResponseEntity.ok().body(pdf);
+		
+	}
+	
+	@Override
+	public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(String date, String methodOfOrder, String storeId) {
+		PdfDTO pdf = new PdfDTO();
+		pdf.setPdf(this.queryResourceApi.getAllOrdersByMethodOfOrderAsPdfUsingGET(date, methodOfOrder, storeId).getBody());
+		pdf.setContentType("application/pdf");
+		return ResponseEntity.ok().body(pdf);
+		
+	}
+
+	@Override
+	public ResponseEntity<PdfDTO> getAllOrdersBetweenDates(String fromDate, String toDate){
+		PdfDTO pdf = new PdfDTO();
+		pdf.setPdf(this.queryResourceApi.getAllOrdersBetweenDatesAsPdfUsingGET(fromDate, toDate).getBody());
+		pdf.setContentType("application/pdf");
+		return ResponseEntity.ok().body(pdf);
+		
+	}
+	
+	@Override
+	public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(String date, String paymentStatus, String storeId){
+		PdfDTO pdf = new PdfDTO();
+		pdf.setPdf(this.queryResourceApi.getAllOrdersByPaymentStatusAsPdfUsingGET(date, paymentStatus, storeId).getBody());
+		pdf.setContentType("application/pdf");
+		return ResponseEntity.ok().body(pdf);
+	}
 	
 	
 
