@@ -23,8 +23,10 @@ import java.util.Objects;
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private String paymentMode;
+ 
 
-    private Long id;
+	private Long id;
 
     private String orderId;
 
@@ -52,6 +54,13 @@ public class Order implements Serializable {
     private Status status;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    public String getPaymentMode() {
+ 		return paymentMode;
+ 	}
+
+ 	public void setPaymentMode(String paymentMode) {
+ 		this.paymentMode = paymentMode;
+ 	}
     public Long getId() {
         return id;
     }

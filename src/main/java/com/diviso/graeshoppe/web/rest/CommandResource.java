@@ -212,7 +212,8 @@ public class CommandResource {
 			 log.debug("<<<<<<<<< deleteRefoundDetails >>>>>>>>>>>",id);
 			return administrationCommandService.deleteRefundDetails(id);
 		 }
-
+		 
+		 //oderCancellation activiti method 2 method to create an refund dto
 		 @PostMapping("/create/refundDetails/{orderId}/{paymentId}")
 		   public ResponseEntity<RefundDetailsDTO> createRefund(@RequestBody RefundDetailsDTO refundDetailsDTO,@PathVariable String orderId,@PathVariable String paymentId) {
 		       log.debug("REST request to save createRefundDetails : {}", refundDetailsDTO+"\n ## orderId = "+orderId+"\n ## paymentId  "+paymentId);
@@ -223,14 +224,10 @@ public class CommandResource {
 
 		 
 		 
-		 //oderCancellation activiti method 2
+		
 		 
-		 @PostMapping("/refund-details/{orderId}")
-		 public ResponseEntity<RefundDetailsDTO> createRefundDetails(@RequestBody RefundDetailsDTO refundDetailsDTO,@PathVariable String orderId){
-			 log.debug("<<<<<<<<<<< createRefundDetails >>>>>>>>>",refundDetailsDTO,orderId);
-			return administrationCommandService.createRefundDetails(refundDetailsDTO,orderId);
-			 
-		 }
+	
+		 
 		 @PostMapping("/createCancelledOrderLineByList")
 		 public void createCancelledOrderLineByList(@RequestBody List<CancelledOrderLineDTO> cancelledOrderLineDTOList){
 			 log.debug("<<<<<<<<<<< createCancelledOrderLine >>>>>>>>>",cancelledOrderLineDTOList);
