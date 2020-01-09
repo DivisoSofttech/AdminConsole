@@ -1,4 +1,4 @@
-package com.diviso.graeshoppe.client.report;
+package com.diviso.graeshoppe.client.order;
 
 import com.diviso.graeshoppe.client.ExcludeFromComponentScan;
 import feign.auth.BasicAuthRequestInterceptor;
@@ -19,6 +19,6 @@ import org.springframework.security.oauth2.client.token.grant.password.ResourceO
 @Configuration
 @ExcludeFromComponentScan
 @EnableConfigurationProperties
-public class ClientConfiguration {
+public class OrderClientConfiguration {
 
 }

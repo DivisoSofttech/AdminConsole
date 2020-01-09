@@ -9,6 +9,7 @@ import com.diviso.graeshoppe.client.report.model.AuxItem;
 import com.diviso.graeshoppe.client.report.model.OfferLine;
 import java.time.OffsetDateTime;
 import com.diviso.graeshoppe.client.report.model.OrderLine;
+import com.diviso.graeshoppe.client.report.model.OrderMaster;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
 import io.swagger.annotations.*;
@@ -30,7 +31,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-06T11:32:14.969+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-09T15:04:16.802+05:30[Asia/Calcutta]")
 
 @Api(value = "QueryResource", description = "the QueryResource API")
 public interface QueryResourceApi {
@@ -143,6 +144,18 @@ public interface QueryResourceApi {
     ResponseEntity<Long> findOrderMasterCountByExpectedDeliveryBetweenUsingGET(@ApiParam(value = "from",required=true) @PathVariable("from") String from,@ApiParam(value = "to",required=true) @PathVariable("to") String to);
 
 
+    @ApiOperation(value = "getAllOrdersBetweenDatesAndStoreIdAsPdf", nickname = "getAllOrdersBetweenDatesAndStoreIdAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = byte[].class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/allordersbetweendatesandstorename/{fromDate}/{toDate}/{storeId}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<byte[]> getAllOrdersBetweenDatesAndStoreIdAsPdfUsingGET(@ApiParam(value = "fromDate",required=true) @PathVariable("fromDate") String fromDate,@ApiParam(value = "storeId",required=true) @PathVariable("storeId") String storeId,@ApiParam(value = "toDate",required=true) @PathVariable("toDate") String toDate);
+
+
     @ApiOperation(value = "getAllOrdersBetweenDatesAsPdf", nickname = "getAllOrdersBetweenDatesAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = byte[].class),
@@ -225,6 +238,42 @@ public interface QueryResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<byte[]> getOrderSummaryByDateAndStoreNameAsPdfUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "storeId",required=true) @PathVariable("storeId") String storeId);
+
+
+    @ApiOperation(value = "getOrdersViewBetweenDates", nickname = "getOrdersViewBetweenDatesUsingGET", notes = "", response = OrderMaster.class, responseContainer = "List", tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = OrderMaster.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/orderviewbetweendates/{fromDate}/{toDate}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<List<OrderMaster>> getOrdersViewBetweenDatesUsingGET(@ApiParam(value = "fromDate",required=true) @PathVariable("fromDate") String fromDate,@ApiParam(value = "toDate",required=true) @PathVariable("toDate") String toDate);
+
+
+    @ApiOperation(value = "getOrdersViewByMethodOfOrder", nickname = "getOrdersViewByMethodOfOrderUsingGET", notes = "", response = OrderMaster.class, responseContainer = "List", tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = OrderMaster.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/orderviewbymethodoforder/{storeId}/{date}/{methodOfOrder}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<List<OrderMaster>> getOrdersViewByMethodOfOrderUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "methodOfOrder",required=true) @PathVariable("methodOfOrder") String methodOfOrder,@ApiParam(value = "storeId",required=true) @PathVariable("storeId") String storeId);
+
+
+    @ApiOperation(value = "getOrdersViewByPaymentStatus", nickname = "getOrdersViewByPaymentStatusUsingGET", notes = "", response = OrderMaster.class, responseContainer = "List", tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = OrderMaster.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/orderviewbypaymentstatus/{storeId}/{date}/{paymentStatus}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<List<OrderMaster>> getOrdersViewByPaymentStatusUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "paymentStatus",required=true) @PathVariable("paymentStatus") String paymentStatus,@ApiParam(value = "storeId",required=true) @PathVariable("storeId") String storeId);
 
 
     @ApiOperation(value = "getReportSummaryAsPdf", nickname = "getReportSummaryAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })
