@@ -51,10 +51,10 @@ public interface BraintreeCommandResourceApi {
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 403, message = "Forbidden"),
         @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/refunds/{transactionId}",
+    @RequestMapping(value = "/api/refunds/{transactionId}/{amount}",
         produces = "*/*", 
         method = RequestMethod.POST)
-    ResponseEntity<RefundResponse> createRefundUsingPOST(@ApiParam(value = "transactionId",required=true) @PathVariable("transactionId") String transactionId);
+    ResponseEntity<RefundResponse> createRefundUsingPOST(@ApiParam(value = "transactionId",required=true) @PathVariable("transactionId") String transactionId,@ApiParam(value = "amount",required=true) @PathVariable("amount") Double amount);
 
 
     @ApiOperation(value = "createTransaction", nickname = "createTransactionUsingPOST", notes = "", response = PaymentTransactionResponse.class, tags={ "braintree-command-resource", })

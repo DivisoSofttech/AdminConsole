@@ -15,117 +15,125 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-06T11:11:39.086+05:30[Asia/Calcutta]")
 
-public class RefundDetailsDTO   {
-  @JsonProperty("id")
-  private Long id = null;
+public class RefundDetailsDTO {
+	@JsonProperty("id")
+	private Long id = null;
 
-  @JsonProperty("refundId")
-  private String refundId = null;
+	@JsonProperty("refundId")
+	private String refundId = null;
 
-  @JsonProperty("status")
-  private String status = null;
+	@JsonProperty("status")
+	private String status = null;
 
-  public RefundDetailsDTO id(Long id) {
-    this.id = id;
-    return this;
-  }
+	@JsonProperty("amount")
+	private Double amount;
 
-  /**
-   * Get id
-   * @return id
-  **/
-  @ApiModelProperty(value = "")
+	/**
+	 * @return the amount
+	 */
+	public Double getAmount() {
+		return amount;
+	}
 
+	/**
+	 * @param amount the amount to set
+	 */
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public RefundDetailsDTO id(Long id) {
+		this.id = id;
+		return this;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	/**
+	 * Get id
+	 * 
+	 * @return id
+	 **/
+	@ApiModelProperty(value = "")
 
-  public RefundDetailsDTO refundId(String refundId) {
-    this.refundId = refundId;
-    return this;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  /**
-   * Get refundId
-   * @return refundId
-  **/
-  @ApiModelProperty(value = "")
+	public void setId(Long id) {
+		this.id = id;
+	}
 
+	public RefundDetailsDTO refundId(String refundId) {
+		this.refundId = refundId;
+		return this;
+	}
 
-  public String getRefundId() {
-    return refundId;
-  }
+	/**
+	 * Get refundId
+	 * 
+	 * @return refundId
+	 **/
+	@ApiModelProperty(value = "")
 
-  public void setRefundId(String refundId) {
-    this.refundId = refundId;
-  }
+	public String getRefundId() {
+		return refundId;
+	}
 
-  public RefundDetailsDTO status(String status) {
-    this.status = status;
-    return this;
-  }
+	public void setRefundId(String refundId) {
+		this.refundId = refundId;
+	}
 
-  /**
-   * Get status
-   * @return status
-  **/
-  @ApiModelProperty(value = "")
+	public RefundDetailsDTO status(String status) {
+		this.status = status;
+		return this;
+	}
 
+	/**
+	 * Get status
+	 * 
+	 * @return status
+	 **/
+	@ApiModelProperty(value = "")
 
-  public String getStatus() {
-    return status;
-  }
+	public String getStatus() {
+		return status;
+	}
 
-  public void setStatus(String status) {
-    this.status = status;
-  }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		RefundDetailsDTO refundDetailsDTO = (RefundDetailsDTO) o;
+		return Objects.equals(this.id, refundDetailsDTO.id) && Objects.equals(this.refundId, refundDetailsDTO.refundId)
+				&& Objects.equals(this.status, refundDetailsDTO.status);
+	}
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    RefundDetailsDTO refundDetailsDTO = (RefundDetailsDTO) o;
-    return Objects.equals(this.id, refundDetailsDTO.id) &&
-        Objects.equals(this.refundId, refundDetailsDTO.refundId) &&
-        Objects.equals(this.status, refundDetailsDTO.status);
-  }
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, refundId, status);
+	}
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, refundId, status);
-  }
+	@Override
+	public String toString() {
+		return String.format("RefundDetailsDTO [id=%s,\n refundId=%s,\n status=%s,\n amount=%s]", id, refundId, status,
+				amount);
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RefundDetailsDTO {\n");
-    
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    refundId: ").append(toIndentedString(refundId)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 }
-
