@@ -18,8 +18,23 @@ import javax.validation.constraints.*;
 public class RefundResponse   {
   @JsonProperty("transactionId")
   private String transactionId = null;
+  @JsonProperty("status")
+  private String status;
+  /**
+ * @return the status
+ */
+public String getStatus() {
+	return status;
+}
 
-  public RefundResponse transactionId(String transactionId) {
+/**
+ * @param status the status to set
+ */
+public void setStatus(String status) {
+	this.status = status;
+}
+
+public RefundResponse transactionId(String transactionId) {
     this.transactionId = transactionId;
     return this;
   }
@@ -57,17 +72,14 @@ public class RefundResponse   {
     return Objects.hash(transactionId);
   }
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RefundResponse {\n");
-    
-    sb.append("    transactionId: ").append(toIndentedString(transactionId)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
 
-  /**
+
+  @Override
+public String toString() {
+	return String.format("RefundResponse [transactionId=%s,\n status=%s]", transactionId, status);
+}
+
+/**
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
