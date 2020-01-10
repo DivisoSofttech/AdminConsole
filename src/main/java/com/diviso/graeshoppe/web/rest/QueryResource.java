@@ -38,9 +38,11 @@ import com.diviso.graeshoppe.client.report.model.OrderMaster;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
 import com.diviso.graeshoppe.client.store.model.Store;
+import com.diviso.graeshoppe.custommodel.ReportFilter;
 import com.diviso.graeshoppe.service.AdministrationQueryService;
 import com.diviso.graeshoppe.service.CustomerQueryService;
 import com.diviso.graeshoppe.service.OfferQueryService;
+import com.diviso.graeshoppe.service.OrderMasterQueryService;
 import com.diviso.graeshoppe.service.OrderQueryService;
 import com.diviso.graeshoppe.service.ReportQueryService;
 import com.diviso.graeshoppe.service.dto.PdfDTO;
@@ -68,6 +70,9 @@ public class QueryResource {
 	
 	@Autowired
 	CustomerQueryService customerQueryService;
+	
+	@Autowired
+	OrderMasterQueryService orderMasterQueryService;
 
 	private final Logger log = LoggerFactory.getLogger(QueryResource.class);
 
@@ -482,4 +487,18 @@ public class QueryResource {
 		
 		return orderQueryService.findCancellationRequestByStatus(statusName,pageable);
 	}
+	
+	@GetMapping("/getOrdersByFilter")
+	public ResponseEntity<List<OrderMaster>> getOrdersByFilter(@RequestParam(value = "fromDate", required = false) String fromDate,
+			@RequestParam(value = "toDate", required = false) String toDate,
+			@RequestParam(value = "storeId", required = false) String storeId,
+			@RequestParam(value = "methodOfOrder", required = false) String methodOfOrder,
+			@RequestParam(value = "paymentStatus", required = false) String paymentStatus) {
+	
+		log.debug("<<<<<<<<<< getOrdersByReportFilter>>>>>>>>{}");
+		
+		return orderMasterQueryService.getOrdersByFilter(fromDate,toDate,storeId,methodOfOrder,paymentStatus);
+	}
+	
+	
 }
