@@ -3,6 +3,7 @@ package com.diviso.graeshoppe.service;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.diviso.graeshoppe.client.report.model.OrderMaster;
 
