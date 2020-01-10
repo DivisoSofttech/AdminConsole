@@ -36,7 +36,7 @@ public class OrderMasterQueryServiceImpl implements OrderMasterQueryService{
 			
 			System.out.println("if2");
 			
-			result=queryResourceApi.getOrdersViewByPaymentStatusUsingGET(fromDate, toDate, paymentStatus, storeId);
+			result=queryResourceApi.getOrdersViewByPaymentStatusUsingGET(fromDate, paymentStatus, storeId, toDate);
 			
 		}
 		
