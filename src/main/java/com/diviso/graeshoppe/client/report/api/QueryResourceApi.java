@@ -258,10 +258,10 @@ public interface QueryResourceApi {
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 403, message = "Forbidden"),
         @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/orderviewbymethodoforder/{storeId}/{date}/{methodOfOrder}",
+    @RequestMapping(value = "/api/orderviewbymethodoforder/{storeId}/{fromDate}/{toDate}/{methodOfOrder}",
         produces = "*/*", 
         method = RequestMethod.GET)
-    ResponseEntity<List<OrderMaster>> getOrdersViewByMethodOfOrderUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "methodOfOrder",required=true) @PathVariable("methodOfOrder") String methodOfOrder,@ApiParam(value = "storeId",required=true) @PathVariable("storeId") String storeId);
+    ResponseEntity<List<OrderMaster>> getOrdersViewByMethodOfOrderUsingGET(@ApiParam(value = "fromDate",required=true) @PathVariable("fromDate") String fromDate,@ApiParam(value = "toDate",required=true) @PathVariable("toDate") String toDate,@ApiParam(value = "methodOfOrder",required=true) @PathVariable("methodOfOrder") String methodOfOrder,@ApiParam(value = "storeId",required=true) @PathVariable("storeId") String storeId);
 
 
     @ApiOperation(value = "getOrdersViewByPaymentStatus", nickname = "getOrdersViewByPaymentStatusUsingGET", notes = "", response = OrderMaster.class, responseContainer = "List", tags={ "query-resource", })
@@ -270,10 +270,10 @@ public interface QueryResourceApi {
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 403, message = "Forbidden"),
         @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/orderviewbypaymentstatus/{storeId}/{date}/{paymentStatus}",
+    @RequestMapping(value = "/api/orderviewbypaymentstatus/{storeId}/{fromDate}/{toDate}/{paymentStatus}",
         produces = "*/*", 
         method = RequestMethod.GET)
-    ResponseEntity<List<OrderMaster>> getOrdersViewByPaymentStatusUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "paymentStatus",required=true) @PathVariable("paymentStatus") String paymentStatus,@ApiParam(value = "storeId",required=true) @PathVariable("storeId") String storeId);
+    ResponseEntity<List<OrderMaster>> getOrdersViewByPaymentStatusUsingGET(@ApiParam(value = "fromDate",required=true) @PathVariable("fromDate") String fromDate,@ApiParam(value = "toDate",required=true) @PathVariable("toDate") String toDate,@ApiParam(value = "paymentStatus",required=true) @PathVariable("paymentStatus") String paymentStatus,@ApiParam(value = "storeId",required=true) @PathVariable("storeId") String storeId);
 
 
     @ApiOperation(value = "getReportSummaryAsPdf", nickname = "getReportSummaryAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })
