@@ -1,5 +1,6 @@
 package com.diviso.graeshoppe.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,31 +21,36 @@ public class OrderMasterQueryServiceImpl implements OrderMasterQueryService{
 	public ResponseEntity<List<OrderMaster>> getOrdersByFilter(String fromDate, String toDate, String storeId, String methodOfOrder,
 			String paymentStatus) {
 		
+		ResponseEntity<List<OrderMaster>> result = null;
+		System.out.println(">>>>>>>>>>>>>"+fromDate+">>>>>>>>>"+ toDate+">>>>>>>"+ storeId+">>>>>>>>>>>>>>>>"+ methodOfOrder+">>>>>>>"+paymentStatus);
+		
 		if(fromDate!=null && toDate!=null && storeId!=null && methodOfOrder!=null && paymentStatus ==null) {
 			
-			queryResourceApi.getOrdersViewByMethodOfOrderUsingGET(fromDate, methodOfOrder, storeId);
+			System.out.println("if1");
+			
+			result=queryResourceApi.getOrdersViewByMethodOfOrderUsingGET(fromDate, methodOfOrder, storeId);
 			
 		}
 
 		else if(fromDate!=null && toDate!=null && storeId!=null && methodOfOrder==null && paymentStatus !=null) {
 			
-			queryResourceApi.getOrdersViewByPaymentStatusUsingGET(fromDate, paymentStatus, storeId);
+			System.out.println("if2");
+			
+			result=queryResourceApi.getOrdersViewByPaymentStatusUsingGET(fromDate, paymentStatus, storeId);
 			
 		}
 		
 		else if(fromDate!=null && toDate!=null && storeId==null && methodOfOrder==null && paymentStatus ==null) {
 			
-			queryResourceApi.getOrdersViewBetweenDatesUsingGET(fromDate, toDate);
+			System.out.println("if3");
+			result=queryResourceApi.getOrdersViewBetweenDatesUsingGET(fromDate, toDate);
 			
 		}
 		
 	
+		return result;
 		
-		
-		
-		
-		
-		return null;
+	
 	}
 
 }
