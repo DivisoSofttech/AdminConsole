@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * OfferLineDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-09T16:36:28.343+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-10T15:36:38.257+05:30[Asia/Kolkata]")
 
 public class OfferLineDTO   {
   @JsonProperty("discountAmount")

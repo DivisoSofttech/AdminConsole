@@ -47,6 +47,10 @@ public class OrderMasterQueryServiceImpl implements OrderMasterQueryService{
 			
 		}
 		
+		else if(fromDate!= null && toDate!= null && storeId!= null && methodOfOrder == null && paymentStatus == null ) {
+			result=queryResourceApi.getOrdersViewBetweenDatesAndStoreIdpcodeUsingGET(fromDate, storeId, toDate);
+		}
+		
 	
 		return result;
 		

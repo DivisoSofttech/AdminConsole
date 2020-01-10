@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-09T16:36:28.343+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-10T15:36:38.257+05:30[Asia/Kolkata]")
 
 @Api(value = "AuxItemResource", description = "the AuxItemResource API")
 public interface AuxItemResourceApi {
