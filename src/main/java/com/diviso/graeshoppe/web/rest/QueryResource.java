@@ -510,8 +510,8 @@ public class QueryResource {
 			@RequestParam(value = "methodOfOrder", required = false) String methodOfOrder,
 			@RequestParam(value = "paymentStatus", required = false) String paymentStatus,
 			@RequestParam(value = "pageNumber", required = false) Integer pageNumber,
-			@RequestParam(value = "methodOfOrder", required = false) Integer size,
-			@RequestParam(value = "paymentStatus", required = false)  List<String> sort) {
+			@RequestParam(value = "size", required = false) Integer size,
+			@RequestParam(value = "sort", required = false)  List<String> sort) {
 	
 		log.debug("<<<<<<<<<< getOrdersByReportFilter>>>>>>>>{}");
 		
