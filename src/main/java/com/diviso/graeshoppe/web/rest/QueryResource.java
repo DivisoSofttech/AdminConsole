@@ -90,7 +90,7 @@ public class QueryResource {
 	 * return reportQueryService.createReportSummary(date,storeId); }
 	 */
 
-	@GetMapping("/reportview/{fromDate}/{todate}/{storeName}")
+	@GetMapping("/reportview/{fromDate}/{toDate}/{storeName}")
 	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String fromDate,@PathVariable String toDate,
 			@PathVariable String storeName) {
 		return reportQueryService.createReportSummary(fromDate,toDate, storeName);
