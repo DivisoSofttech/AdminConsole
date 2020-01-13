@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.diviso.graeshoppe.client.report.api.QueryResourceApi;
 import com.diviso.graeshoppe.client.report.model.OrderMaster;
+import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.service.OrderMasterQueryService;
+
+import net.bytebuddy.dynamic.scaffold.InstrumentedType.Frozen;
 
 @Service
 public class OrderMasterQueryServiceImpl implements OrderMasterQueryService{
@@ -18,17 +22,17 @@ public class OrderMasterQueryServiceImpl implements OrderMasterQueryService{
 	private QueryResourceApi queryResourceApi;
 
 	@Override
-	public ResponseEntity<List<OrderMaster>> getOrdersByFilter(String fromDate, String toDate, String storeId, String methodOfOrder,
-			String paymentStatus) {
+	public ResponseEntity<PageOfOrderMaster> getOrdersByFilter(String fromDate, String toDate, String storeId, String methodOfOrder,
+			String paymentStatus,Integer pageNumber,Integer size,List<String> sort) {
 		
-		ResponseEntity<List<OrderMaster>> result = null;
+		ResponseEntity<PageOfOrderMaster> result = null;
 		System.out.println(">>>>>>>>>>>>>"+fromDate+">>>>>>>>>"+ toDate+">>>>>>>"+ storeId+">>>>>>>>>>>>>>>>"+ methodOfOrder+">>>>>>>"+paymentStatus);
 		
 		if(fromDate!=null && toDate!=null && storeId!=null && methodOfOrder!=null && paymentStatus ==null) {
 			
 			System.out.println("if1");
 			
-			result=queryResourceApi.getOrdersViewByMethodOfOrderUsingGET(fromDate,toDate, methodOfOrder, storeId);
+			result=queryResourceApi.getOrdersViewByMethodOfOrderUsingGET(fromDate, methodOfOrder, storeId, toDate, pageNumber, size, sort);
 			
 		}
 
@@ -36,17 +40,37 @@ public class OrderMasterQueryServiceImpl implements OrderMasterQueryService{
 			
 			System.out.println("if2");
 			
-			result=queryResourceApi.getOrdersViewByPaymentStatusUsingGET(fromDate, toDate, paymentStatus, storeId);
+			result=queryResourceApi.getOrdersViewByPaymentStatusUsingGET(fromDate, paymentStatus, storeId, toDate, pageNumber, size, sort);
 			
 		}
 		
 		else if(fromDate!=null && toDate!=null && storeId==null && methodOfOrder==null && paymentStatus ==null) {
 			
 			System.out.println("if3");
-			result=queryResourceApi.getOrdersViewBetweenDatesUsingGET(fromDate, toDate);
+			result=queryResourceApi.getOrdersViewBetweenDatesUsingGET(fromDate, toDate, pageNumber, size, sort);
 			
 		}
 		
+	
+		return result;
+		
+	
+	}
+	
+	public ResponseEntity<List<OrderMaster>> getOrdersByFilterV2(String fromDate, String toDate, String storeId, String methodOfOrder,
+			String paymentStatus) {
+		
+		ResponseEntity<List<OrderMaster>> result = null;
+		System.out.println(">>>>>>>>>>>>>"+fromDate+">>>>>>>>>"+ toDate+">>>>>>>"+ storeId+">>>>>>>>>>>>>>>>"+ methodOfOrder+">>>>>>>"+paymentStatus);
+		if(storeId!=null)
+		{
+			if(fromDate!=null && toDate!=null)
+			{
+				if(paymentStatus!=null) {
+					
+				}
+			}
+		}
 	
 		return result;
 		
