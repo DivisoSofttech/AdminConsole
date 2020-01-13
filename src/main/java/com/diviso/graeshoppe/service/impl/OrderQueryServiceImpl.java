@@ -75,7 +75,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 			Order order = new Order();
 			orders.add(objectMapper.convertValue(hit.getSourceAsMap(), Order.class));
 		}
-		log.debug("<<<<<<<<<<<<<<<<<outputtttt", orders);
+		log.debug("<<<<<<<<<<<<<<<<<outputtttt{}>>>>>>>>", orders);
 		return ResponseEntity.ok().body(orders);
 	}
 	public Page<CancellationRequest> findCancellationRequestByStatus(String statusName,Pageable pageable){

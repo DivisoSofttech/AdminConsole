@@ -39,8 +39,8 @@ public class OrderMasterQueryServiceImpl implements OrderMasterQueryService{
 		else if(fromDate!=null && toDate!=null && storeId!=null && methodOfOrder==null && paymentStatus !=null) {
 			
 			System.out.println("if2");
-			
-			result=queryResourceApi.getOrdersViewByPaymentStatusUsingGET(fromDate, paymentStatus, storeId, toDate, pageNumber, size, sort);
+						result=queryResourceApi.getOrdersViewByPaymentStatusUsingGET(fromDate, paymentStatus, storeId, toDate, pageNumber, size, sort);
+
 			
 		}
 		
@@ -51,30 +51,16 @@ public class OrderMasterQueryServiceImpl implements OrderMasterQueryService{
 			
 		}
 		
-	
-		return result;
-		
-	
-	}
-	
-	public ResponseEntity<List<OrderMaster>> getOrdersByFilterV2(String fromDate, String toDate, String storeId, String methodOfOrder,
-			String paymentStatus) {
-		
-		ResponseEntity<List<OrderMaster>> result = null;
-		System.out.println(">>>>>>>>>>>>>"+fromDate+">>>>>>>>>"+ toDate+">>>>>>>"+ storeId+">>>>>>>>>>>>>>>>"+ methodOfOrder+">>>>>>>"+paymentStatus);
-		if(storeId!=null)
-		{
-			if(fromDate!=null && toDate!=null)
-			{
-				if(paymentStatus!=null) {
-					
-				}
-			}
+		else if(fromDate!= null && toDate!= null && storeId!= null && methodOfOrder == null && paymentStatus == null ) {
+			result=queryResourceApi.getOrdersViewBetweenDatesAndStoreIdpcodeUsingGET(fromDate, storeId, toDate, pageNumber, size, sort);
 		}
+		
 	
 		return result;
 		
 	
 	}
+	
+	
 
 }

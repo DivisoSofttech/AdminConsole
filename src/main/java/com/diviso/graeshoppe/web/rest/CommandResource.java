@@ -169,30 +169,30 @@ public class CommandResource {
 		  */
 		 @PostMapping("/banners")
 		 public ResponseEntity<BannerDTO> createBanner(@RequestBody BannerDTO bannerDTO){
-			 log.debug("<<<<<<<< createBanner >>>>>>>",bannerDTO);
+			 log.debug("<<<<<<<< createBanner >>>>>>>{}",bannerDTO);
 			 
 			return administrationCommandService.createBanner(bannerDTO); 
 		 }
 		 @PutMapping("/banners")
 		 public ResponseEntity<BannerDTO> updateBanner(@RequestBody BannerDTO bannerDTO){
-			 log.debug("<<<<<<<<<<< updateBanner >>>>>>>>",bannerDTO);
+			 log.debug("<<<<<<<<<<< updateBanner >>>>>>>>{}",bannerDTO);
 			return administrationCommandService.updateBanner(bannerDTO);
 			 
 		 }
 		 @DeleteMapping("/banners/{id}")
 		 public ResponseEntity<Void> deleteBanner(@PathVariable Long id){
-			 log.debug("<<<<<<<< deleteBanner>>>>>>>",id);
+			 log.debug("<<<<<<<< deleteBanner>>>>>>>{}",id);
 			return administrationCommandService.deleteBanner(id);
 			 
 		 }
 		 @PostMapping("/notifications")
 		 public ResponseEntity<NotificationDTO> createNotification(@RequestBody NotificationDTO notificationDTO){
-			 log.debug("<<<<<<<<<< createNotification >>>>>>>>>", notificationDTO);
+			 log.debug("<<<<<<<<<< createNotification >>>>>>>>>{}", notificationDTO);
 			return administrationCommandService.createNotification(notificationDTO);
 		 }
 		 @PutMapping("/notifications")
 		 public ResponseEntity<NotificationDTO> updateNotification(@RequestBody NotificationDTO notificationDTO){
-			 log.debug("<<<<<<<<<< updateNotification >>>>>>>>>>>>>",notificationDTO);
+			 log.debug("<<<<<<<<<< updateNotification >>>>>>>>>>>>>{}",notificationDTO);
 			return administrationCommandService.updateNotification(notificationDTO);
 		 }
 		 @DeleteMapping("/notifications/{id}")
@@ -204,7 +204,7 @@ public class CommandResource {
 		
 		 @PutMapping("/refund-details")
 		 public ResponseEntity<RefundDetailsDTO> updateRefundDetails(@RequestBody RefundDetailsDTO refundDetailsDTO){
-			 log.debug("<<<<<<<<<< updateRefundDetails >>>>>>>>>>>>>",refundDetailsDTO);
+			 log.debug("<<<<<<<<<< updateRefundDetails >>>>>>>>>>>>>{}",refundDetailsDTO);
 			return administrationCommandService.updateRefundDetails(refundDetailsDTO);
 		 }
 		 @DeleteMapping("/refund-details/{id}")
@@ -222,21 +222,23 @@ public class CommandResource {
 		  
 		   }
 
-		 
-		 
-		
-		 
-	
-		 
+
+		 @PostMapping("/refund-details/{orderId}")
+		 public ResponseEntity<RefundDetailsDTO> createRefundDetails(@RequestBody RefundDetailsDTO refundDetailsDTO,@PathVariable String orderId){
+			 log.debug("<<<<<<<<<<< createRefundDetails >>>>>>>>>{}",refundDetailsDTO,orderId);
+			return administrationCommandService.createRefundDetails(refundDetailsDTO,orderId);
+			 
+		 }
+
 		 @PostMapping("/createCancelledOrderLineByList")
 		 public void createCancelledOrderLineByList(@RequestBody List<CancelledOrderLineDTO> cancelledOrderLineDTOList){
-			 log.debug("<<<<<<<<<<< createCancelledOrderLine >>>>>>>>>",cancelledOrderLineDTOList);
+			 log.debug("<<<<<<<<<<< createCancelledOrderLine >>>>>>>>>{}",cancelledOrderLineDTOList);
 			 administrationCommandService.createCancelledOrderLineByList(cancelledOrderLineDTOList);
 			 
 		 }
 		 @PostMapping("/createCancelledAuxilaryOrderLineByList")
 		 public void createCancelledAuxilaryOrderLineByList(@RequestBody List<CancelledAuxilaryOrderLineDTO> cancelledAuxilaryOrderLineDTOList){
-			 log.debug("<<<<<<<<<<< createCancelledAuxilaryOrderLine >>>>>>>>>",cancelledAuxilaryOrderLineDTOList);
+			 log.debug("<<<<<<<<<<< createCancelledAuxilaryOrderLine >>>>>>>>>{}",cancelledAuxilaryOrderLineDTOList);
 			 administrationCommandService.createCancelledAuxOrderLineByList(cancelledAuxilaryOrderLineDTOList);
 			 
 		 }

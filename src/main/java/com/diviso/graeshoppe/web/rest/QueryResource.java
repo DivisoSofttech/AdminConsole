@@ -38,13 +38,18 @@ import com.diviso.graeshoppe.client.report.model.OrderMaster;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
 import com.diviso.graeshoppe.client.store.model.Store;
+
+import com.diviso.graeshoppe.client.store.model.StoreDTO;
+
 import com.diviso.graeshoppe.custommodel.ReportFilter;
+
 import com.diviso.graeshoppe.service.AdministrationQueryService;
 import com.diviso.graeshoppe.service.CustomerQueryService;
 import com.diviso.graeshoppe.service.OfferQueryService;
 import com.diviso.graeshoppe.service.OrderMasterQueryService;
 import com.diviso.graeshoppe.service.OrderQueryService;
 import com.diviso.graeshoppe.service.ReportQueryService;
+import com.diviso.graeshoppe.service.StoreQueryService;
 import com.diviso.graeshoppe.service.dto.PdfDTO;
 
 import io.swagger.annotations.ApiParam;
@@ -55,6 +60,9 @@ import io.swagger.annotations.ApiParam;
 @RestController
 @RequestMapping("/api/query")
 public class QueryResource {
+	
+	@Autowired
+	StoreQueryService storeQuerySerice;
 
 	@Autowired
 	OrderQueryService orderQueryService;
@@ -82,10 +90,10 @@ public class QueryResource {
 	 * return reportQueryService.createReportSummary(date,storeId); }
 	 */
 
-	@GetMapping("/reportview/{expectedDelivery}/{storeName}")
-	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String expectedDelivery,
+	@GetMapping("/reportview/{fromDate}/{todate}/{storeName}")
+	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String fromDate,@PathVariable String toDate,
 			@PathVariable String storeName) {
-		return reportQueryService.createReportSummary(expectedDelivery, storeName);
+		return reportQueryService.createReportSummary(fromDate,toDate, storeName);
 	}
 
 	@GetMapping("/findOrderByDatebetweenAndStoreId/{from}/{storeId}/{to}")
@@ -487,18 +495,28 @@ public class QueryResource {
 		
 		return orderQueryService.findCancellationRequestByStatus(statusName,pageable);
 	}
+
+	@GetMapping("/getStore/{id}")
+	public ResponseEntity<StoreDTO> getStore(@PathVariable Long id){
+		log.debug("<<<<<<<<<<< getStore >>>>>>>>{}",id);
+		return storeQuerySerice.getStore(id);
+	}
+
 	
 	@GetMapping("/getOrdersByFilter")
-	public ResponseEntity<List<OrderMaster>> getOrdersByFilter(@RequestParam(value = "fromDate", required = false) String fromDate,
+	public ResponseEntity<PageOfOrderMaster> getOrdersByFilter(@RequestParam(value = "fromDate", required = false) String fromDate,
 			@RequestParam(value = "toDate", required = false) String toDate,
 			@RequestParam(value = "storeId", required = false) String storeId,
 			@RequestParam(value = "methodOfOrder", required = false) String methodOfOrder,
-			@RequestParam(value = "paymentStatus", required = false) String paymentStatus) {
+			@RequestParam(value = "paymentStatus", required = false) String paymentStatus,
+			@RequestParam(value = "pageNumber", required = false) Integer pageNumber,
+			@RequestParam(value = "methodOfOrder", required = false) Integer size,
+			@RequestParam(value = "paymentStatus", required = false)  List<String> sort) {
 	
 		log.debug("<<<<<<<<<< getOrdersByReportFilter>>>>>>>>{}");
 		
-		return orderMasterQueryService.getOrdersByFilter(fromDate,toDate,storeId,methodOfOrder,paymentStatus);
+		return orderMasterQueryService.getOrdersByFilter(fromDate, toDate, storeId, methodOfOrder, paymentStatus, pageNumber, size, sort);			
 	}
 	
-	
+
 }
