@@ -38,11 +38,13 @@ import com.diviso.graeshoppe.client.report.model.OrderMaster;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
 import com.diviso.graeshoppe.client.store.model.Store;
+import com.diviso.graeshoppe.client.store.model.StoreDTO;
 import com.diviso.graeshoppe.service.AdministrationQueryService;
 import com.diviso.graeshoppe.service.CustomerQueryService;
 import com.diviso.graeshoppe.service.OfferQueryService;
 import com.diviso.graeshoppe.service.OrderQueryService;
 import com.diviso.graeshoppe.service.ReportQueryService;
+import com.diviso.graeshoppe.service.StoreQueryService;
 import com.diviso.graeshoppe.service.dto.PdfDTO;
 
 import io.swagger.annotations.ApiParam;
@@ -53,6 +55,9 @@ import io.swagger.annotations.ApiParam;
 @RestController
 @RequestMapping("/api/query")
 public class QueryResource {
+	
+	@Autowired
+	StoreQueryService storeQuerySerice;
 
 	@Autowired
 	OrderQueryService orderQueryService;
@@ -481,5 +486,10 @@ public class QueryResource {
 		log.debug("<<<<<<<<<< findCancellationRequestByStatus>>>>>>>>{}",statusName);
 		
 		return orderQueryService.findCancellationRequestByStatus(statusName,pageable);
+	}
+	@GetMapping("/getStore/{id}")
+	public ResponseEntity<StoreDTO> getStore(@PathVariable Long id){
+		log.debug("<<<<<<<<<<< getStore >>>>>>>>{}",id);
+		return storeQuerySerice.getStore(id);
 	}
 }

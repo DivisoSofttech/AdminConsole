@@ -227,7 +227,7 @@ public class CommandResource {
 		 
 		 @PostMapping("/refund-details/{orderId}")
 		 public ResponseEntity<RefundDetailsDTO> createRefundDetails(@RequestBody RefundDetailsDTO refundDetailsDTO,@PathVariable String orderId){
-			 log.debug("<<<<<<<<<<< createRefundDetails >>>>>>>>>",refundDetailsDTO,orderId);
+			 log.debug("<<<<<<<<<<< createRefundDetails >>>>>>>>>{}",refundDetailsDTO,orderId);
 			return administrationCommandService.createRefundDetails(refundDetailsDTO,orderId);
 			 
 		 }
