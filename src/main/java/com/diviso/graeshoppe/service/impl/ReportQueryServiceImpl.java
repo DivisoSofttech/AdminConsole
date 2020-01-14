@@ -50,7 +50,8 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	@Override
 	public ResponseEntity<byte[]> getReportSummaryAsPdf(String date, String storeId) {
 		
-		return queryResourceApi.getReportSummaryAsPdfUsingGET(date, storeId);
+		//return queryResourceApi.getReportSummaryAsPdfUsingGET(date, storeId);
+		return null;
 	}
 
 	@Override
