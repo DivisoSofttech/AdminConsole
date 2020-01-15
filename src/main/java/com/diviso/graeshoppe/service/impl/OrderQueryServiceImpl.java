@@ -28,6 +28,7 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.*;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
@@ -90,7 +91,8 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		/*QueryBuilder dslQuery = QueryBuilders.boolQuery()
 				.filter(QueryBuilders.termQuery("status.keyword",statusName));*/
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-		searchSourceBuilder.query(dslQuery);
+		searchSourceBuilder.query(dslQuery).sort("id", SortOrder.DESC);
+;
 		SearchResponse searchResponse =
 				serviceUtility.searchResponseForPage("cancellationrequest", searchSourceBuilder, pageable);
 
