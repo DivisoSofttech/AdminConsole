@@ -18,104 +18,111 @@ import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledAuxilaryOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
+import com.diviso.graeshoppe.client.payment.api.PaymentResourceApi;
+import com.diviso.graeshoppe.client.payment.model.PaymentDTO;
 import com.diviso.graeshoppe.service.AdministrationCommandService;
 import java.util.List;
+
 @Service
-public class AdministrationCommandServiceImpl implements AdministrationCommandService{
-	
+public class AdministrationCommandServiceImpl implements AdministrationCommandService {
+
 	private Logger log = LoggerFactory.getLogger(AdministrationCommandServiceImpl.class);
-	
 
 	@Autowired
 	CancellationRequestResourceApi cancellationRequestResourceApi;
-	
+
 	@Autowired
 	CancelledOrderLineResourceApi cancelledOrderLineResourceApi;
-	
+
 	@Autowired
 	BannerResourceApi bannerResourceApi;
-	
+
 	@Autowired
 	NotificationResourceApi notificationResourceApi;
-	
+	@Autowired
+	private PaymentResourceApi paymentResourceApi;
+
 	@Autowired
 	RefundDetailsResourceApi refundDetailsResourceApi;
-	
+
 	@Autowired
 	CancelledAuxilaryOrderLineResourceApi cancelledAuxilaryOrderLineResourceApi;
+
 	@Override
-	public ResponseEntity<CancellationRequestDTO> createCancellationRequest(CancellationRequestDTO cancellationRequestDTO) {
-		
+	public ResponseEntity<CancellationRequestDTO> createCancellationRequest(
+			CancellationRequestDTO cancellationRequestDTO) {
+		ResponseEntity<PaymentDTO> payment = paymentResourceApi
+				.getPaymentUsingGET(Long.parseLong(cancellationRequestDTO.getPaymentId()));
+		cancellationRequestDTO.setPaymentId(payment.getBody().getRef());
 		return cancellationRequestResourceApi.createCancellationRequestUsingPOST(cancellationRequestDTO);
 	}
 
 	@Override
 	public ResponseEntity<Void> deleteCancellationRequest(Long id) {
-		
+
 		return cancellationRequestResourceApi.deleteCancellationRequestUsingDELETE(id);
 	}
 
 	@Override
 	public ResponseEntity<CancellationRequestDTO> updateCancellationRequest(
 			CancellationRequestDTO cancellationRequestDTO) {
-		
+
 		return cancellationRequestResourceApi.updateCancellationRequestUsingPUT(cancellationRequestDTO);
 	}
 
 	@Override
 	public ResponseEntity<CancelledOrderLineDTO> createCancelledOrderLine(CancelledOrderLineDTO cancelledOrderLineDTO) {
-		
+
 		return cancelledOrderLineResourceApi.createCancelledOrderLineUsingPOST(cancelledOrderLineDTO);
 	}
 
 	@Override
 	public ResponseEntity<Void> deleteCancelledOrderLine(Long id) {
-		
+
 		return cancelledOrderLineResourceApi.deleteCancelledOrderLineUsingDELETE(id);
 	}
 
 	@Override
 	public ResponseEntity<CancelledOrderLineDTO> updateCancelledOrderLine(CancelledOrderLineDTO cancelledOrderLineDTO) {
-		
+
 		return cancelledOrderLineResourceApi.updateCancelledOrderLineUsingPUT(cancelledOrderLineDTO);
 	}
 
-	//banner prince
-	
+	// banner prince
+
 	@Override
 	public ResponseEntity<BannerDTO> createBanner(BannerDTO bannerDTO) {
-		log.debug("<<<<<<< createBanner >>>>>>>",bannerDTO);
+		log.debug("<<<<<<< createBanner >>>>>>>", bannerDTO);
 		return bannerResourceApi.createBannerUsingPOST(bannerDTO);
 	}
 
 	@Override
 	public ResponseEntity<BannerDTO> updateBanner(BannerDTO bannerDTO) {
-		log.debug("<<<<<<<<<<< updateBanner >>>>>>>>>",bannerDTO);
+		log.debug("<<<<<<<<<<< updateBanner >>>>>>>>>", bannerDTO);
 		return bannerResourceApi.updateBannerUsingPUT(bannerDTO);
 	}
-	
+
 	@Override
 	public ResponseEntity<Void> deleteBanner(Long id) {
-		log.debug("<<<<<<< deleteBanner >>>>>>>",id);
+		log.debug("<<<<<<< deleteBanner >>>>>>>", id);
 		return bannerResourceApi.deleteBannerUsingDELETE(id);
 	}
 
-	
 	@Override
 	public ResponseEntity<NotificationDTO> createNotification(NotificationDTO notificationDTO) {
-		log.debug("<<<<<<< createNotification >>>>>>>>>>>>",notificationDTO);
+		log.debug("<<<<<<< createNotification >>>>>>>>>>>>", notificationDTO);
 		return notificationResourceApi.createNotificationUsingPOST(notificationDTO);
 	}
 
 	@Override
 	public ResponseEntity<NotificationDTO> updateNotification(NotificationDTO notificationDTO) {
-		log.debug("<<<<<<<< updateNotification >>>>>>>>>",notificationDTO );
+		log.debug("<<<<<<<< updateNotification >>>>>>>>>", notificationDTO);
 		return notificationResourceApi.updateNotificationUsingPUT(notificationDTO);
 	}
 
 	@Override
 	public ResponseEntity<Void> deleteNotification(Long id) {
-		log.debug("<<<<<<<< deleteNotification >>>>>>>>",id);
+		log.debug("<<<<<<<< deleteNotification >>>>>>>>", id);
 		return notificationResourceApi.deleteNotificationUsingDELETE(id);
 	}
 
@@ -127,33 +134,32 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 
 	@Override
 	public ResponseEntity<RefundDetailsDTO> updateRefundDetails(RefundDetailsDTO refundDetailsDTO) {
-		log.debug("<<<<<<<<<< updateRefoundDetails >>>>>>>>",refundDetailsDTO);
+		log.debug("<<<<<<<<<< updateRefoundDetails >>>>>>>>", refundDetailsDTO);
 		return refundDetailsResourceApi.updateRefundDetailsUsingPUT(refundDetailsDTO);
 	}
 
 	@Override
 	public ResponseEntity<Void> deleteRefundDetails(Long id) {
-		log.debug("<<<<<<<<<<<< deleteRefundDetails >>>>>>>>>>",id);
+		log.debug("<<<<<<<<<<<< deleteRefundDetails >>>>>>>>>>", id);
 		return refundDetailsResourceApi.deleteRefundDetailsUsingDELETE(id);
 	}
 
 	@Override
-	public void createCancelledOrderLineByList(
-			List<CancelledOrderLineDTO> cancelledOrderLineDTOList) {
-		for(CancelledOrderLineDTO cancelledOrderLineDTO:cancelledOrderLineDTOList) {
-		 cancelledOrderLineResourceApi.createCancelledOrderLineUsingPOST(cancelledOrderLineDTO);
+	public void createCancelledOrderLineByList(List<CancelledOrderLineDTO> cancelledOrderLineDTOList) {
+		for (CancelledOrderLineDTO cancelledOrderLineDTO : cancelledOrderLineDTOList) {
+			cancelledOrderLineResourceApi.createCancelledOrderLineUsingPOST(cancelledOrderLineDTO);
 		}
-		
+
 	}
+
 	@Override
 	public void createCancelledAuxOrderLineByList(
 			List<CancelledAuxilaryOrderLineDTO> cancelledAuxilaryOrderLineDTOList) {
-		for(CancelledAuxilaryOrderLineDTO cancelledOrderLineDTO:cancelledAuxilaryOrderLineDTOList) {
+		for (CancelledAuxilaryOrderLineDTO cancelledOrderLineDTO : cancelledAuxilaryOrderLineDTOList) {
 			cancelledAuxilaryOrderLineResourceApi.createCancelledAuxilaryOrderLineUsingPOST(cancelledOrderLineDTO);
 		}
-		
+
 	}
-	
-	
-		
+
+
 }

@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
  * ReportSummary
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-10T16:23:07.213+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-14T13:43:11.132+05:30[Asia/Calcutta]")
 
 public class ReportSummary   {
   @JsonProperty("fromDate")
@@ -29,31 +29,31 @@ public class ReportSummary   {
   private LocalDate toDate = null;
 
   @JsonProperty("typeAllCount")
-  private Long typeAllCount = null;
+  private Integer typeAllCount = null;
 
   @JsonProperty("typeAllTotal")
   private Double typeAllTotal = null;
 
   @JsonProperty("typeCardCount")
-  private Integer typeCardCount = null;
+  private Long typeCardCount = null;
 
   @JsonProperty("typeCardTotal")
   private Double typeCardTotal = null;
 
   @JsonProperty("typeCashCount")
-  private Integer typeCashCount = null;
+  private Long typeCashCount = null;
 
   @JsonProperty("typeCashTotal")
   private Double typeCashTotal = null;
 
   @JsonProperty("typeCollectionCount")
-  private Integer typeCollectionCount = null;
+  private Long typeCollectionCount = null;
 
   @JsonProperty("typeCollectionTotal")
   private Double typeCollectionTotal = null;
 
   @JsonProperty("typeDeliveryCount")
-  private Integer typeDeliveryCount = null;
+  private Long typeDeliveryCount = null;
 
   @JsonProperty("typeDeliveryTotal")
   private Double typeDeliveryTotal = null;
@@ -120,7 +120,7 @@ public class ReportSummary   {
     this.toDate = toDate;
   }
 
-  public ReportSummary typeAllCount(Long typeAllCount) {
+  public ReportSummary typeAllCount(Integer typeAllCount) {
     this.typeAllCount = typeAllCount;
     return this;
   }
@@ -132,11 +132,11 @@ public class ReportSummary   {
   @ApiModelProperty(value = "")
 
 
-  public Long getTypeAllCount() {
+  public Integer getTypeAllCount() {
     return typeAllCount;
   }
 
-  public void setTypeAllCount(Long typeAllCount) {
+  public void setTypeAllCount(Integer typeAllCount) {
     this.typeAllCount = typeAllCount;
   }
 
@@ -160,7 +160,7 @@ public class ReportSummary   {
     this.typeAllTotal = typeAllTotal;
   }
 
-  public ReportSummary typeCardCount(Integer typeCardCount) {
+  public ReportSummary typeCardCount(Long typeCardCount) {
     this.typeCardCount = typeCardCount;
     return this;
   }
@@ -172,11 +172,11 @@ public class ReportSummary   {
   @ApiModelProperty(value = "")
 
 
-  public Integer getTypeCardCount() {
+  public Long getTypeCardCount() {
     return typeCardCount;
   }
 
-  public void setTypeCardCount(Integer typeCardCount) {
+  public void setTypeCardCount(Long typeCardCount) {
     this.typeCardCount = typeCardCount;
   }
 
@@ -200,7 +200,7 @@ public class ReportSummary   {
     this.typeCardTotal = typeCardTotal;
   }
 
-  public ReportSummary typeCashCount(Integer typeCashCount) {
+  public ReportSummary typeCashCount(Long typeCashCount) {
     this.typeCashCount = typeCashCount;
     return this;
   }
@@ -212,11 +212,11 @@ public class ReportSummary   {
   @ApiModelProperty(value = "")
 
 
-  public Integer getTypeCashCount() {
+  public Long getTypeCashCount() {
     return typeCashCount;
   }
 
-  public void setTypeCashCount(Integer typeCashCount) {
+  public void setTypeCashCount(Long typeCashCount) {
     this.typeCashCount = typeCashCount;
   }
 
@@ -240,7 +240,7 @@ public class ReportSummary   {
     this.typeCashTotal = typeCashTotal;
   }
 
-  public ReportSummary typeCollectionCount(Integer typeCollectionCount) {
+  public ReportSummary typeCollectionCount(Long typeCollectionCount) {
     this.typeCollectionCount = typeCollectionCount;
     return this;
   }
@@ -252,11 +252,11 @@ public class ReportSummary   {
   @ApiModelProperty(value = "")
 
 
-  public Integer getTypeCollectionCount() {
+  public Long getTypeCollectionCount() {
     return typeCollectionCount;
   }
 
-  public void setTypeCollectionCount(Integer typeCollectionCount) {
+  public void setTypeCollectionCount(Long typeCollectionCount) {
     this.typeCollectionCount = typeCollectionCount;
   }
 
@@ -280,7 +280,7 @@ public class ReportSummary   {
     this.typeCollectionTotal = typeCollectionTotal;
   }
 
-  public ReportSummary typeDeliveryCount(Integer typeDeliveryCount) {
+  public ReportSummary typeDeliveryCount(Long typeDeliveryCount) {
     this.typeDeliveryCount = typeDeliveryCount;
     return this;
   }
@@ -292,11 +292,11 @@ public class ReportSummary   {
   @ApiModelProperty(value = "")
 
 
-  public Integer getTypeDeliveryCount() {
+  public Long getTypeDeliveryCount() {
     return typeDeliveryCount;
   }
 
-  public void setTypeDeliveryCount(Integer typeDeliveryCount) {
+  public void setTypeDeliveryCount(Long typeDeliveryCount) {
     this.typeDeliveryCount = typeDeliveryCount;
   }
 

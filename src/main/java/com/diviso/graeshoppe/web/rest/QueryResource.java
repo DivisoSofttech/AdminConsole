@@ -90,9 +90,9 @@ public class QueryResource {
 	 * return reportQueryService.createReportSummary(date,storeId); }
 	 */
 
-	@GetMapping("/reportview/{fromDate}/{todate}/{storeName}")
-	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String fromDate,@PathVariable String toDate,
-			@PathVariable String storeName) {
+	@GetMapping("/reportview/{fromDate}/{toDate}")
+	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String fromDate,@PathVariable String toDate,@RequestParam(value="storeName",required = false)
+			 String storeName) {
 		return reportQueryService.createReportSummary(fromDate,toDate, storeName);
 	}
 
@@ -504,15 +504,18 @@ public class QueryResource {
 
 	
 	@GetMapping("/getOrdersByFilter")
-	public ResponseEntity<List<OrderMaster>> getOrdersByFilter(@RequestParam(value = "fromDate", required = false) String fromDate,
+	public ResponseEntity<PageOfOrderMaster> getOrdersByFilter(@RequestParam(value = "fromDate", required = false) String fromDate,
 			@RequestParam(value = "toDate", required = false) String toDate,
 			@RequestParam(value = "storeId", required = false) String storeId,
 			@RequestParam(value = "methodOfOrder", required = false) String methodOfOrder,
-			@RequestParam(value = "paymentStatus", required = false) String paymentStatus) {
+			@RequestParam(value = "paymentStatus", required = false) String paymentStatus,
+			@RequestParam(value = "pageNumber", required = false) Integer pageNumber,
+			@RequestParam(value = "size", required = false) Integer size,
+			@RequestParam(value = "sort", required = false)  List<String> sort) {
 	
 		log.debug("<<<<<<<<<< getOrdersByReportFilter>>>>>>>>{}");
 		
-		return orderMasterQueryService.getOrdersByFilter(fromDate,toDate,storeId,methodOfOrder,paymentStatus);
+		return orderMasterQueryService.getOrdersByFilter(fromDate, toDate, storeId, methodOfOrder, paymentStatus, pageNumber, size, sort);			
 	}
 	@GetMapping("/getStoreByRegNo/{regNo}")
 	public ResponseEntity<Store> getStoreByRegNo(@PathVariable String regNo){
