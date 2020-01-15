@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.diviso.graeshoppe.client.administration.model.Banner;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
+import com.diviso.graeshoppe.client.administration.model.CancellationRequest;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.DataResponse;
@@ -88,5 +89,7 @@ public interface AdministrationQueryService {
 	public Page<Banner> findBannerByStoreId(String storeId,Pageable pageable);
 
 	public ResponseEntity<List<CancellationRequestDTO>> findAllCancellationRequests(Pageable pageable);
+
+	public ResponseEntity<CancellationRequest> getCancellationRequest(String orderId);
     
 }

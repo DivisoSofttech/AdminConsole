@@ -489,11 +489,10 @@ public class QueryResource {
 		
 		return customerQueryService.findCustomerByIdpCode(idpCode);
 	}
-	@GetMapping("/findCancellationRequestByStatus/{statusName}")
-	public Page<CancellationRequest> findCancellationRequestByStatus(@PathVariable String statusName,Pageable pageable){
+	@GetMapping("/findCancellationRequestByStatus/{statusName}/{date}")
+	public Page<CancellationRequest> findCancellationRequestByStatus(@PathVariable String statusName,@PathVariable LocalDate date,Pageable pageable){
 		log.debug("<<<<<<<<<< findCancellationRequestByStatus>>>>>>>>{}",statusName);
-		
-		return orderQueryService.findCancellationRequestByStatus(statusName,pageable);
+		return orderQueryService.findCancellationRequestByStatus(statusName,date,pageable);
 	}
 
 	@GetMapping("/getStore/{id}")
@@ -517,6 +516,15 @@ public class QueryResource {
 		
 		return orderMasterQueryService.getOrdersByFilter(fromDate, toDate, storeId, methodOfOrder, paymentStatus, pageNumber, size, sort);			
 	}
-	
-
+	@GetMapping("/getStoreByRegNo/{regNo}")
+	public ResponseEntity<Store> getStoreByRegNo(@PathVariable String regNo){
+		log.debug("<<<<<<<<<<< getStore >>>>>>>>{}",regNo);
+		return storeQuerySerice.getStoreByRegNo(regNo);
+	}
+	@GetMapping("/getCancellationRequest/{orderId}")
+	public ResponseEntity<CancellationRequest> getCancellationRequest(@PathVariable String orderId){
+		log.debug("<<<<<<<<< getCancellationRequest >>>>>>>{}",orderId);
+		return administrationQueryService.getCancellationRequest(orderId);
+		
+	}
 }

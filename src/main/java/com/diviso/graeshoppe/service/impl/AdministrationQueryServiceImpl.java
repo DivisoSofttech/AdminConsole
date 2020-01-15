@@ -30,6 +30,7 @@ import com.diviso.graeshoppe.client.administration.api.NotificationResourceApi;
 import com.diviso.graeshoppe.client.administration.api.RefundDetailsResourceApi;
 import com.diviso.graeshoppe.client.administration.model.Banner;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
+import com.diviso.graeshoppe.client.administration.model.CancellationRequest;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.DataResponse;
@@ -214,6 +215,17 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 		list.stream().map(x->x.toString()).forEach(sortlist::add);
 		
 		return cancellationRequestResourceApi.getAllCancellationRequestsUsingGET(pageable.getPageNumber(), pageable.getPageSize(), sortlist);
+	}
+
+	@Override
+	public ResponseEntity<CancellationRequest> getCancellationRequest(String orderId) {
+		log.debug("<<<<<<<<<< getCancellationRequest >>>>>>{}",orderId);
+		QueryBuilder dslQuery = QueryBuilders.matchQuery("orderId", orderId);
+		SearchSourceBuilder builder =new SearchSourceBuilder();
+		builder.query(dslQuery);
+		SearchResponse response = serviceUtility.searchResponseForObject("cancellationrequest", dslQuery);
+		
+		return ResponseEntity.ok().body(serviceUtility.getObjectResult(response, new CancellationRequest()));
 	}
 	
 

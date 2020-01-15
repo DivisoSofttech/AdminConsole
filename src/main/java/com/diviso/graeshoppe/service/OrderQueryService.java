@@ -10,13 +10,13 @@ import com.diviso.graeshoppe.client.order.model.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-
+import java.time.LocalDate;
 public interface OrderQueryService {
 
 	ResponseEntity<Order> findOrderByOrderId(String orderId);
 
 	ResponseEntity<List<Order>> findByOrdersByOrderId(String orderId);
 
-	Page<CancellationRequest> findCancellationRequestByStatus(String statusName,Pageable pageable);
+	Page<CancellationRequest> findCancellationRequestByStatus(String statusName,LocalDate date,Pageable pageable);
 
 }
