@@ -50,7 +50,7 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 
 	@Override
 	public ResponseEntity<CancellationRequestDTO> createCancellationRequest(
-			CancellationRequestDTO cancellationRequestDTO) {0
+			CancellationRequestDTO cancellationRequestDTO) {
 		ResponseEntity<PaymentDTO> payment = paymentResourceApi
 				.getPaymentUsingGET(Long.parseLong(cancellationRequestDTO.getPaymentId()));
 		cancellationRequestDTO.setPaymentId(payment.getBody().getRef());
@@ -160,5 +160,6 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 		}
 
 	}
+
 
 }

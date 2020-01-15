@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * Sort
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-09T16:36:28.343+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-14T13:43:11.132+05:30[Asia/Calcutta]")
 
 public class Sort   {
   @JsonProperty("empty")

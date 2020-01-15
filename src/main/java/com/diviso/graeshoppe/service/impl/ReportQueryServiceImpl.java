@@ -28,9 +28,9 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	private final Logger log = LoggerFactory.getLogger(ReportQueryServiceImpl.class);
 	
 	@Override
-	public ResponseEntity<ReportSummary> createReportSummary(String expectedDelivery, String storeName) {
+	public ResponseEntity<ReportSummary> createReportSummary(String fromDate,String toDate, String storeName) {
 		
-		return queryResourceApi.createReportSummaryUsingGET(expectedDelivery, storeName);
+		return queryResourceApi.createReportSummaryUsingGET(fromDate, toDate, storeName);
 	}
 
 
@@ -50,7 +50,8 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	@Override
 	public ResponseEntity<byte[]> getReportSummaryAsPdf(String date, String storeId) {
 		
-		return queryResourceApi.getReportSummaryAsPdfUsingGET(date, storeId);
+		//return queryResourceApi.getReportSummaryAsPdfUsingGET(date, storeId);
+		return null;
 	}
 
 	@Override
