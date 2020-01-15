@@ -220,7 +220,7 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 	@Override
 	public ResponseEntity<CancellationRequest> getCancellationRequest(String orderId) {
 		log.debug("<<<<<<<<<< getCancellationRequest >>>>>>{}",orderId);
-		QueryBuilder dslQuery = QueryBuilders.termQuery("orderId.keyword", orderId);
+		QueryBuilder dslQuery = QueryBuilders.boolQuery().must(QueryBuilders.termQuery("orderId.keyword", orderId));
 		SearchSourceBuilder builder =new SearchSourceBuilder();
 		builder.query(dslQuery);
 		SearchResponse response = serviceUtility.searchResponseForObject("cancellationrequest", dslQuery);
