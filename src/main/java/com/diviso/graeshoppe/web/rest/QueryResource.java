@@ -514,6 +514,15 @@ public class QueryResource {
 		
 		return orderMasterQueryService.getOrdersByFilter(fromDate,toDate,storeId,methodOfOrder,paymentStatus);
 	}
-	
-
+	@GetMapping("/getStoreByRegNo/{regNo}")
+	public ResponseEntity<Store> getStoreByRegNo(@PathVariable String regNo){
+		log.debug("<<<<<<<<<<< getStore >>>>>>>>{}",regNo);
+		return storeQuerySerice.getStoreByRegNo(regNo);
+	}
+	@GetMapping("/getCancellationRequest/{orderId}")
+	public ResponseEntity<CancellationRequest> getCancellationRequest(@PathVariable String orderId){
+		log.debug("<<<<<<<<< getCancellationRequest >>>>>>>{}",orderId);
+		return administrationQueryService.getCancellationRequest(orderId);
+		
+	}
 }
