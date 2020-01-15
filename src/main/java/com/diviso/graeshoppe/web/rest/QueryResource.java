@@ -522,9 +522,15 @@ public class QueryResource {
 		return storeQuerySerice.getStoreByRegNo(regNo);
 	}
 	@GetMapping("/getCancellationRequest/{orderId}")
-	public ResponseEntity<CancellationRequest> getCancellationRequest(@PathVariable String orderId){
+	public ResponseEntity<CancellationRequest> getCancellationRequestByOrderId(@PathVariable String orderId){
 		log.debug("<<<<<<<<< getCancellationRequest >>>>>>>{}",orderId);
 		return administrationQueryService.getCancellationRequest(orderId);
+		
+	}
+	@GetMapping("/findAllCancelledOrderlinesAndAuxilaryOrderlinesById/{id}")
+	public ResponseEntity<CancellationRequest> findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById(@PathVariable Long id){
+		log.debug("<<<<<<<<<findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById>>>>{}",id);
+		return administrationQueryService.findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById(id);
 		
 	}
 }

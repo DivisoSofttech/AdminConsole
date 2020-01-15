@@ -91,5 +91,7 @@ public interface AdministrationQueryService {
 	public ResponseEntity<List<CancellationRequestDTO>> findAllCancellationRequests(Pageable pageable);
 
 	public ResponseEntity<CancellationRequest> getCancellationRequest(String orderId);
+
+	public ResponseEntity<CancellationRequest> findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById(Long id);
     
 }
