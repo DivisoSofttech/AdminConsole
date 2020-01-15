@@ -528,4 +528,10 @@ public class QueryResource {
 		return administrationQueryService.getCancellationRequest(orderId);
 		
 	}
+	@GetMapping("/findAllCancelledOrderlinesAndAuxilaryOrderlinesById/{id}")
+	public ResponseEntity<CancellationRequest> findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById(@PathVariable Long id){
+		log.debug("<<<<<<<<<findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById>>>>{}",id);
+		return administrationQueryService.findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById(id);
+		
+	}
 }
