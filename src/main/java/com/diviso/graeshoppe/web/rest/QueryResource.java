@@ -126,8 +126,8 @@ public class QueryResource {
 	 * 
 	 * return reportQueryService.getReportAsPdf(orderNumber); }
 	 */
-	@GetMapping("/reportSummary/{date}/{storeId}")
-	public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable String date, @PathVariable String storeId) {
+	@GetMapping("/reportSummary/{date}")
+	public ResponseEntity<PdfDTO> getReportSummaryAsPdf(@PathVariable String date, @RequestParam(value = "storeId", required = false) String storeId) {
 
 		return reportQueryService.getReportSummaryAsPdf(date, storeId);
 	}
@@ -543,20 +543,15 @@ public class QueryResource {
 	
 	
 	@GetMapping("/getOrdersPdfByFilter/{fromDate}/{toDate}")
-	public ResponseEntity<byte[]> getOrdersPdfByFilter(@PathVariable String fromDate,
+	public ResponseEntity<PdfDTO> getOrdersPdfByFilter(@PathVariable String fromDate,
 			@PathVariable String toDate,
 			@RequestParam(value = "storeId", required = false) String storeId,
 			@RequestParam(value = "methodOfOrder", required = false) String methodOfOrder,
 			@RequestParam(value = "paymentStatus", required = false) String paymentStatus) {
 	
 		log.debug("<<<<<<<<<< getOrdersPdfByReportFilter>>>>>>>>{}");
-		byte[] pdfContents= reportQueryService.getOrdersPdfByFilter(fromDate,toDate, storeId, methodOfOrder, paymentStatus);
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.parseMediaType("application/pdf"));
-		String fileName = "orders.pdf";
-		headers.add("content-disposition", "attachment; filename=" + fileName);
-		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
-		return response;
+		return reportQueryService.getOrdersPdfByFilter(fromDate,toDate, storeId, methodOfOrder, paymentStatus);
+		
 		
 		
 	}

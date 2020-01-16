@@ -31,7 +31,7 @@ public interface ReportQueryService {
 	
 	public ResponseEntity<PageOfOrderMaster> findByExpectedDeliveryBetween(OffsetDateTime from, OffsetDateTime to,Pageable pageable);
 
-	public ResponseEntity<byte[]> getReportSummaryAsPdf(String date,String storeId);
+	public ResponseEntity<PdfDTO> getReportSummaryAsPdf(String date,String storeId);
 
 	/**
 	 * @param orderNumber
@@ -61,7 +61,7 @@ public interface ReportQueryService {
 	 * public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(String date, String
 	 * paymentStatus, String storeId);
 	 */
-	public byte[] getOrdersPdfByFilter(String fromDate, String toDate, String storeId,
+	public ResponseEntity<PdfDTO> getOrdersPdfByFilter(String fromDate, String toDate, String storeId,
 			String methodOfOrder, String paymentStatus);
 	
 	

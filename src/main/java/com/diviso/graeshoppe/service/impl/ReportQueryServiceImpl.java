@@ -48,9 +48,13 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	}
 
 	@Override
-	public ResponseEntity<byte[]> getReportSummaryAsPdf(String date, String storeId) {
+	public ResponseEntity<PdfDTO> getReportSummaryAsPdf(String date, String storeId) {
 		
-		return queryResourceApi.getReportSummaryAsPdfUsingGET(date, storeId);
+		//return queryResourceApi.getReportSummaryAsPdfUsingGET(date, storeId);
+		PdfDTO pdf = new PdfDTO();
+		pdf.setPdf(this.queryResourceApi.getReportSummaryAsPdfUsingGET(date, storeId).getBody());
+		pdf.setContentType("application/pdf");
+		return ResponseEntity.ok().body(pdf);
 	
 	}
 
@@ -142,11 +146,13 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	 */
 
 	@Override
-	public byte[] getOrdersPdfByFilter(String fromDate, String toDate, String storeId,
+	public ResponseEntity<PdfDTO> getOrdersPdfByFilter(String fromDate, String toDate, String storeId,
 			String methodOfOrder, String paymentStatus) {
 
-		 return this.queryResourceApi.getOrdersPdfByFilterUsingGET(fromDate, toDate, methodOfOrder, paymentStatus, storeId).getBody();
-		
+		PdfDTO pdf = new PdfDTO();
+		pdf.setPdf(this.queryResourceApi.getOrdersPdfByFilterUsingGET(fromDate, toDate, storeId, methodOfOrder, paymentStatus).getBody());
+		pdf.setContentType("application/pdf");
+		return ResponseEntity.ok().body(pdf);
 		
 	}
 	
