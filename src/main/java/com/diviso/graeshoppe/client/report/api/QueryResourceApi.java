@@ -30,7 +30,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-16T10:33:29.098+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-16T16:41:48.408+05:30[Asia/Kolkata]")
 
 @Api(value = "QueryResource", description = "the QueryResource API")
 public interface QueryResourceApi {
@@ -41,10 +41,10 @@ public interface QueryResourceApi {
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 403, message = "Forbidden"),
         @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/reportview/{fromDate}/{toDate}",
+    @RequestMapping(value = "/api/reportview/{date}",
         produces = "*/*", 
         method = RequestMethod.GET)
-    ResponseEntity<ReportSummary> createReportSummaryUsingGET(@ApiParam(value = "fromDate",required=true) @PathVariable("fromDate") String fromDate,@ApiParam(value = "toDate",required=true) @PathVariable("toDate") String toDate,@ApiParam(value = "storeName") @Valid @RequestParam(value = "storeName", required = false) String storeName);
+    ResponseEntity<ReportSummary> createReportSummaryUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "storeName") @Valid @RequestParam(value = "storeName", required = false) String storeName);
 
 
     @ApiOperation(value = "findAuxItemByid", nickname = "findAuxItemByidUsingGET", notes = "", response = AuxItem.class, responseContainer = "List", tags={ "query-resource", })

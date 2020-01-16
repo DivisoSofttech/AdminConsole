@@ -28,9 +28,9 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	private final Logger log = LoggerFactory.getLogger(ReportQueryServiceImpl.class);
 	
 	@Override
-	public ResponseEntity<ReportSummary> createReportSummary(String fromDate,String toDate, String storeName) {
+	public ResponseEntity<ReportSummary> createReportSummary(String date, String storeName) {
 		
-		return queryResourceApi.createReportSummaryUsingGET(fromDate, toDate, storeName);
+		return queryResourceApi.createReportSummaryUsingGET(date, storeName);
 	}
 
 

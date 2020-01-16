@@ -21,7 +21,7 @@ import com.diviso.graeshoppe.service.dto.PdfDTO;
 
 public interface ReportQueryService {
 
-	public ResponseEntity<ReportSummary> createReportSummary(String fromDate, String toDate, String storeName);
+	public ResponseEntity<ReportSummary> createReportSummary(String date, String storeName);
 
 	public ResponseEntity<PageOfOrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(String from, String storeIdpcode, String to, Pageable pageable);
 	

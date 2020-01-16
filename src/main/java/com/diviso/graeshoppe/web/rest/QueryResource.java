@@ -92,10 +92,10 @@ public class QueryResource {
 	 * return reportQueryService.createReportSummary(date,storeId); }
 	 */
 
-	@GetMapping("/reportview/{fromDate}/{toDate}")
-	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String fromDate,@PathVariable String toDate,@RequestParam(value="storeName",required = false)
+	@GetMapping("/reportview/{date}")
+	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String date,@RequestParam(value="storeName",required = false)
 			 String storeName) {
-		return reportQueryService.createReportSummary(fromDate,toDate, storeName);
+		return reportQueryService.createReportSummary(date, storeName);
 	}
 
 	@GetMapping("/findOrderByDatebetweenAndStoreId/{from}/{storeId}/{to}")
