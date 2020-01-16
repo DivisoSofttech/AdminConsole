@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import java.time.LocalDate;
 import java.util.Date;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -16,7 +14,7 @@ import javax.validation.constraints.*;
  * ReportSummary
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-16T16:41:48.408+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-16T19:47:56.784+05:30[Asia/Kolkata]")
 
 public class ReportSummary   {
   @JsonProperty("date")
