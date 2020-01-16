@@ -51,11 +51,18 @@ public interface ReportQueryService {
 
 	public ResponseEntity<PdfDTO> getOrderSummaryByDateAndStoreName(String date, String storeId);
 
-	public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(String date, String methodOfOrder, String storeId);
-
-	public ResponseEntity<PdfDTO> getAllOrdersBetweenDates(String fromDate, String toDate);
-
-	public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(String date, String paymentStatus, String storeId);
+	/*
+	 * public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(String date, String
+	 * methodOfOrder, String storeId);
+	 * 
+	 * public ResponseEntity<PdfDTO> getAllOrdersBetweenDates(String fromDate,
+	 * String toDate);
+	 * 
+	 * public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(String date, String
+	 * paymentStatus, String storeId);
+	 */
+	public byte[] getOrdersPdfByFilter(String fromDate, String toDate, String storeId,
+			String methodOfOrder, String paymentStatus);
 	
 	
 }

@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
  * ComboItem
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-14T13:43:11.132+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-16T10:33:29.098+05:30[Asia/Kolkata]")
 
 public class ComboItem   {
   @JsonProperty("comboItem")
