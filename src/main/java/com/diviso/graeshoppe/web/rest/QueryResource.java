@@ -508,7 +508,7 @@ public class QueryResource {
 	}
 
 	
-	@GetMapping("/getOrdersByFilter/{fromDate}/toDate}")
+	@GetMapping("/getOrdersByFilter/{fromDate}/{toDate}")
 	public ResponseEntity<PageOfOrderMaster> getOrdersByFilter(@PathVariable String fromDate,
 			@PathVariable String toDate,
 			@RequestParam(value = "storeId", required = false) String storeId,
