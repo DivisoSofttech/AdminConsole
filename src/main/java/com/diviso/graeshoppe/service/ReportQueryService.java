@@ -21,7 +21,7 @@ import com.diviso.graeshoppe.service.dto.PdfDTO;
 
 public interface ReportQueryService {
 
-	public ResponseEntity<ReportSummary> createReportSummary(String fromDate, String toDate, String storeName);
+	public ResponseEntity<ReportSummary> createReportSummary(String date, String storeName);
 
 	public ResponseEntity<PageOfOrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(String from, String storeIdpcode, String to, Pageable pageable);
 	
@@ -31,7 +31,7 @@ public interface ReportQueryService {
 	
 	public ResponseEntity<PageOfOrderMaster> findByExpectedDeliveryBetween(OffsetDateTime from, OffsetDateTime to,Pageable pageable);
 
-	public ResponseEntity<byte[]> getReportSummaryAsPdf(String date,String storeId);
+	public ResponseEntity<PdfDTO> getReportSummaryAsPdf(String date,String storeId);
 
 	/**
 	 * @param orderNumber
@@ -51,11 +51,18 @@ public interface ReportQueryService {
 
 	public ResponseEntity<PdfDTO> getOrderSummaryByDateAndStoreName(String date, String storeId);
 
-	public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(String date, String methodOfOrder, String storeId);
-
-	public ResponseEntity<PdfDTO> getAllOrdersBetweenDates(String fromDate, String toDate);
-
-	public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(String date, String paymentStatus, String storeId);
+	/*
+	 * public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(String date, String
+	 * methodOfOrder, String storeId);
+	 * 
+	 * public ResponseEntity<PdfDTO> getAllOrdersBetweenDates(String fromDate,
+	 * String toDate);
+	 * 
+	 * public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(String date, String
+	 * paymentStatus, String storeId);
+	 */
+	public ResponseEntity<PdfDTO> getOrdersPdfByFilter(String fromDate, String toDate, String storeId,
+			String methodOfOrder, String paymentStatus);
 	
 	
 }

@@ -16,17 +16,14 @@ import javax.validation.constraints.*;
  * ReportSummary
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-14T13:43:11.132+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-16T19:47:56.784+05:30[Asia/Kolkata]")
 
 public class ReportSummary   {
-  @JsonProperty("fromDate")
-  private LocalDate fromDate = null;
+  @JsonProperty("date")
+  private LocalDate date = null;
 
   @JsonProperty("storeId")
   private String storeId = null;
-
-  @JsonProperty("toDate")
-  private LocalDate toDate = null;
 
   @JsonProperty("typeAllCount")
   private Integer typeAllCount = null;
@@ -58,25 +55,25 @@ public class ReportSummary   {
   @JsonProperty("typeDeliveryTotal")
   private Double typeDeliveryTotal = null;
 
-  public ReportSummary fromDate(LocalDate fromDate) {
-    this.fromDate = fromDate;
+  public ReportSummary date(LocalDate date) {
+    this.date = date;
     return this;
   }
 
   /**
-   * Get fromDate
-   * @return fromDate
+   * Get date
+   * @return date
   **/
   @ApiModelProperty(value = "")
 
   @Valid
 
-  public LocalDate getFromDate() {
-    return fromDate;
+  public LocalDate getDate() {
+    return date;
   }
 
-  public void setFromDate(LocalDate fromDate) {
-    this.fromDate = fromDate;
+  public void setDate(LocalDate date) {
+    this.date = date;
   }
 
   public ReportSummary storeId(String storeId) {
@@ -97,27 +94,6 @@ public class ReportSummary   {
 
   public void setStoreId(String storeId) {
     this.storeId = storeId;
-  }
-
-  public ReportSummary toDate(LocalDate toDate) {
-    this.toDate = toDate;
-    return this;
-  }
-
-  /**
-   * Get toDate
-   * @return toDate
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
-  public LocalDate getToDate() {
-    return toDate;
-  }
-
-  public void setToDate(LocalDate toDate) {
-    this.toDate = toDate;
   }
 
   public ReportSummary typeAllCount(Integer typeAllCount) {
@@ -330,9 +306,8 @@ public class ReportSummary   {
       return false;
     }
     ReportSummary reportSummary = (ReportSummary) o;
-    return Objects.equals(this.fromDate, reportSummary.fromDate) &&
+    return Objects.equals(this.date, reportSummary.date) &&
         Objects.equals(this.storeId, reportSummary.storeId) &&
-        Objects.equals(this.toDate, reportSummary.toDate) &&
         Objects.equals(this.typeAllCount, reportSummary.typeAllCount) &&
         Objects.equals(this.typeAllTotal, reportSummary.typeAllTotal) &&
         Objects.equals(this.typeCardCount, reportSummary.typeCardCount) &&
@@ -347,7 +322,7 @@ public class ReportSummary   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(fromDate, storeId, toDate, typeAllCount, typeAllTotal, typeCardCount, typeCardTotal, typeCashCount, typeCashTotal, typeCollectionCount, typeCollectionTotal, typeDeliveryCount, typeDeliveryTotal);
+    return Objects.hash(date, storeId, typeAllCount, typeAllTotal, typeCardCount, typeCardTotal, typeCashCount, typeCashTotal, typeCollectionCount, typeCollectionTotal, typeDeliveryCount, typeDeliveryTotal);
   }
 
   @Override
@@ -355,9 +330,8 @@ public class ReportSummary   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReportSummary {\n");
     
-    sb.append("    fromDate: ").append(toIndentedString(fromDate)).append("\n");
+    sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("    storeId: ").append(toIndentedString(storeId)).append("\n");
-    sb.append("    toDate: ").append(toIndentedString(toDate)).append("\n");
     sb.append("    typeAllCount: ").append(toIndentedString(typeAllCount)).append("\n");
     sb.append("    typeAllTotal: ").append(toIndentedString(typeAllTotal)).append("\n");
     sb.append("    typeCardCount: ").append(toIndentedString(typeCardCount)).append("\n");

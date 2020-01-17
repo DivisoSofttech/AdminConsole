@@ -13,7 +13,11 @@ import com.diviso.graeshoppe.service.OrderQueryService;
 import com.diviso.graeshoppe.config.elasticsearch.ServiceUtility ;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import static org.elasticsearch.index.query.QueryBuilders.rangeQuery;
+import static org.elasticsearch.index.query.QueryBuilders.termQuery;
+
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +28,7 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.*;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
@@ -78,11 +83,18 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 		log.debug("<<<<<<<<<<<<<<<<<outputtttt{}>>>>>>>>", orders);
 		return ResponseEntity.ok().body(orders);
 	}
-	public Page<CancellationRequest> findCancellationRequestByStatus(String statusName,Pageable pageable){
-		QueryBuilder dslQuery = QueryBuilders.boolQuery().must(QueryBuilders.matchAllQuery()).filter(QueryBuilders.termQuery("status.keyword",statusName));
+	public Page<CancellationRequest> findCancellationRequestByStatus(String statusName,LocalDate date,Pageable pageable){
+		QueryBuilder dslQuery=QueryBuilders.boolQuery()
+				.must(termQuery("status.keyword",statusName))
+				.filter(rangeQuery("date").lte(date));
+		
+		/*QueryBuilder dslQuery = QueryBuilders.boolQuery()
+				.filter(QueryBuilders.termQuery("status.keyword",statusName));*/
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-		searchSourceBuilder.query(dslQuery);
-		SearchResponse searchResponse = serviceUtility.searchResponseForPage("cancellationrequest", searchSourceBuilder, pageable);
+		searchSourceBuilder.query(dslQuery).sort("id", SortOrder.DESC);
+;
+		SearchResponse searchResponse =
+				serviceUtility.searchResponseForPage("cancellationrequest", searchSourceBuilder, pageable);
 
 		Page<CancellationRequest> cancellationRequestPage = serviceUtility.getPageResult(searchResponse, pageable, new CancellationRequest());
 

@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -90,10 +92,10 @@ public class QueryResource {
 	 * return reportQueryService.createReportSummary(date,storeId); }
 	 */
 
-	@GetMapping("/reportview/{fromDate}/{toDate}")
-	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String fromDate,@PathVariable String toDate,@RequestParam(value="storeName",required = false)
+	@GetMapping("/reportview/{date}")
+	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String date,@RequestParam(value="storeName",required = false)
 			 String storeName) {
-		return reportQueryService.createReportSummary(fromDate,toDate, storeName);
+		return reportQueryService.createReportSummary(date, storeName);
 	}
 
 	@GetMapping("/findOrderByDatebetweenAndStoreId/{from}/{storeId}/{to}")
@@ -124,8 +126,8 @@ public class QueryResource {
 	 * 
 	 * return reportQueryService.getReportAsPdf(orderNumber); }
 	 */
-	@GetMapping("/reportSummary/{date}/{storeId}")
-	public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable String date, @PathVariable String storeId) {
+	@GetMapping("/reportSummary/{date}")
+	public ResponseEntity<PdfDTO> getReportSummaryAsPdf(@PathVariable String date, @RequestParam(value = "storeId", required = false) String storeId) {
 
 		return reportQueryService.getReportSummaryAsPdf(date, storeId);
 	}
@@ -457,23 +459,27 @@ public class QueryResource {
 		
 	}
 
-	@GetMapping("/getAllOrdersByMethodOfOrder/{date}/{methodOfOrder}/{storeId}")
-	public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(@PathVariable String date,@PathVariable String methodOfOrder,@PathVariable String storeId){
-		
-		return reportQueryService.getAllOrdersByMethodOfOrder(date, methodOfOrder, storeId);
-	}
-
-	@GetMapping("/getAllOrdersBetweenDates/{fromDate}/{toDate}")
-	public ResponseEntity<PdfDTO> getAllOrdersBetweenDates(@PathVariable String fromDate, @PathVariable String toDate){
-		
-		return reportQueryService.getAllOrdersBetweenDates(fromDate, toDate);
-	}
-
-	@GetMapping("/getAllOrdersByPaymentStatus/{date}/{paymentStatus}/{storeId}")
-	public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(@PathVariable String date,@PathVariable String paymentStatus,@PathVariable String storeId){
-		
-		return reportQueryService.getAllOrdersByPaymentStatus(date, paymentStatus, storeId);
-	}
+	/*
+	 * @GetMapping("/getAllOrdersByMethodOfOrder/{date}/{methodOfOrder}/{storeId}")
+	 * public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(@PathVariable
+	 * String date,@PathVariable String methodOfOrder,@PathVariable String storeId){
+	 * 
+	 * return reportQueryService.getAllOrdersByMethodOfOrder(date, methodOfOrder,
+	 * storeId); }
+	 * 
+	 * @GetMapping("/getAllOrdersBetweenDates/{fromDate}/{toDate}") public
+	 * ResponseEntity<PdfDTO> getAllOrdersBetweenDates(@PathVariable String
+	 * fromDate, @PathVariable String toDate){
+	 * 
+	 * return reportQueryService.getAllOrdersBetweenDates(fromDate, toDate); }
+	 * 
+	 * @GetMapping("/getAllOrdersByPaymentStatus/{date}/{paymentStatus}/{storeId}")
+	 * public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(@PathVariable
+	 * String date,@PathVariable String paymentStatus,@PathVariable String storeId){
+	 * 
+	 * return reportQueryService.getAllOrdersByPaymentStatus(date, paymentStatus,
+	 * storeId); }
+	 */
 	
 
 	@GetMapping("/findAllCancellationRequests")
@@ -489,11 +495,10 @@ public class QueryResource {
 		
 		return customerQueryService.findCustomerByIdpCode(idpCode);
 	}
-	@GetMapping("/findCancellationRequestByStatus/{statusName}")
-	public Page<CancellationRequest> findCancellationRequestByStatus(@PathVariable String statusName,Pageable pageable){
+	@GetMapping("/findCancellationRequestByStatus/{statusName}/{date}")
+	public Page<CancellationRequest> findCancellationRequestByStatus(@PathVariable String statusName,@PathVariable LocalDate date,Pageable pageable){
 		log.debug("<<<<<<<<<< findCancellationRequestByStatus>>>>>>>>{}",statusName);
-		
-		return orderQueryService.findCancellationRequestByStatus(statusName,pageable);
+		return orderQueryService.findCancellationRequestByStatus(statusName,date,pageable);
 	}
 
 	@GetMapping("/getStore/{id}")
@@ -503,9 +508,9 @@ public class QueryResource {
 	}
 
 	
-	@GetMapping("/getOrdersByFilter")
-	public ResponseEntity<PageOfOrderMaster> getOrdersByFilter(@RequestParam(value = "fromDate", required = false) String fromDate,
-			@RequestParam(value = "toDate", required = false) String toDate,
+	@GetMapping("/getOrdersByFilter/{fromDate}/{toDate}")
+	public ResponseEntity<PageOfOrderMaster> getOrdersByFilter(@PathVariable String fromDate,
+			@PathVariable String toDate,
 			@RequestParam(value = "storeId", required = false) String storeId,
 			@RequestParam(value = "methodOfOrder", required = false) String methodOfOrder,
 			@RequestParam(value = "paymentStatus", required = false) String paymentStatus,
@@ -532,6 +537,22 @@ public class QueryResource {
 	public ResponseEntity<CancellationRequest> findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById(@PathVariable Long id){
 		log.debug("<<<<<<<<<findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById>>>>{}",id);
 		return administrationQueryService.findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById(id);
+		
+	}
+	
+	
+	
+	@GetMapping("/getOrdersPdfByFilter/{fromDate}/{toDate}")
+	public ResponseEntity<PdfDTO> getOrdersPdfByFilter(@PathVariable String fromDate,
+			@PathVariable String toDate,
+			@RequestParam(value = "storeId", required = false) String storeId,
+			@RequestParam(value = "methodOfOrder", required = false) String methodOfOrder,
+			@RequestParam(value = "paymentStatus", required = false) String paymentStatus) {
+	
+		log.debug("<<<<<<<<<< getOrdersPdfByReportFilter>>>>>>>>{}");
+		return reportQueryService.getOrdersPdfByFilter(fromDate,toDate, storeId, methodOfOrder, paymentStatus);
+		
+		
 		
 	}
 }
