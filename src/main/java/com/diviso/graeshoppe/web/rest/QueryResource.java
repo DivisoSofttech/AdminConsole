@@ -553,6 +553,5 @@ public class QueryResource {
 		return reportQueryService.getOrdersPdfByFilter(fromDate,toDate, storeId, methodOfOrder, paymentStatus);
 		
 		
-		
 	}
 }
