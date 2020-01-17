@@ -1,4 +1,4 @@
-package com.diviso.graeshoppe.client.customer.model;
+package com.diviso.graeshoppe.client.administartion.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * User
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-17T10:42:35.867+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-17T11:05:18.751+05:30[Asia/Calcutta]")
 
 public class User   {
   @JsonProperty("activated")
