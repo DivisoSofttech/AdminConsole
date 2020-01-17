@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-16T19:47:56.784+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-17T13:46:18.861+05:30[Asia/Kolkata]")
 
 @Api(value = "OrderMasterResource", description = "the OrderMasterResource API")
 public interface OrderMasterResourceApi {

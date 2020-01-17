@@ -150,7 +150,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 			String methodOfOrder, String paymentStatus) {
 
 		PdfDTO pdf = new PdfDTO();
-		pdf.setPdf(this.queryResourceApi.getOrdersPdfByFilterUsingGET(fromDate, toDate, storeId, methodOfOrder, paymentStatus).getBody());
+		pdf.setPdf(this.queryResourceApi.getOrdersPdfByFilterUsingGET(fromDate, toDate, methodOfOrder, paymentStatus, storeId).getBody());
 		pdf.setContentType("application/pdf");
 		return ResponseEntity.ok().body(pdf);
 		

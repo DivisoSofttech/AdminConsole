@@ -30,7 +30,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-16T19:47:56.784+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-17T13:46:18.861+05:30[Asia/Kolkata]")
 
 @Api(value = "QueryResource", description = "the QueryResource API")
 public interface QueryResourceApi {
@@ -176,7 +176,7 @@ public interface QueryResourceApi {
     @RequestMapping(value = "/api/allOrdersByFiltering/{fromDate}/{toDate}",
         produces = "*/*", 
         method = RequestMethod.GET)
-    ResponseEntity<PageOfOrderMaster> getOrdersByFilterUsingGET(@ApiParam(value = "fromDate",required=true) @PathVariable("fromDate") String fromDate,@ApiParam(value = "toDate",required=true) @PathVariable("toDate") String toDate,@ApiParam(value = "methodOFOrder") @Valid @RequestParam(value = "methodOFOrder", required = false) String methodOFOrder,@ApiParam(value = "Page number of the requested page") @Valid @RequestParam(value = "page", required = false) Integer page,@ApiParam(value = "paymentStatus") @Valid @RequestParam(value = "paymentStatus", required = false) String paymentStatus,@ApiParam(value = "Size of a page") @Valid @RequestParam(value = "size", required = false) Integer size,@ApiParam(value = "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.") @Valid @RequestParam(value = "sort", required = false) List<String> sort,@ApiParam(value = "storeId") @Valid @RequestParam(value = "storeId", required = false) String storeId);
+    ResponseEntity<PageOfOrderMaster> getOrdersByFilterUsingGET(@ApiParam(value = "fromDate",required=true) @PathVariable("fromDate") String fromDate,@ApiParam(value = "toDate",required=true) @PathVariable("toDate") String toDate,@ApiParam(value = "methodOfOrder") @Valid @RequestParam(value = "methodOfOrder", required = false) String methodOfOrder,@ApiParam(value = "Page number of the requested page") @Valid @RequestParam(value = "page", required = false) Integer page,@ApiParam(value = "paymentStatus") @Valid @RequestParam(value = "paymentStatus", required = false) String paymentStatus,@ApiParam(value = "Size of a page") @Valid @RequestParam(value = "size", required = false) Integer size,@ApiParam(value = "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.") @Valid @RequestParam(value = "sort", required = false) List<String> sort,@ApiParam(value = "storeId") @Valid @RequestParam(value = "storeId", required = false) String storeId);
 
 
     @ApiOperation(value = "getOrdersPdfByFilter", nickname = "getOrdersPdfByFilterUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })
@@ -188,7 +188,7 @@ public interface QueryResourceApi {
     @RequestMapping(value = "/api/allOrdersPdfByFiltering/{fromDate}/{toDate}",
         produces = "*/*", 
         method = RequestMethod.GET)
-    ResponseEntity<byte[]> getOrdersPdfByFilterUsingGET(@ApiParam(value = "fromDate",required=true) @PathVariable("fromDate") String fromDate,@ApiParam(value = "toDate",required=true) @PathVariable("toDate") String toDate,@ApiParam(value = "methodOFOrder") @Valid @RequestParam(value = "methodOFOrder", required = false) String methodOFOrder,@ApiParam(value = "paymentStatus") @Valid @RequestParam(value = "paymentStatus", required = false) String paymentStatus,@ApiParam(value = "storeId") @Valid @RequestParam(value = "storeId", required = false) String storeId);
+    ResponseEntity<byte[]> getOrdersPdfByFilterUsingGET(@ApiParam(value = "fromDate",required=true) @PathVariable("fromDate") String fromDate,@ApiParam(value = "toDate",required=true) @PathVariable("toDate") String toDate,@ApiParam(value = "methodOfOrder") @Valid @RequestParam(value = "methodOfOrder", required = false) String methodOfOrder,@ApiParam(value = "paymentStatus") @Valid @RequestParam(value = "paymentStatus", required = false) String paymentStatus,@ApiParam(value = "storeId") @Valid @RequestParam(value = "storeId", required = false) String storeId);
 
 
     @ApiOperation(value = "getReportSummaryAsPdf", nickname = "getReportSummaryAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })
