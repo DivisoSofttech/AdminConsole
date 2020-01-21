@@ -555,7 +555,7 @@ public class QueryResource {
 		
 		
 	}
-	@GetMapping("/getFefundDetailById/{id}")
+	@GetMapping("/getRefundDetailById/{id}")
 	public ResponseEntity<RefundDetails> findRefundDetail(Long id){
 		log.debug("<<<<<<<<<<< findRefundDetail>>>>>>>>>{}",id);
 		return administrationQueryService.getRefundDetails(id);
