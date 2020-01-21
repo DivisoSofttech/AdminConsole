@@ -28,6 +28,7 @@ import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.DataResponse;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
+import com.diviso.graeshoppe.client.administration.model.RefundDetails;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
 import com.diviso.graeshoppe.client.customer.model.Customer;
 import com.diviso.graeshoppe.client.offer.model.DeductionValueTypeDTO;
@@ -554,4 +555,10 @@ public class QueryResource {
 		
 		
 	}
+	@GetMapping("/getFefundDetailById/{id}")
+	public ResponseEntity<RefundDetails> findRefundDetail(Long id){
+		log.debug("<<<<<<<<<<< findRefundDetail>>>>>>>>>{}",id);
+		return administrationQueryService.getRefundDetails(id);
+	}
+	
 }
