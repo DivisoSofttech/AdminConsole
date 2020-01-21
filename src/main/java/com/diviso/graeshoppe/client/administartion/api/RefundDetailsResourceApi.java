@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-17T11:05:18.751+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-21T10:18:53.403+05:30[Asia/Calcutta]")
 
 @Api(value = "RefundDetailsResource", description = "the RefundDetailsResource API")
 public interface RefundDetailsResourceApi {
