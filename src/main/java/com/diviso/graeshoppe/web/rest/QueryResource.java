@@ -541,8 +541,6 @@ public class QueryResource {
 		
 	}
 	
-	
-	
 	@GetMapping("/getOrdersPdfByFilter/{fromDate}/{toDate}")
 	public ResponseEntity<PdfDTO> getOrdersPdfByFilter(@PathVariable String fromDate,
 			@PathVariable String toDate,
