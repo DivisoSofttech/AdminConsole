@@ -35,6 +35,7 @@ import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.DataResponse;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
+import com.diviso.graeshoppe.client.administration.model.RefundDetails;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
 import com.diviso.graeshoppe.client.store.model.Store;
 import com.diviso.graeshoppe.service.AdministrationQueryService;
@@ -220,7 +221,8 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 	@Override
 	public ResponseEntity<CancellationRequest> getCancellationRequest(String orderId) {
 		log.debug("<<<<<<<<<< getCancellationRequest >>>>>>{}",orderId);
-		QueryBuilder dslQuery = QueryBuilders.boolQuery().must(QueryBuilders.termQuery("orderId.keyword", orderId));
+		QueryBuilder dslQuery = QueryBuilders.boolQuery()
+				.must(QueryBuilders.matchAllQuery()).filter(QueryBuilders.termQuery("orderId.keyword", orderId));
 		SearchSourceBuilder builder =new SearchSourceBuilder();
 		builder.query(dslQuery);
 		SearchResponse response = serviceUtility.searchResponseForObject("cancellationrequest", dslQuery);
@@ -236,6 +238,16 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 		builder.query(dslQuery);
 		SearchResponse response = serviceUtility.searchResponseForObject("cancellationrequest", dslQuery);
 		return ResponseEntity.ok().body(serviceUtility.getObjectResult(response, new CancellationRequest()));
+	}
+
+	@Override
+	public ResponseEntity<RefundDetails> getRefundDetails(Long id) {
+		log.debug("<<<<<<< getRefundDetails>>>>>>>>>{}",id);
+		QueryBuilder queryBuilder = QueryBuilders.termQuery("id", id);
+		SearchSourceBuilder builder = new SearchSourceBuilder();
+		builder.query(queryBuilder);
+		SearchResponse response = serviceUtility.searchResponseForObject("refunddetails", queryBuilder);
+		return ResponseEntity.ok().body(serviceUtility.getObjectResult(response, new RefundDetails()));
 	}
 	
 

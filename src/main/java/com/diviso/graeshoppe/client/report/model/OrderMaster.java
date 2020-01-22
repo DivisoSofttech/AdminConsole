@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
  * OrderMaster
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-14T13:43:11.132+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-17T13:46:18.861+05:30[Asia/Kolkata]")
 
 public class OrderMaster   {
   @JsonProperty("addressType")

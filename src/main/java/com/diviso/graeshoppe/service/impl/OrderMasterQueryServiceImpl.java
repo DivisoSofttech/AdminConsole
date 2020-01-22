@@ -27,35 +27,7 @@ public class OrderMasterQueryServiceImpl implements OrderMasterQueryService{
 		ResponseEntity<PageOfOrderMaster> result = null;
 		System.out.println(">>>>>>>>>>>>>"+fromDate+">>>>>>>>>"+ toDate+">>>>>>>"+ storeId+">>>>>>>>>>>>>>>>"+ methodOfOrder+">>>>>>>"+paymentStatus);
 		
-		if(fromDate!=null && toDate!=null && storeId!=null && methodOfOrder!=null && paymentStatus ==null) {
-			
-			System.out.println("if1");
-			
-			result=queryResourceApi.getOrdersViewByMethodOfOrderUsingGET(fromDate, methodOfOrder, storeId, toDate, pageNumber, size, sort);
-			
-		}
-
-		else if(fromDate!=null && toDate!=null && storeId!=null && methodOfOrder==null && paymentStatus !=null) {
-			
-			System.out.println("if2");
-						result=queryResourceApi.getOrdersViewByPaymentStatusUsingGET(fromDate, paymentStatus, storeId, toDate, pageNumber, size, sort);
-
-			
-		}
-		
-		else if(fromDate!=null && toDate!=null && storeId==null && methodOfOrder==null && paymentStatus ==null) {
-			
-			System.out.println("if3");
-			result=queryResourceApi.getOrdersViewBetweenDatesUsingGET(fromDate, toDate, pageNumber, size, sort);
-			
-		}
-		
-		else if(fromDate!= null && toDate!= null && storeId!= null && methodOfOrder == null && paymentStatus == null ) {
-			result=queryResourceApi.getOrdersViewBetweenDatesAndStoreIdpcodeUsingGET(fromDate, storeId, toDate, pageNumber, size, sort);
-		}
-		
-	
-		return result;
+		return queryResourceApi.getOrdersByFilterUsingGET(fromDate, toDate, methodOfOrder, pageNumber, paymentStatus, size, sort, storeId);
 		
 	
 	}
