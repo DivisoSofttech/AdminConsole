@@ -1,5 +1,7 @@
 package com.diviso.graeshoppe.client.administration.model;
 
+import javax.persistence.Entity;
+
 public class RefundDetails{
 
 

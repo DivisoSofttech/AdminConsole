@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.diviso.graeshoppe.client.administration.model.Banner;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
+import com.diviso.graeshoppe.client.administration.model.CancellationDetails;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
+import com.diviso.graeshoppe.client.administration.model.CancelledOrderLine;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.DataResponse;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
@@ -534,12 +536,7 @@ public class QueryResource {
 		return administrationQueryService.getCancellationRequest(orderId);
 		
 	}
-	@GetMapping("/findAllCancelledOrderlinesAndAuxilaryOrderlinesById/{id}")
-	public ResponseEntity<CancellationRequest> findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById(@PathVariable Long id){
-		log.debug("<<<<<<<<<findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById>>>>{}",id);
-		return administrationQueryService.findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById(id);
-		
-	}
+	
 	
 	@GetMapping("/getOrdersPdfByFilter/{fromDate}/{toDate}")
 	public ResponseEntity<PdfDTO> getOrdersPdfByFilter(@PathVariable String fromDate,
@@ -558,5 +555,29 @@ public class QueryResource {
 		log.debug("<<<<<<<<<<< findRefundDetail>>>>>>>>>{}",id);
 		return administrationQueryService.getRefundDetails(id);
 	}
+	@GetMapping("/findCancellationDetailsById/{id}")
+	public CancellationDetails findCancellationDetailsById(@PathVariable Long id){
+		log.debug("<<<<<<<<<findCancellationDetailsById>>>>{}",id);
+		return administrationQueryService.findCancellationDetailsById(id);
+		
+	}
+//	@GetMapping("/findCancellationRequestByEntityId/{id}")
+//	public ResponseEntity<CancellationRequest> findCancellationRequestByEntityId(@PathVariable Long id){
+//		log.debug("<<<<<<<<<findCancellationRequestById>>>>{}",id);
+//		return administrationQueryService.findCancellationRequestByEntityId(id);
+//		
+//	}
+//	@GetMapping("/findAllCancelledOrderLineById/{id}")
+//	public ResponseEntity<CancelledOrderLine> findCancelledOrderLineDetailsById(@PathVariable Long id){
+//		log.debug("<<<<<<<<<findCancellationDetailsById>>>>{}",id);
+//		return administrationQueryService.findCancelledOrderLineById(id);
+//		
+//	}
+//	@GetMapping("/findCancellationRequestByEntityId/{id}")
+//	public ResponseEntity<CancellationRequest> findCancellationRequestByEntityId(@PathVariable Long id){
+//		log.debug("<<<<<<<<<findCancellationRequestById>>>>{}",id);
+//		return administrationQueryService.findCancellationRequestByEntityId(id);
+//		
+//	}
 	
 }
