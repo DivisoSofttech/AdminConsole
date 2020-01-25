@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
  * OrderMaster
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-17T13:46:18.861+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-25T10:28:52.093+05:30[Asia/Kolkata]")
 
 public class OrderMaster   {
   @JsonProperty("addressType")
@@ -29,6 +29,9 @@ public class OrderMaster   {
 
   @JsonProperty("alternatePhone")
   private Long alternatePhone = null;
+
+  @JsonProperty("cancellationRef")
+  private Long cancellationRef = null;
 
   @JsonProperty("city")
   private String city = null;
@@ -109,6 +112,9 @@ public class OrderMaster   {
 
   @JsonProperty("preOrderDate")
   private OffsetDateTime preOrderDate = null;
+
+  @JsonProperty("refundedAmount")
+  private Double refundedAmount = null;
 
   @JsonProperty("roadNameAreaOrStreet")
   private String roadNameAreaOrStreet = null;
@@ -198,6 +204,26 @@ public class OrderMaster   {
 
   public void setAlternatePhone(Long alternatePhone) {
     this.alternatePhone = alternatePhone;
+  }
+
+  public OrderMaster cancellationRef(Long cancellationRef) {
+    this.cancellationRef = cancellationRef;
+    return this;
+  }
+
+  /**
+   * Get cancellationRef
+   * @return cancellationRef
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getCancellationRef() {
+    return cancellationRef;
+  }
+
+  public void setCancellationRef(Long cancellationRef) {
+    this.cancellationRef = cancellationRef;
   }
 
   public OrderMaster city(String city) {
@@ -742,6 +768,26 @@ public class OrderMaster   {
     this.preOrderDate = preOrderDate;
   }
 
+  public OrderMaster refundedAmount(Double refundedAmount) {
+    this.refundedAmount = refundedAmount;
+    return this;
+  }
+
+  /**
+   * Get refundedAmount
+   * @return refundedAmount
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Double getRefundedAmount() {
+    return refundedAmount;
+  }
+
+  public void setRefundedAmount(Double refundedAmount) {
+    this.refundedAmount = refundedAmount;
+  }
+
   public OrderMaster roadNameAreaOrStreet(String roadNameAreaOrStreet) {
     this.roadNameAreaOrStreet = roadNameAreaOrStreet;
     return this;
@@ -955,6 +1001,7 @@ public class OrderMaster   {
     return Objects.equals(this.addressType, orderMaster.addressType) &&
         Objects.equals(this.allergyNote, orderMaster.allergyNote) &&
         Objects.equals(this.alternatePhone, orderMaster.alternatePhone) &&
+        Objects.equals(this.cancellationRef, orderMaster.cancellationRef) &&
         Objects.equals(this.city, orderMaster.city) &&
         Objects.equals(this.customerId, orderMaster.customerId) &&
         Objects.equals(this.customerName, orderMaster.customerName) &&
@@ -981,6 +1028,7 @@ public class OrderMaster   {
         Objects.equals(this.phone, orderMaster.phone) &&
         Objects.equals(this.pincode, orderMaster.pincode) &&
         Objects.equals(this.preOrderDate, orderMaster.preOrderDate) &&
+        Objects.equals(this.refundedAmount, orderMaster.refundedAmount) &&
         Objects.equals(this.roadNameAreaOrStreet, orderMaster.roadNameAreaOrStreet) &&
         Objects.equals(this.serviceCharge, orderMaster.serviceCharge) &&
         Objects.equals(this.state, orderMaster.state) &&
@@ -995,7 +1043,7 @@ public class OrderMaster   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressType, allergyNote, alternatePhone, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
+    return Objects.hash(addressType, allergyNote, alternatePhone, cancellationRef, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, refundedAmount, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
   }
 
   @Override
@@ -1006,6 +1054,7 @@ public class OrderMaster   {
     sb.append("    addressType: ").append(toIndentedString(addressType)).append("\n");
     sb.append("    allergyNote: ").append(toIndentedString(allergyNote)).append("\n");
     sb.append("    alternatePhone: ").append(toIndentedString(alternatePhone)).append("\n");
+    sb.append("    cancellationRef: ").append(toIndentedString(cancellationRef)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    customerName: ").append(toIndentedString(customerName)).append("\n");
@@ -1032,6 +1081,7 @@ public class OrderMaster   {
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    pincode: ").append(toIndentedString(pincode)).append("\n");
     sb.append("    preOrderDate: ").append(toIndentedString(preOrderDate)).append("\n");
+    sb.append("    refundedAmount: ").append(toIndentedString(refundedAmount)).append("\n");
     sb.append("    roadNameAreaOrStreet: ").append(toIndentedString(roadNameAreaOrStreet)).append("\n");
     sb.append("    serviceCharge: ").append(toIndentedString(serviceCharge)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");

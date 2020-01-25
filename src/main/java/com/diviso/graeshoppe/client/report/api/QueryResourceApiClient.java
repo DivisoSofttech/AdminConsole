@@ -4,5 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import com.diviso.graeshoppe.client.report.ClientConfiguration;
 
 @FeignClient(name="${report.name:report}", url="${report.url:dev.ci3.divisosofttech.com:8077/}", configuration = ClientConfiguration.class)
+
+//@FeignClient(name="${report.name:report}", url="${report.url:localhost:8077/}", configuration = ClientConfiguration.class)
 public interface QueryResourceApiClient extends QueryResourceApi {
 }

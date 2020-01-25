@@ -63,6 +63,8 @@ public interface ReportQueryService {
 	 */
 	public ResponseEntity<PdfDTO> getOrdersPdfByFilter(String fromDate, String toDate, String storeId,
 			String methodOfOrder, String paymentStatus);
+
+	public ResponseEntity<PdfDTO> getCancellationReportAsPdf(String date, String storeName);
 	
 	
 }

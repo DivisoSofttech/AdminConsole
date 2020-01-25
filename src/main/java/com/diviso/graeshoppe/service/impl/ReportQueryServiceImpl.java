@@ -155,6 +155,16 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		return ResponseEntity.ok().body(pdf);
 		
 	}
+
+
+	@Override
+	public ResponseEntity<PdfDTO> getCancellationReportAsPdf(String date, String storeName) {
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>"+date+">>>>>>>>>>>>>>>>>>"+storeName);
+		PdfDTO pdf = new PdfDTO();
+		pdf.setPdf(this.queryResourceApi.getCancellationSummaryAsPdfUsingGET(date, storeName).getBody());
+		pdf.setContentType("application/pdf");
+		return ResponseEntity.ok().body(pdf);
+	}
 	
 	
 
