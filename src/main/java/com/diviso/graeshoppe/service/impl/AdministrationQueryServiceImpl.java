@@ -379,6 +379,7 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 			QueryBuilder dslbuilder = QueryBuilders.matchAllQuery();
 			SearchSourceBuilder builder = new SearchSourceBuilder();
 			builder.query(dslbuilder);
+			builder.sort(new FieldSortBuilder("date").order(SortOrder.DESC));
 			SearchResponse response = serviceUtility.searchResponseForPage("feedback", builder, pageable);
 			return serviceUtility.getPageResult(response, pageable, new Feedback());
 		}
