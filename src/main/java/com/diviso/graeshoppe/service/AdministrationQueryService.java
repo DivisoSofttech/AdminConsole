@@ -15,6 +15,7 @@ import com.diviso.graeshoppe.client.administration.model.CancellationRequest;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.DataResponse;
+import com.diviso.graeshoppe.client.administration.model.Feedback;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetails;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
@@ -101,5 +102,7 @@ public interface AdministrationQueryService {
 	//public ResponseEntity<CancellationRequest> findCancellationRequestByEntityId(Long id);
 
 	public CancellationDetails findCancellationDetailsById(Long id);
+
+	public Page<Feedback> findAllFeedBack(Pageable pageable);
     
 }

@@ -43,6 +43,8 @@ import com.diviso.graeshoppe.client.administration.model.CancelledAuxilaryOrderL
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLine;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.DataResponse;
+import com.diviso.graeshoppe.client.administration.model.Feedback;
+//import com.diviso.graeshoppe.client.administration.model.Feedback;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetails;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
@@ -369,6 +371,16 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 			return serviceUtility.getObjectResult(response, new CancellationRequest());
 			
 			
+		}
+
+		@Override
+		public Page<Feedback> findAllFeedBack(Pageable pageable) {
+			log.debug("<<<<<<<<<findAllFeedBack >>>>>>>>>>{}",pageable);
+			QueryBuilder dslbuilder = QueryBuilders.matchAllQuery();
+			SearchSourceBuilder builder = new SearchSourceBuilder();
+			builder.query(dslbuilder);
+			SearchResponse response = serviceUtility.searchResponseForPage("feedback", builder, pageable);
+			return serviceUtility.getPageResult(response, pageable, new Feedback());
 		}
 		
 		

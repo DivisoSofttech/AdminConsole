@@ -29,6 +29,7 @@ import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLine;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.DataResponse;
+import com.diviso.graeshoppe.client.administration.model.Feedback;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetails;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
@@ -579,5 +580,9 @@ public class QueryResource {
 //		return administrationQueryService.findCancellationRequestByEntityId(id);
 //		
 //	}
-	
+	@GetMapping("/findAllFeedBack")
+	public Page<Feedback> findAllFeedBack(Pageable pageable){
+		log.debug("<<<<<<<<<findAllFeedBack >>>>>>>{}",pageable);
+		return administrationQueryService.findAllFeedBack(pageable);
+	}
 }
