@@ -30,7 +30,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-17T13:46:18.861+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-25T10:28:52.093+05:30[Asia/Kolkata]")
 
 @Api(value = "QueryResource", description = "the QueryResource API")
 public interface QueryResourceApi {
@@ -101,7 +101,7 @@ public interface QueryResourceApi {
         @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 403, message = "Forbidden"),
         @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/indOrderCountByStatusName/{statusName}",
+    @RequestMapping(value = "/api/findOrderCountByStatusName/{statusName}",
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<Long> findOrderCountByStatusNameUsingGET(@ApiParam(value = "statusName",required=true) @PathVariable("statusName") String statusName);
@@ -141,6 +141,42 @@ public interface QueryResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<Long> findOrderMasterCountByExpectedDeliveryBetweenUsingGET(@ApiParam(value = "from",required=true) @PathVariable("from") String from,@ApiParam(value = "to",required=true) @PathVariable("to") String to);
+
+
+    @ApiOperation(value = "findWeakOrderCount", nickname = "findWeakOrderCountUsingGET", notes = "", response = Long.class, tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = Long.class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/findWeakOrderCount/{date}/{statusName}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<Long> findWeakOrderCountUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "statusName",required=true) @PathVariable("statusName") String statusName);
+
+
+    @ApiOperation(value = "getCancellationSummaryAsPdf", nickname = "getCancellationSummaryAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = byte[].class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/cancellationSummary/{date}/{storeName}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<byte[]> getCancellationSummaryAsPdfUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "storeName",required=true) @PathVariable("storeName") String storeName);
+
+
+    @ApiOperation(value = "getDetailedOrderSummaryAsPdf", nickname = "getDetailedOrderSummaryAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = byte[].class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/detailedOrderSummary/{date}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<byte[]> getDetailedOrderSummaryAsPdfUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "storeName") @Valid @RequestParam(value = "storeName", required = false) String storeName);
 
 
     @ApiOperation(value = "getOrderSummaryBetweenDatesAsPdf", nickname = "getOrderSummaryBetweenDatesAsPdfUsingGET", notes = "", response = byte[].class, tags={ "query-resource", })

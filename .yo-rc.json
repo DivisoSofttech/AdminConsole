@@ -41,8 +41,8 @@
   },
   "generator-jhipster-swagger-cli": {
     "promptValues": {
-      "inputSpec": "http://dev.ci3.divisosofttech.com:8081/v2/api-docs",
-      "cliName": "administartion"
+      "inputSpec": "http://dev.ci3.divisosofttech.com:8077/v2/api-docs",
+      "cliName": "report"
     },
     "apis": {
       "customer": {

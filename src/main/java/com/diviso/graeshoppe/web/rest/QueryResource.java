@@ -585,4 +585,14 @@ public class QueryResource {
 		log.debug("<<<<<<<<<findAllFeedBack >>>>>>>{}",pageable);
 		return administrationQueryService.findAllFeedBack(pageable);
 	}
+	
+	@GetMapping("/cancellationSummary/{date}/{storeName}")
+	public ResponseEntity<PdfDTO> getCancellationReportAsPdf(@PathVariable String date, @PathVariable String storeName) {
+
+		
+		System.out.println("<<<<<<<<<cancellation report >>>>>>>{}"+date +""+storeName);
+		return reportQueryService.getCancellationReportAsPdf(date, storeName);
+	}
+
+	
 }
