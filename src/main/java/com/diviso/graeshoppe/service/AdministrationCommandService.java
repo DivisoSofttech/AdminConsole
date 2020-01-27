@@ -3,12 +3,16 @@ package com.diviso.graeshoppe.service;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.diviso.graeshoppe.client.administration.model.AboutDTO;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledAuxilaryOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
+import com.diviso.graeshoppe.client.administration.model.SubTermDTO;
+import com.diviso.graeshoppe.client.administration.model.TermDTO;
+
 import java.util.List;
 public interface AdministrationCommandService {
 
@@ -54,11 +58,27 @@ public interface AdministrationCommandService {
 	ResponseEntity<RefundDetailsDTO> updateRefundDetails(RefundDetailsDTO refundDetailsDTO);
 
 	ResponseEntity<Void> deleteRefundDetails(Long id);
-	  void createCancelledOrderLineByList(List<CancelledOrderLineDTO> cancelledOrderLineDTOList);
+	
+	void createCancelledOrderLineByList(List<CancelledOrderLineDTO> cancelledOrderLineDTOList);
 
 	void createCancelledAuxOrderLineByList(List<CancelledAuxilaryOrderLineDTO> cancelledAuxilaryOrderLineDTOList);
-
 	
+	ResponseEntity<AboutDTO> createAboutUs(AboutDTO aboutDTO);
+	
+	ResponseEntity<AboutDTO> updateAboutUs(AboutDTO aboutDTO);
+	
+	ResponseEntity<Void> deleteAboutUs(Long id);
 
+	ResponseEntity<TermDTO> createTerm(TermDTO termDTO);
+
+	ResponseEntity<TermDTO> updateTerm(TermDTO termDTO);
+
+	ResponseEntity<Void> deleteTerm(Long id);
+
+	ResponseEntity<SubTermDTO> createSubTerm(SubTermDTO subTermDTO);
+
+	ResponseEntity<SubTermDTO> updateSubTerm(SubTermDTO subTermDTO);
+
+	ResponseEntity<Void> deleteSubTerm(Long id);
 	
 }

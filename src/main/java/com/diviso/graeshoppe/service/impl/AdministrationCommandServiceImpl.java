@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.diviso.graeshoppe.client.administration.api.CancelledAuxilaryOrderLineResourceApi;
+import com.diviso.graeshoppe.client.administration.api.AboutResourceApi;
 import com.diviso.graeshoppe.client.administration.api.BannerResourceApi;
 import com.diviso.graeshoppe.client.administration.api.CancellationRequestResourceApi;
 import com.diviso.graeshoppe.client.administration.api.CancelledOrderLineResourceApi;
 import com.diviso.graeshoppe.client.administration.api.NotificationResourceApi;
 import com.diviso.graeshoppe.client.administration.api.RefundDetailsResourceApi;
+import com.diviso.graeshoppe.client.administration.api.SubTermResourceApi;
+import com.diviso.graeshoppe.client.administration.api.TermResourceApi;
+import com.diviso.graeshoppe.client.administration.model.AboutDTO;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledAuxilaryOrderLineDTO;
@@ -18,6 +22,8 @@ import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledAuxilaryOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
+import com.diviso.graeshoppe.client.administration.model.SubTermDTO;
+import com.diviso.graeshoppe.client.administration.model.TermDTO;
 import com.diviso.graeshoppe.client.payment.api.PaymentResourceApi;
 import com.diviso.graeshoppe.client.payment.model.PaymentDTO;
 import com.diviso.graeshoppe.service.AdministrationCommandService;
@@ -34,6 +40,15 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 	@Autowired
 	CancelledOrderLineResourceApi cancelledOrderLineResourceApi;
 
+	@Autowired
+	AboutResourceApi aboutResourceApi;
+	
+	@Autowired
+	TermResourceApi termResourceApi;
+	
+	@Autowired
+	SubTermResourceApi subtermResourceApi;
+	
 	@Autowired
 	BannerResourceApi bannerResourceApi;
 
@@ -161,5 +176,52 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 
 	}
 
+	@Override
+	public ResponseEntity<AboutDTO> createAboutUs(AboutDTO aboutDTO) {
+		return aboutResourceApi.createAboutUsingPOST(aboutDTO);
+	}
+
+	@Override
+	public ResponseEntity<AboutDTO> updateAboutUs(AboutDTO aboutDTO) {
+		return aboutResourceApi.updateAboutUsingPUT(aboutDTO);
+	}
+
+	@Override
+	public ResponseEntity<Void> deleteAboutUs(Long id) {
+		return aboutResourceApi.deleteAboutUsingDELETE(id);
+	}
+	
+	@Override
+	public ResponseEntity<TermDTO> createTerm(TermDTO termDTO) {
+		return termResourceApi.createTermUsingPOST(termDTO);
+	}
+
+	@Override
+	public ResponseEntity<TermDTO> updateTerm(TermDTO termDTO) {
+		return termResourceApi.updateTermUsingPUT(termDTO);
+	}
+
+	@Override
+	public ResponseEntity<Void> deleteTerm(Long id) {
+		return termResourceApi.deleteTermUsingDELETE(id);
+	}
+	
+	@Override
+	public ResponseEntity<SubTermDTO> createSubTerm(SubTermDTO subTermDTO) {
+		return subtermResourceApi.createSubTermUsingPOST(subTermDTO);
+	}
+
+	@Override
+	public ResponseEntity<SubTermDTO> updateSubTerm(SubTermDTO subTermDTO) {
+		return subtermResourceApi.updateSubTermUsingPUT(subTermDTO);
+	}
+
+	@Override
+	public ResponseEntity<Void> deleteSubTerm(Long id) {
+		return subtermResourceApi.deleteSubTermUsingDELETE(id);
+	}
+
+	
+	
 
 }

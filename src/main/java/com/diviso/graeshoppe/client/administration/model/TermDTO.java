@@ -10,22 +10,19 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * RefundDetailsDTO
+ * TermDTO
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-27T14:39:15.905+05:30[Asia/Kolkata]")
 
-public class RefundDetailsDTO   {
+public class TermDTO   {
   @JsonProperty("id")
   private Long id = null;
 
-  @JsonProperty("refundId")
-  private String refundId = null;
+  @JsonProperty("title")
+  private String title = null;
 
-  @JsonProperty("status")
-  private String status = null;
-
-  public RefundDetailsDTO id(Long id) {
+  public TermDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -45,44 +42,24 @@ public class RefundDetailsDTO   {
     this.id = id;
   }
 
-  public RefundDetailsDTO refundId(String refundId) {
-    this.refundId = refundId;
+  public TermDTO title(String title) {
+    this.title = title;
     return this;
   }
 
   /**
-   * Get refundId
-   * @return refundId
+   * Get title
+   * @return title
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getRefundId() {
-    return refundId;
+  public String getTitle() {
+    return title;
   }
 
-  public void setRefundId(String refundId) {
-    this.refundId = refundId;
-  }
-
-  public RefundDetailsDTO status(String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * Get status
-   * @return status
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
 
@@ -94,25 +71,23 @@ public class RefundDetailsDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RefundDetailsDTO refundDetailsDTO = (RefundDetailsDTO) o;
-    return Objects.equals(this.id, refundDetailsDTO.id) &&
-        Objects.equals(this.refundId, refundDetailsDTO.refundId) &&
-        Objects.equals(this.status, refundDetailsDTO.status);
+    TermDTO termDTO = (TermDTO) o;
+    return Objects.equals(this.id, termDTO.id) &&
+        Objects.equals(this.title, termDTO.title);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, refundId, status);
+    return Objects.hash(id, title);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RefundDetailsDTO {\n");
+    sb.append("class TermDTO {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    refundId: ").append(toIndentedString(refundId)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("}");
     return sb.toString();
   }

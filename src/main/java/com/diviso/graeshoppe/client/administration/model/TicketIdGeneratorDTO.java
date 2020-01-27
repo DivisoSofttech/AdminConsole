@@ -10,22 +10,16 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * RefundDetailsDTO
+ * TicketIdGeneratorDTO
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-27T14:39:15.905+05:30[Asia/Kolkata]")
 
-public class RefundDetailsDTO   {
+public class TicketIdGeneratorDTO   {
   @JsonProperty("id")
   private Long id = null;
 
-  @JsonProperty("refundId")
-  private String refundId = null;
-
-  @JsonProperty("status")
-  private String status = null;
-
-  public RefundDetailsDTO id(Long id) {
+  public TicketIdGeneratorDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -45,46 +39,6 @@ public class RefundDetailsDTO   {
     this.id = id;
   }
 
-  public RefundDetailsDTO refundId(String refundId) {
-    this.refundId = refundId;
-    return this;
-  }
-
-  /**
-   * Get refundId
-   * @return refundId
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getRefundId() {
-    return refundId;
-  }
-
-  public void setRefundId(String refundId) {
-    this.refundId = refundId;
-  }
-
-  public RefundDetailsDTO status(String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * Get status
-   * @return status
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,25 +48,21 @@ public class RefundDetailsDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RefundDetailsDTO refundDetailsDTO = (RefundDetailsDTO) o;
-    return Objects.equals(this.id, refundDetailsDTO.id) &&
-        Objects.equals(this.refundId, refundDetailsDTO.refundId) &&
-        Objects.equals(this.status, refundDetailsDTO.status);
+    TicketIdGeneratorDTO ticketIdGeneratorDTO = (TicketIdGeneratorDTO) o;
+    return Objects.equals(this.id, ticketIdGeneratorDTO.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, refundId, status);
+    return Objects.hash(id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RefundDetailsDTO {\n");
+    sb.append("class TicketIdGeneratorDTO {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    refundId: ").append(toIndentedString(refundId)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

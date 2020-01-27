@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
  * NotificationDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-06T11:11:39.086+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-27T14:39:15.905+05:30[Asia/Kolkata]")
 
 public class NotificationDTO   {
   @JsonProperty("date")

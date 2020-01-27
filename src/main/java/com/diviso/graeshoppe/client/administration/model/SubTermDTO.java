@@ -10,22 +10,22 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * RefundDetailsDTO
+ * SubTermDTO
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-27T14:39:15.905+05:30[Asia/Kolkata]")
 
-public class RefundDetailsDTO   {
+public class SubTermDTO   {
   @JsonProperty("id")
   private Long id = null;
 
-  @JsonProperty("refundId")
-  private String refundId = null;
+  @JsonProperty("termDescription")
+  private String termDescription = null;
 
-  @JsonProperty("status")
-  private String status = null;
+  @JsonProperty("termId")
+  private Long termId = null;
 
-  public RefundDetailsDTO id(Long id) {
+  public SubTermDTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -45,44 +45,44 @@ public class RefundDetailsDTO   {
     this.id = id;
   }
 
-  public RefundDetailsDTO refundId(String refundId) {
-    this.refundId = refundId;
+  public SubTermDTO termDescription(String termDescription) {
+    this.termDescription = termDescription;
     return this;
   }
 
   /**
-   * Get refundId
-   * @return refundId
+   * Get termDescription
+   * @return termDescription
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getRefundId() {
-    return refundId;
+  public String getTermDescription() {
+    return termDescription;
   }
 
-  public void setRefundId(String refundId) {
-    this.refundId = refundId;
+  public void setTermDescription(String termDescription) {
+    this.termDescription = termDescription;
   }
 
-  public RefundDetailsDTO status(String status) {
-    this.status = status;
+  public SubTermDTO termId(Long termId) {
+    this.termId = termId;
     return this;
   }
 
   /**
-   * Get status
-   * @return status
+   * Get termId
+   * @return termId
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getStatus() {
-    return status;
+  public Long getTermId() {
+    return termId;
   }
 
-  public void setStatus(String status) {
-    this.status = status;
+  public void setTermId(Long termId) {
+    this.termId = termId;
   }
 
 
@@ -94,25 +94,25 @@ public class RefundDetailsDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RefundDetailsDTO refundDetailsDTO = (RefundDetailsDTO) o;
-    return Objects.equals(this.id, refundDetailsDTO.id) &&
-        Objects.equals(this.refundId, refundDetailsDTO.refundId) &&
-        Objects.equals(this.status, refundDetailsDTO.status);
+    SubTermDTO subTermDTO = (SubTermDTO) o;
+    return Objects.equals(this.id, subTermDTO.id) &&
+        Objects.equals(this.termDescription, subTermDTO.termDescription) &&
+        Objects.equals(this.termId, subTermDTO.termId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, refundId, status);
+    return Objects.hash(id, termDescription, termId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RefundDetailsDTO {\n");
+    sb.append("class SubTermDTO {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    refundId: ").append(toIndentedString(refundId)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    termDescription: ").append(toIndentedString(termDescription)).append("\n");
+    sb.append("    termId: ").append(toIndentedString(termId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
