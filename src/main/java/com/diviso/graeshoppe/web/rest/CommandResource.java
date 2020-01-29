@@ -23,6 +23,7 @@ import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
 import com.diviso.graeshoppe.client.administration.model.SubTermDTO;
 import com.diviso.graeshoppe.client.administration.model.TermDTO;
+import com.diviso.graeshoppe.client.aggregator.Term;
 import com.diviso.graeshoppe.client.offer.model.DeductionValueTypeDTO;
 import com.diviso.graeshoppe.client.offer.model.OfferModel;
 import com.diviso.graeshoppe.client.offer.model.OrderModel;
@@ -285,8 +286,8 @@ public class CommandResource {
 	}
 
 	@PostMapping("/term")
-	public ResponseEntity<TermDTO> createTerm(TermDTO termDTO) {
-		return administrationCommandService.createTerm(termDTO);
+	public ResponseEntity<TermDTO> createTerm(Term term) {
+		return administrationCommandService.createTerm(term);
 	}
 
 	@PutMapping("/term")
@@ -300,7 +301,7 @@ public class CommandResource {
 	}
 
 	@PostMapping("/sub-term")
-	public ResponseEntity<SubTermDTO> createSubTerm(SubTermDTO subTermDTO) {
+	public SubTermDTO createSubTerm(SubTermDTO subTermDTO) {
 		return administrationCommandService.createSubTerm(subTermDTO);
 	}
 
