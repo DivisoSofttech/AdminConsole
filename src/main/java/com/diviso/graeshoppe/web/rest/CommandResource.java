@@ -286,7 +286,7 @@ public class CommandResource {
 	}
 
 	@PostMapping("/term")
-	public ResponseEntity<TermDTO> createTerm(Term term) {
+	public Term createTerm(Term term) {
 		return administrationCommandService.createTerm(term);
 	}
 
