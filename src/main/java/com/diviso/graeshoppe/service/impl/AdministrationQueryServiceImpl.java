@@ -34,6 +34,7 @@ import com.diviso.graeshoppe.client.administration.api.CancellationRequestResour
 import com.diviso.graeshoppe.client.administration.api.CancelledOrderLineResourceApi;
 import com.diviso.graeshoppe.client.administration.api.NotificationResourceApi;
 import com.diviso.graeshoppe.client.administration.api.RefundDetailsResourceApi;
+import com.diviso.graeshoppe.client.administration.api.TermResourceApi;
 import com.diviso.graeshoppe.client.administration.model.About;
 import com.diviso.graeshoppe.client.administration.model.Banner;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
@@ -75,6 +76,10 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 
 	@Autowired
 	CancelledOrderLineResourceApi cancelledOrderLineResourceApi;
+	
+
+	@Autowired
+	TermResourceApi termResourceApi;
 
 	@Autowired
 	BannerResourceApi bannerResourceApi;
@@ -406,6 +411,33 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 
 			return subTermList;
 
+		}
+
+		@Override
+		public Page<Term> findallterms(Pageable pageable) {
+	
+				log.debug("Term",pageable);
+				QueryBuilder dslbuilder = QueryBuilders.matchAllQuery();
+				SearchSourceBuilder builder = new SearchSourceBuilder();
+				builder.query(dslbuilder);
+
+				SearchResponse response = serviceUtility.searchResponseForPage("term", builder, pageable);
+				return serviceUtility.getPageResult(response, pageable, new Term());
+			
+		}
+		
+
+		@Override
+		public Page<About> findallabout(Pageable pageable) {
+	
+				log.debug("about",pageable);
+				QueryBuilder dslbuilder = QueryBuilders.matchAllQuery();
+				SearchSourceBuilder builder = new SearchSourceBuilder();
+				builder.query(dslbuilder);
+
+				SearchResponse response = serviceUtility.searchResponseForPage("about", builder, pageable);
+				return serviceUtility.getPageResult(response, pageable, new About());
+			
 		}
 
 }

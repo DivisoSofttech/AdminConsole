@@ -115,5 +115,9 @@ public interface AdministrationQueryService {
 	public SubTerm findSubTermById(Long id);
 
 	List<SubTerm> getSubTermsByTermId(Long id);
+
+	Page<Term> findallterms(Pageable pageable);
+
+	Page<About> findallabout(Pageable pageable);
     
 }
