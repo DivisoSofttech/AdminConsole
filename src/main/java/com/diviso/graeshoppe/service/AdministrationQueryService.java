@@ -113,5 +113,7 @@ public interface AdministrationQueryService {
 	public Term findTermById(Long id);
 	
 	public SubTerm findSubTermById(Long id);
+
+	List<SubTerm> getSubTermsByTermId(Long id);
     
 }

@@ -377,5 +377,35 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 			return serviceUtility.getObjectResult(response, new SubTerm());
 			
 		}
+		
+		@Override
+		public List<SubTerm> getSubTermsByTermId(Long id) {
+			
+
+			SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+		
+			searchSourceBuilder.query(termQuery("term.id", id));
+
+			SearchRequest searchRequest = new SearchRequest("orderline");
+			SearchResponse searchResponse = null;
+			try {
+				searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+			} catch (IOException e) { // TODO Auto-generated
+				e.printStackTrace();
+			}
+
+			SearchHit[] searchHit = searchResponse.getHits().getHits();
+
+			List<SubTerm> subTermList = new ArrayList<>();
+
+			for (SearchHit hit : searchHit) {
+				subTermList.add(objectMapper.convertValue(hit.getSourceAsMap(), SubTerm.class));
+			}
+
+			log.debug("output", subTermList);
+
+			return subTermList;
+
+		}
 
 }
