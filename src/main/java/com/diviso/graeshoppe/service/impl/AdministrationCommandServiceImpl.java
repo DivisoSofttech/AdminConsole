@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.diviso.graeshoppe.client.administration.api.AboutResourceApi;
 import com.diviso.graeshoppe.client.administration.api.BannerResourceApi;
@@ -203,7 +204,7 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 	}
 	
 	@Override
-	public Term createTerm(Term term) {
+	public Term createTerm(@RequestBody Term term) {
 		
 		TermDTO termDTO= new TermDTO();
 		termDTO.setTitle(term.getTitle());
