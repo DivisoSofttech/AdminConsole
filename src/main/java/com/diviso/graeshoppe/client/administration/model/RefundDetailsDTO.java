@@ -24,8 +24,24 @@ public class RefundDetailsDTO   {
 
   @JsonProperty("status")
   private String status = null;
+  @JsonProperty("amount")
+  private Double amount;
 
-  public RefundDetailsDTO id(Long id) {
+  /**
+ * @return the amount
+ */
+public Double getAmount() {
+	return amount;
+}
+
+/**
+ * @param amount the amount to set
+ */
+public void setAmount(Double amount) {
+	this.amount = amount;
+}
+
+public RefundDetailsDTO id(Long id) {
     this.id = id;
     return this;
   }
