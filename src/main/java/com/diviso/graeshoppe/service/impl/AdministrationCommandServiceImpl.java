@@ -208,19 +208,18 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 		
 		TermDTO termDTO= new TermDTO();
 		termDTO.setTitle(term.getTitle());
-		
+		TermDTO resutlTerm = termResourceApi.createTermUsingPOST(termDTO).getBody();
 		log.info("________________________________"+term.getSubTerms());
 
 		if(term.getSubTerms()!=null) {
 		term.getSubTerms().forEach(subTerm -> {
 			SubTermDTO subTermDTO = subTermMapper.toDto(subTerm);
-			subTermDTO.setTermId(term.getId());
+			subTermDTO.setTermId(resutlTerm.getId());
 			SubTermDTO resultSubTerm = createSubTerm(subTermDTO);
-			SubTerm resultSubTerm1 = subTermMapper.toEntity(resultSubTerm);
 	});
 		
 		}
-		TermDTO resutlTerm = termResourceApi.createTermUsingPOST(termDTO).getBody();
+	
 		Term result = termMapper.toEntity(resutlTerm);
 		
 		return result;
