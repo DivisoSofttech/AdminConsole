@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.diviso.graeshoppe.client.administration.model.About;
 import com.diviso.graeshoppe.client.administration.model.Banner;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationDetails;
@@ -33,6 +34,8 @@ import com.diviso.graeshoppe.client.administration.model.Feedback;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetails;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
+import com.diviso.graeshoppe.client.aggregator.SubTerm;
+import com.diviso.graeshoppe.client.aggregator.Term;
 import com.diviso.graeshoppe.client.customer.model.Customer;
 import com.diviso.graeshoppe.client.offer.model.DeductionValueTypeDTO;
 import com.diviso.graeshoppe.client.offer.model.OfferDTO;
@@ -90,11 +93,6 @@ public class QueryResource {
 
 	private final Logger log = LoggerFactory.getLogger(QueryResource.class);
 
-	/*
-	 * @GetMapping("/report/{date}/{storeId}") public ResponseEntity<ReportSummary>
-	 * createReportSummary(@PathVariable String date,@PathVariable String storeId) {
-	 * return reportQueryService.createReportSummary(date,storeId); }
-	 */
 
 	@GetMapping("/reportview/{date}")
 	public ResponseEntity<ReportSummary> createReportSummary(@PathVariable String date,@RequestParam(value="storeName",required = false)
@@ -124,12 +122,6 @@ public class QueryResource {
 		return reportQueryService.findByExpectedDeliveryBetween(from, to, pageable);
 	}
 
-	/*
-	 * @GetMapping("/pdf/{orderNumber}") public ResponseEntity<byte[]>
-	 * getReportAsPdf(@PathVariable String orderNumber) {
-	 * 
-	 * return reportQueryService.getReportAsPdf(orderNumber); }
-	 */
 	@GetMapping("/reportSummary/{date}")
 	public ResponseEntity<PdfDTO> getReportSummaryAsPdf(@PathVariable String date, @RequestParam(value = "storeId", required = false) String storeId) {
 
@@ -148,11 +140,6 @@ public class QueryResource {
 		return reportQueryService.getSaleReportAsPdf(storeidpcode);
 	}
 
-	/*
-	 * @GetMapping("/findOrderMasterCountByDeliveryBetween/{from}/{to}") public Long
-	 * findOrderMasterCountByDeliveryBetween(@PathVariable String from,@PathVariable
-	 * String to){ return orderMasterService.countByDeliveryBetween(from,to); }
-	 */
 	@GetMapping("/findOrderMasterCountByExpectedDeliveryBetween/{from}/{to}")
 	public ResponseEntity<Long> findOrderMasterCountByExpectedDeliveryBetween(@PathVariable String from,
 			@PathVariable String to) {
@@ -463,29 +450,6 @@ public class QueryResource {
 		
 	}
 
-	/*
-	 * @GetMapping("/getAllOrdersByMethodOfOrder/{date}/{methodOfOrder}/{storeId}")
-	 * public ResponseEntity<PdfDTO> getAllOrdersByMethodOfOrder(@PathVariable
-	 * String date,@PathVariable String methodOfOrder,@PathVariable String storeId){
-	 * 
-	 * return reportQueryService.getAllOrdersByMethodOfOrder(date, methodOfOrder,
-	 * storeId); }
-	 * 
-	 * @GetMapping("/getAllOrdersBetweenDates/{fromDate}/{toDate}") public
-	 * ResponseEntity<PdfDTO> getAllOrdersBetweenDates(@PathVariable String
-	 * fromDate, @PathVariable String toDate){
-	 * 
-	 * return reportQueryService.getAllOrdersBetweenDates(fromDate, toDate); }
-	 * 
-	 * @GetMapping("/getAllOrdersByPaymentStatus/{date}/{paymentStatus}/{storeId}")
-	 * public ResponseEntity<PdfDTO> getAllOrdersByPaymentStatus(@PathVariable
-	 * String date,@PathVariable String paymentStatus,@PathVariable String storeId){
-	 * 
-	 * return reportQueryService.getAllOrdersByPaymentStatus(date, paymentStatus,
-	 * storeId); }
-	 */
-	
-
 	@GetMapping("/findAllCancellationRequests")
 	public ResponseEntity<List<CancellationRequestDTO>> findAllCancellationRequests(Pageable pageable){
 		log.debug("<<<<<<<<<< findCancellationRequest >>>>>>>>{}",pageable);
@@ -562,24 +526,7 @@ public class QueryResource {
 		return administrationQueryService.findCancellationDetailsById(id);
 		
 	}
-//	@GetMapping("/findCancellationRequestByEntityId/{id}")
-//	public ResponseEntity<CancellationRequest> findCancellationRequestByEntityId(@PathVariable Long id){
-//		log.debug("<<<<<<<<<findCancellationRequestById>>>>{}",id);
-//		return administrationQueryService.findCancellationRequestByEntityId(id);
-//		
-//	}
-//	@GetMapping("/findAllCancelledOrderLineById/{id}")
-//	public ResponseEntity<CancelledOrderLine> findCancelledOrderLineDetailsById(@PathVariable Long id){
-//		log.debug("<<<<<<<<<findCancellationDetailsById>>>>{}",id);
-//		return administrationQueryService.findCancelledOrderLineById(id);
-//		
-//	}
-//	@GetMapping("/findCancellationRequestByEntityId/{id}")
-//	public ResponseEntity<CancellationRequest> findCancellationRequestByEntityId(@PathVariable Long id){
-//		log.debug("<<<<<<<<<findCancellationRequestById>>>>{}",id);
-//		return administrationQueryService.findCancellationRequestByEntityId(id);
-//		
-//	}
+
 	@GetMapping("/findAllFeedBack")
 	public Page<Feedback> findAllFeedBack(Pageable pageable){
 		log.debug("<<<<<<<<<findAllFeedBack >>>>>>>{}",pageable);
@@ -594,5 +541,24 @@ public class QueryResource {
 		return reportQueryService.getCancellationReportAsPdf(date, storeName);
 	}
 
+	@GetMapping("/about/{id}")
+	public About findAboutById(@PathVariable Long id) {
+		return administrationQueryService.findAboutById(id);
+		
+	}
+
+	@GetMapping("/term/{id}")
+	public Term findTermById(@PathVariable Long id) {
+		return administrationQueryService.findTermById(id);
+	}
 	
+	@GetMapping("/subTerm/{id}")
+	public SubTerm findSubTermById(Long id) {
+		return administrationQueryService.findSubTermById(id);
+	}
+	
+	@GetMapping("/findSubTermByTermId/{id}")
+	public SubTerm getSubTermsByTermId(@PathVariable Long id) {
+		return administrationQueryService.findSubTermById(id);
+	}
 }

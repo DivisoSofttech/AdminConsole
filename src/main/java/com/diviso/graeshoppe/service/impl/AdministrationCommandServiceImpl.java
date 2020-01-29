@@ -32,6 +32,7 @@ import com.diviso.graeshoppe.client.payment.api.PaymentResourceApi;
 import com.diviso.graeshoppe.client.payment.model.PaymentDTO;
 import com.diviso.graeshoppe.service.AdministrationCommandService;
 import com.diviso.graeshoppe.service.mapper.SubTermMapper;
+import com.diviso.graeshoppe.service.mapper.TermMapper;
 
 @Service
 public class AdministrationCommandServiceImpl implements AdministrationCommandService {
@@ -58,6 +59,9 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 	
 	@Autowired
 	SubTermMapper subTermMapper;
+	
+	@Autowired
+	TermMapper termMapper;
 
 	@Autowired
 	NotificationResourceApi notificationResourceApi;
@@ -199,7 +203,7 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 	}
 	
 	@Override
-	public ResponseEntity<TermDTO> createTerm(Term term) {
+	public Term createTerm(Term term) {
 		
 		TermDTO termDTO= new TermDTO();
 		termDTO.setTitle(term.getTitle());
@@ -212,8 +216,10 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 	});
 		
 		
-		return termResourceApi.createTermUsingPOST(termDTO);
+		TermDTO resutlTerm = termResourceApi.createTermUsingPOST(termDTO).getBody();
+		Term result = termMapper.toEntity(resutlTerm);
 		
+		return result;
 	}
 
 	@Override

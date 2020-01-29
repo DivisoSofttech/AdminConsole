@@ -34,6 +34,7 @@ import com.diviso.graeshoppe.client.administration.api.CancellationRequestResour
 import com.diviso.graeshoppe.client.administration.api.CancelledOrderLineResourceApi;
 import com.diviso.graeshoppe.client.administration.api.NotificationResourceApi;
 import com.diviso.graeshoppe.client.administration.api.RefundDetailsResourceApi;
+import com.diviso.graeshoppe.client.administration.model.About;
 import com.diviso.graeshoppe.client.administration.model.Banner;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationDetails;
@@ -48,6 +49,8 @@ import com.diviso.graeshoppe.client.administration.model.Feedback;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetails;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
+import com.diviso.graeshoppe.client.aggregator.SubTerm;
+import com.diviso.graeshoppe.client.aggregator.Term;
 import com.diviso.graeshoppe.client.store.model.Store;
 import com.diviso.graeshoppe.service.AdministrationQueryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -259,58 +262,7 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 		cancellationDetails.setCancelledOrderLines(getCancelledOrderLine(id));
 		cancellationDetails.setCancelledAuxilaryOrderLines(getCancelledAuxilaryOrderLine(id));
 		return cancellationDetails;
-
-		/*
-		 * SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-		 * 
-		 * searchSourceBuilder.query(dslQuery); // searchSourceBuilder.sort(sortById);
-		 * SearchRequest searchRequest = new SearchRequest("cancelledorderline");
-		 * searchRequest.source(searchSourceBuilder); SearchResponse searchResponse =
-		 * null;
-		 * 
-		 * try { searchResponse = restHighLevelClient.search(searchRequest,
-		 * RequestOptions.DEFAULT); } catch (IOException e) { // TODO Auto-generated
-		 * e.printStackTrace(); } SearchHit[] searchHit
-		 * =searchResponse.getHits().getHits();
-		 * 
-		 * 
-		 * List<CancelledOrderLine> orderLineList = new ArrayList<>();
-		 * 
-		 * for (SearchHit hit : searchHit) {
-		 * 
-		 * orderLineList.add(objectMapper.convertValue(hit.getSourceAsMap(),
-		 * CancelledOrderLine.class)); } return orderLineList;
-		 */
-
 	}
-
-//	private ResponseEntity<CancellationRequest> findCancellationRequestByEntity(Long id) {
-//		log.debug("<<<<<<<<<findCancellationOrderLinesAndCancelledAuxilaryOrderLinesById >>>>>>{}",id );
-//		QueryBuilder dslQuery = QueryBuilders.termQuery("id", id);
-//		SearchSourceBuilder builder =new SearchSourceBuilder();
-//		builder.query(dslQuery);
-//		SearchResponse response = serviceUtility.searchResponseForObject("cancellationrequest", dslQuery);
-//		
-//		return ResponseEntity.ok().body(serviceUtility.getObjectResult(response, new CancellationRequest()));
-//	}
-//	private ResponseEntity<CancelledOrderLine> findCancelledOrderLineById(Long id) {
-//		log.debug("<<<<<<<<<findCancelledOrderLineById >>>>>>{}",id );
-//		QueryBuilder dslQuery = QueryBuilders.termQuery("id", id);
-//		SearchSourceBuilder builder =new SearchSourceBuilder();
-//		builder.query(dslQuery);
-//		SearchResponse response = serviceUtility.searchResponseForObject("cancellationrequest", dslQuery);
-//		
-//		return ResponseEntity.ok().body(serviceUtility.getObjectResult(response, new CancelledOrderLine()));
-//	}
-//	private ResponseEntity<CancelledAuxilaryOrderLine> findCancelledAuxilaryOrderLineById(Long id) {
-//		log.debug("<<<<<<<<<findCancelledOrderLineById >>>>>>{}",id );
-//		QueryBuilder dslQuery = QueryBuilders.termQuery("id", id);
-//		SearchSourceBuilder builder =new SearchSourceBuilder();
-//		builder.query(dslQuery);
-//		SearchResponse response = serviceUtility.searchResponseForObject("cancellationrequest", dslQuery);
-//		
-//		return ResponseEntity.ok().body(serviceUtility.getObjectResult(response, new CancelledAuxilaryOrderLine()));
-//	}
 
 	@Override
 	public ResponseEntity<RefundDetails> getRefundDetails(Long id) {
@@ -384,5 +336,46 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 			return serviceUtility.getPageResult(response, pageable, new Feedback());
 		}
 		
+		@Override
+		public About findAboutById(Long id){
+			
+			QueryBuilder dslQuery = QueryBuilders.termQuery("id", id);
+
+			SearchSourceBuilder builder = new SearchSourceBuilder();
+			builder.query(dslQuery);
+			SearchResponse response = serviceUtility.searchResponseForObject("about",dslQuery);
+			
+			
+			return serviceUtility.getObjectResult(response, new About());
+			
+		}
+		
+		@Override
+		public Term findTermById(Long id){
+			
+			QueryBuilder dslQuery = QueryBuilders.termQuery("id", id);
+
+			SearchSourceBuilder builder = new SearchSourceBuilder();
+			builder.query(dslQuery);
+			SearchResponse response = serviceUtility.searchResponseForObject("term",dslQuery);
+			
+			
+			return serviceUtility.getObjectResult(response, new Term());
+			
+		}
+		
+		@Override
+		public SubTerm findSubTermById(Long id){
+			
+			QueryBuilder dslQuery = QueryBuilders.termQuery("id", id);
+
+			SearchSourceBuilder builder = new SearchSourceBuilder();
+			builder.query(dslQuery);
+			SearchResponse response = serviceUtility.searchResponseForObject("subterm",dslQuery);
+			
+			
+			return serviceUtility.getObjectResult(response, new SubTerm());
+			
+		}
 
 }

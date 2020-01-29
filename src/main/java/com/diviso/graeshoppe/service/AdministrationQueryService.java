@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLine;
+import com.diviso.graeshoppe.client.administration.model.About;
 import com.diviso.graeshoppe.client.administration.model.Banner;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationDetails;
@@ -19,6 +20,8 @@ import com.diviso.graeshoppe.client.administration.model.Feedback;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetails;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
+import com.diviso.graeshoppe.client.aggregator.SubTerm;
+import com.diviso.graeshoppe.client.aggregator.Term;
 import com.diviso.graeshoppe.client.store.model.Store;
 
 public interface AdministrationQueryService {
@@ -104,5 +107,11 @@ public interface AdministrationQueryService {
 	public CancellationDetails findCancellationDetailsById(Long id);
 
 	public Page<Feedback> findAllFeedBack(Pageable pageable);
+
+	public About findAboutById(Long id);
+
+	public Term findTermById(Long id);
+	
+	public SubTerm findSubTermById(Long id);
     
 }

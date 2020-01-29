@@ -69,7 +69,7 @@ public interface AdministrationCommandService {
 	
 	ResponseEntity<Void> deleteAboutUs(Long id);
 
-	ResponseEntity<TermDTO> createTerm(Term term);
+	Term createTerm(Term term);
 
 	ResponseEntity<TermDTO> updateTerm(TermDTO termDTO);
 
