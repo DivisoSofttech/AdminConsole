@@ -2,12 +2,17 @@ package com.diviso.graeshoppe.client.aggregator;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Term {
 	
-	  private Long id;
+	 @JsonProperty("id")
+	   private Long id;
 
+	 @JsonProperty("title")
 	    private String title;
 	    
+	 @JsonProperty("subTerms")
 	    private List<SubTerm> subTerms;
 
 		public Long getId() {

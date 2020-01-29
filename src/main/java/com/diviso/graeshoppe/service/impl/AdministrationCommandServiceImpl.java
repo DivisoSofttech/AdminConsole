@@ -204,7 +204,7 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 	}
 	
 	@Override
-	public Term createTerm(@RequestBody Term term) {
+	public Term createTerm(Term term) {
 		
 		TermDTO termDTO= new TermDTO();
 		termDTO.setTitle(term.getTitle());
