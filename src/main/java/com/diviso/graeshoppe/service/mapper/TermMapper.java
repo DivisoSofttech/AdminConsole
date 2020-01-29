@@ -15,7 +15,6 @@ public interface TermMapper extends EntityMapper<TermDTO, Term> {
 
 
     @Mapping(target = "subTerms", ignore = true)
-    @Mapping(target = "removeSubTerm", ignore = true)
     Term toEntity(TermDTO termDTO);
 
     default Term fromId(Long id) {
