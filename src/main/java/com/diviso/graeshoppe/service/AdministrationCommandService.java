@@ -1,7 +1,8 @@
 package com.diviso.graeshoppe.service;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.diviso.graeshoppe.client.administration.model.AboutDTO;
 import com.diviso.graeshoppe.client.administration.model.BannerDTO;
@@ -12,8 +13,7 @@ import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
 import com.diviso.graeshoppe.client.administration.model.SubTermDTO;
 import com.diviso.graeshoppe.client.administration.model.TermDTO;
-
-import java.util.List;
+import com.diviso.graeshoppe.client.aggregator.Term;
 public interface AdministrationCommandService {
 
 	public ResponseEntity<CancellationRequestDTO> createCancellationRequest(CancellationRequestDTO cancellationRequestDTO);
@@ -69,13 +69,13 @@ public interface AdministrationCommandService {
 	
 	ResponseEntity<Void> deleteAboutUs(Long id);
 
-	ResponseEntity<TermDTO> createTerm(TermDTO termDTO);
+	ResponseEntity<TermDTO> createTerm(Term term);
 
 	ResponseEntity<TermDTO> updateTerm(TermDTO termDTO);
 
 	ResponseEntity<Void> deleteTerm(Long id);
 
-	ResponseEntity<SubTermDTO> createSubTerm(SubTermDTO subTermDTO);
+	SubTermDTO createSubTerm(SubTermDTO subTermDTO);
 
 	ResponseEntity<SubTermDTO> updateSubTerm(SubTermDTO subTermDTO);
 

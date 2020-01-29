@@ -1,14 +1,17 @@
 package com.diviso.graeshoppe.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.diviso.graeshoppe.client.administration.api.CancelledAuxilaryOrderLineResourceApi;
+
 import com.diviso.graeshoppe.client.administration.api.AboutResourceApi;
 import com.diviso.graeshoppe.client.administration.api.BannerResourceApi;
 import com.diviso.graeshoppe.client.administration.api.CancellationRequestResourceApi;
+import com.diviso.graeshoppe.client.administration.api.CancelledAuxilaryOrderLineResourceApi;
 import com.diviso.graeshoppe.client.administration.api.CancelledOrderLineResourceApi;
 import com.diviso.graeshoppe.client.administration.api.NotificationResourceApi;
 import com.diviso.graeshoppe.client.administration.api.RefundDetailsResourceApi;
@@ -19,15 +22,16 @@ import com.diviso.graeshoppe.client.administration.model.BannerDTO;
 import com.diviso.graeshoppe.client.administration.model.CancellationRequestDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledAuxilaryOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.CancelledOrderLineDTO;
-import com.diviso.graeshoppe.client.administration.model.CancelledAuxilaryOrderLineDTO;
 import com.diviso.graeshoppe.client.administration.model.NotificationDTO;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
 import com.diviso.graeshoppe.client.administration.model.SubTermDTO;
 import com.diviso.graeshoppe.client.administration.model.TermDTO;
+import com.diviso.graeshoppe.client.aggregator.SubTerm;
+import com.diviso.graeshoppe.client.aggregator.Term;
 import com.diviso.graeshoppe.client.payment.api.PaymentResourceApi;
 import com.diviso.graeshoppe.client.payment.model.PaymentDTO;
 import com.diviso.graeshoppe.service.AdministrationCommandService;
-import java.util.List;
+import com.diviso.graeshoppe.service.mapper.SubTermMapper;
 
 @Service
 public class AdministrationCommandServiceImpl implements AdministrationCommandService {
@@ -51,6 +55,9 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 	
 	@Autowired
 	BannerResourceApi bannerResourceApi;
+	
+	@Autowired
+	SubTermMapper subTermMapper;
 
 	@Autowired
 	NotificationResourceApi notificationResourceApi;
@@ -192,8 +199,21 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 	}
 	
 	@Override
-	public ResponseEntity<TermDTO> createTerm(TermDTO termDTO) {
+	public ResponseEntity<TermDTO> createTerm(Term term) {
+		
+		TermDTO termDTO= new TermDTO();
+		termDTO.setTitle(term.getTitle());
+
+		term.getSubTerms().forEach(subTerm -> {
+			SubTermDTO subTermDTO = subTermMapper.toDto(subTerm);
+			subTermDTO.setTermId(term.getId());
+			SubTermDTO resultSubTerm = createSubTerm(subTermDTO);
+			SubTerm resultSubTerm1 = subTermMapper.toEntity(resultSubTerm);
+	});
+		
+		
 		return termResourceApi.createTermUsingPOST(termDTO);
+		
 	}
 
 	@Override
@@ -207,8 +227,8 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 	}
 	
 	@Override
-	public ResponseEntity<SubTermDTO> createSubTerm(SubTermDTO subTermDTO) {
-		return subtermResourceApi.createSubTermUsingPOST(subTermDTO);
+	public SubTermDTO createSubTerm(SubTermDTO subTermDTO) {
+		return subtermResourceApi.createSubTermUsingPOST(subTermDTO).getBody();
 	}
 
 	@Override
