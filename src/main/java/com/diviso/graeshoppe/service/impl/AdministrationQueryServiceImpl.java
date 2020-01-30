@@ -389,9 +389,10 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 
 			SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 		
-			searchSourceBuilder.query(termQuery("term.id", id));
+			searchSourceBuilder.query(termQuery("term.id",id));
 
 			SearchRequest searchRequest = new SearchRequest("subterm");
+			searchRequest.source(searchSourceBuilder);
 			SearchResponse searchResponse = null;
 			try {
 				searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
