@@ -65,8 +65,8 @@ import org.elasticsearch.search.SearchHit;
 public class AdministrationQueryServiceImpl implements AdministrationQueryService {
 
 	private Logger log = LoggerFactory.getLogger(AdministrationQueryServiceImpl.class);
+	
 	@Autowired
-
 	ServiceUtility serviceUtility;
 
 	@Autowired
@@ -383,34 +383,33 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 			
 		}
 		
-		@Override
-		public List<SubTerm> getSubTermsByTermId(Long id) {
+			@Override
+			public List<SubTerm> getSubTermsByTermId(Long id) {
+				log.debug("input", id);
+
+				SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 			
+				searchSourceBuilder.query(termQuery("term.id",id));
 
-			SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-		
-			searchSourceBuilder.query(termQuery("term.id",id));
+				SearchRequest searchRequest = new SearchRequest("subterm");
+				SearchResponse searchResponse = null;
+				try {
+					searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+				} catch (IOException e) { // TODO Auto-generated
+					e.printStackTrace();
+				}
 
-			SearchRequest searchRequest = new SearchRequest("subterm");
-			searchRequest.source(searchSourceBuilder);
-			SearchResponse searchResponse = null;
-			try {
-				searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-			} catch (IOException e) { // TODO Auto-generated
-				e.printStackTrace();
-			}
+				SearchHit[] searchHit = searchResponse.getHits().getHits();
 
-			SearchHit[] searchHit = searchResponse.getHits().getHits();
+				List<SubTerm>  subTermList = new ArrayList<>();
 
-			List<SubTerm> subTermList = new ArrayList<>();
+				for (SearchHit hit : searchHit) {
+					subTermList.add(objectMapper.convertValue(hit.getSourceAsMap(),SubTerm.class));
+				}
 
-			for (SearchHit hit : searchHit) {
-				subTermList.add(objectMapper.convertValue(hit.getSourceAsMap(), SubTerm.class));
-			}
+				log.debug("output",subTermList);
 
-			log.debug("output", subTermList);
-
-			return subTermList;
+				return subTermList;
 
 		}
 
