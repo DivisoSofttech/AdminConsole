@@ -34,6 +34,7 @@ import com.diviso.graeshoppe.client.payment.model.PaymentDTO;
 import com.diviso.graeshoppe.service.AdministrationCommandService;
 import com.diviso.graeshoppe.service.mapper.SubTermMapper;
 import com.diviso.graeshoppe.service.mapper.TermMapper;
+import com.diviso.graeshoppe.web.rest.QueryResource;
 
 @Service
 public class AdministrationCommandServiceImpl implements AdministrationCommandService {
@@ -48,6 +49,7 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 
 	@Autowired
 	AboutResourceApi aboutResourceApi;
+		
 	
 	@Autowired
 	TermResourceApi termResourceApi;
@@ -64,6 +66,9 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 	@Autowired
 	TermMapper termMapper;
 
+	@Autowired
+	QueryResource queryResource;
+	
 	@Autowired
 	NotificationResourceApi notificationResourceApi;
 	@Autowired
@@ -221,6 +226,10 @@ public class AdministrationCommandServiceImpl implements AdministrationCommandSe
 		}
 	
 		Term result = termMapper.toEntity(resutlTerm);
+		
+		List<SubTerm> subtermList= queryResource.getSubTermsByTermId(result.getId());
+		
+		result.setSubTerms(subtermList);
 		
 		return result;
 	}

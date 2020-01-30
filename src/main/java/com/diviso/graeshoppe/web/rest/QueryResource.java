@@ -569,7 +569,7 @@ public class QueryResource {
 	}
 	
 	@GetMapping("/findSubTermByTermId/{id}")
-	public SubTerm getSubTermsByTermId(@PathVariable Long id) {
-		return administrationQueryService.findSubTermById(id);
+	public List<SubTerm> getSubTermsByTermId(@PathVariable Long id) {
+		return administrationQueryService.getSubTermsByTermId(id);
 	}
 }
