@@ -14,7 +14,9 @@ public class Term {
 	 @JsonProperty("id")
 	 private Long id;
 
-	 @JsonProperty("title")
+	 
+
+	@JsonProperty("title")
 	 private String title;
 	    
 	
@@ -22,7 +24,9 @@ public class Term {
 	 private List<SubTerm> subTerms=new ArrayList<SubTerm>();
 	 
 	
-
+	 public Long getId() {
+			return id;
+		}
 	public void setId(Long id) {
 		this.id = id;
 	}
