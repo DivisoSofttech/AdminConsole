@@ -1,7 +1,11 @@
 package com.diviso.graeshoppe.client.aggregator;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -13,12 +17,11 @@ public class Term {
 	 @JsonProperty("title")
 	 private String title;
 	    
+	
 	 @JsonProperty("subTerms")
-	 private Set<SubTerm> subTerms = new HashSet<>();
-
-	public Long getId() {
-		return id;
-	}
+	 private List<SubTerm> subTerms=new ArrayList<SubTerm>();
+	 
+	
 
 	public void setId(Long id) {
 		this.id = id;
@@ -32,11 +35,12 @@ public class Term {
 		this.title = title;
 	}
 
-	public Set<SubTerm> getSubTerms() {
+	
+	public List<SubTerm> getSubTerms() {
 		return subTerms;
 	}
 
-	public void setSubTerms(Set<SubTerm> subTerms) {
+	public void setSubTerms(List<SubTerm> subTerms) {
 		this.subTerms = subTerms;
 	}
 

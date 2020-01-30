@@ -271,12 +271,12 @@ public class CommandResource {
 	}
 
 	@PostMapping("/about")
-	public ResponseEntity<AboutDTO> createAboutUs(AboutDTO aboutDTO) {
+	public ResponseEntity<AboutDTO> createAboutUs(@RequestBody AboutDTO aboutDTO) {
 		return administrationCommandService.createAboutUs(aboutDTO);
 	}
 
 	@PutMapping("/about")
-	public ResponseEntity<AboutDTO> updateAboutUs(AboutDTO aboutDTO) {
+	public ResponseEntity<AboutDTO> updateAboutUs(@RequestBody AboutDTO aboutDTO) {
 		return administrationCommandService.updateAboutUs(aboutDTO);
 	}
 
@@ -286,12 +286,12 @@ public class CommandResource {
 	}
 
 	@PostMapping("/term")
-	public Term createTerm(Term term) {
+	public Term createTerm(@RequestBody Term term) {
 		return administrationCommandService.createTerm(term);
 	}
 
 	@PutMapping("/term")
-	public ResponseEntity<TermDTO> updateTerm(TermDTO termDTO) {
+	public ResponseEntity<TermDTO> updateTerm(@RequestBody TermDTO termDTO) {
 		return administrationCommandService.updateTerm(termDTO);
 	}
 
@@ -301,12 +301,12 @@ public class CommandResource {
 	}
 
 	@PostMapping("/sub-term")
-	public SubTermDTO createSubTerm(SubTermDTO subTermDTO) {
+	public SubTermDTO createSubTerm(@RequestBody SubTermDTO subTermDTO) {
 		return administrationCommandService.createSubTerm(subTermDTO);
 	}
 
 	@PutMapping("/sub-term")
-	public ResponseEntity<SubTermDTO> updateSubTerm(SubTermDTO subTermDTO) {
+	public ResponseEntity<SubTermDTO> updateSubTerm(@RequestBody SubTermDTO subTermDTO) {
 		return administrationCommandService.updateSubTerm(subTermDTO);
 	}
 
