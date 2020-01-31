@@ -29,7 +29,7 @@ public interface ReportQueryService {
 
 	public Long countByOrderStatus(String orderStatus);
 	
-	public ResponseEntity<PageOfOrderMaster> findByExpectedDeliveryBetween(OffsetDateTime from, OffsetDateTime to,Pageable pageable);
+	public ResponseEntity<PageOfOrderMaster> findByExpectedDeliveryBetween(String from, String to,Pageable pageable);
 
 	public ResponseEntity<PdfDTO> getReportSummaryAsPdf(String date,String storeId);
 

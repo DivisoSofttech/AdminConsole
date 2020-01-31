@@ -7,6 +7,8 @@ package com.diviso.graeshoppe.client.report.api;
 
 import com.diviso.graeshoppe.client.report.model.AuxItem;
 import com.diviso.graeshoppe.client.report.model.OfferLine;
+
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import com.diviso.graeshoppe.client.report.model.OrderLine;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
@@ -128,7 +130,7 @@ public interface QueryResourceApi {
     @RequestMapping(value = "/api/findOrderMasterByExpectedDeliveryBetween/{from}/{to}",
         produces = "*/*", 
         method = RequestMethod.GET)
-    ResponseEntity<PageOfOrderMaster> findOrderMasterByExpectedDeliveryBetweenUsingGET(@ApiParam(value = "from",required=true) @PathVariable("from") OffsetDateTime from,@ApiParam(value = "to",required=true) @PathVariable("to") OffsetDateTime to,@ApiParam(value = "Page number of the requested page") @Valid @RequestParam(value = "page", required = false) Integer page,@ApiParam(value = "Size of a page") @Valid @RequestParam(value = "size", required = false) Integer size,@ApiParam(value = "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.") @Valid @RequestParam(value = "sort", required = false) List<String> sort);
+    ResponseEntity<PageOfOrderMaster> findOrderMasterByExpectedDeliveryBetweenUsingGET(@ApiParam(value = "from",required=true) @PathVariable("from") String from,@ApiParam(value = "to",required=true) @PathVariable("to") String to,@ApiParam(value = "Page number of the requested page") @Valid @RequestParam(value = "page", required = false) Integer page,@ApiParam(value = "Size of a page") @Valid @RequestParam(value = "size", required = false) Integer size,@ApiParam(value = "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.") @Valid @RequestParam(value = "sort", required = false) List<String> sort);
 
 
     @ApiOperation(value = "findOrderMasterCountByExpectedDeliveryBetween", nickname = "findOrderMasterCountByExpectedDeliveryBetweenUsingGET", notes = "", response = Long.class, tags={ "query-resource", })

@@ -117,8 +117,8 @@ public class QueryResource {
 	}
 
 	@GetMapping("/findOrderMasterByExpectedDeliveryBetween/{from}/{to}")
-	public ResponseEntity<PageOfOrderMaster> findOrderMasterByExpectedDeliveryBetween(@PathVariable OffsetDateTime from,
-			@PathVariable OffsetDateTime to, Pageable pageable) {
+	public ResponseEntity<PageOfOrderMaster> findOrderMasterByExpectedDeliveryBetween(@PathVariable String from,
+			@PathVariable String to, Pageable pageable) {
 		return reportQueryService.findByExpectedDeliveryBetween(from, to, pageable);
 	}
 

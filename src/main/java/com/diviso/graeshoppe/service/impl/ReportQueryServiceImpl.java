@@ -1,5 +1,6 @@
 package com.diviso.graeshoppe.service.impl;
 
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.List;
 
@@ -71,7 +72,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	}
 
 	@Override
-	public ResponseEntity<PageOfOrderMaster> findByExpectedDeliveryBetween(OffsetDateTime from, OffsetDateTime to, Pageable pageable) {
+	public ResponseEntity<PageOfOrderMaster> findByExpectedDeliveryBetween(String from, String to, Pageable pageable) {
 	
 		return queryResourceApi.findOrderMasterByExpectedDeliveryBetweenUsingGET(from, to, null, null, null);
 	}
