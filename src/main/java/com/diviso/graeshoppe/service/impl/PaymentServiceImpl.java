@@ -33,14 +33,14 @@ public class PaymentServiceImpl implements PaymentService {
 		RefundDetailsDTO result = new RefundDetailsDTO();
 		/* creating an refund request in payment microservice */
 
-		RefundResponse refundResponse = braintreeCommandResourceApi
-				.createRefundUsingPOST(paymentId, refundDetailsDTO.getAmount()).getBody();
+//		RefundResponse refundResponse = braintreeCommandResourceApi
+//				.createRefundUsingPOST(paymentId, refundDetailsDTO.getAmount()).getBody();
 
-		/*
-		 * RefundResponse refundResponse=new RefundResponse();
-		 * refundResponse.setStatus("completed");
-		 * refundResponse.setTransactionId("testtransactionid");
-		 */
+		
+		  RefundResponse refundResponse=new RefundResponse();
+		  refundResponse.setStatus("completed");
+		  refundResponse.setTransactionId("testtransactionid");
+		 
 
 		if (refundResponse.getStatus().equalsIgnoreCase("completed")) {
 			refundDetailsDTO.setRefundId(refundResponse.getTransactionId());
