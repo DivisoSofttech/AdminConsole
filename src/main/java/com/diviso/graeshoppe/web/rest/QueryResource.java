@@ -554,7 +554,7 @@ public class QueryResource {
 	
 	@GetMapping("/findallterms")
 	Page<Term> findallterms(Pageable pageable){
-		return administrationQueryService.findallterms(pageable);
+			return administrationQueryService.findallterms(pageable);
 		
 	}
 
