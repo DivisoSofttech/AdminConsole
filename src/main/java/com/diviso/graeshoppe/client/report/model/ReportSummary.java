@@ -1,13 +1,16 @@
 package com.diviso.graeshoppe.client.report.model;
 
 import java.util.Objects;
+import com.diviso.graeshoppe.client.report.model.OrderMaster;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -16,11 +19,27 @@ import javax.validation.constraints.*;
  * ReportSummary
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-25T10:28:52.093+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-06T14:12:57.765+05:30[Asia/Kolkata]")
 
 public class ReportSummary   {
+  @JsonProperty("collectionCard")
+  @Valid
+  private List<OrderMaster> collectionCard = null;
+
+  @JsonProperty("collectionCash")
+  @Valid
+  private List<OrderMaster> collectionCash = null;
+
   @JsonProperty("date")
   private LocalDate date = null;
+
+  @JsonProperty("deliveryCard")
+  @Valid
+  private List<OrderMaster> deliveryCard = null;
+
+  @JsonProperty("deliveryCash")
+  @Valid
+  private List<OrderMaster> deliveryCash = null;
 
   @JsonProperty("storeId")
   private String storeId = null;
@@ -55,6 +74,64 @@ public class ReportSummary   {
   @JsonProperty("typeDeliveryTotal")
   private Double typeDeliveryTotal = null;
 
+  public ReportSummary collectionCard(List<OrderMaster> collectionCard) {
+    this.collectionCard = collectionCard;
+    return this;
+  }
+
+  public ReportSummary addCollectionCardItem(OrderMaster collectionCardItem) {
+    if (this.collectionCard == null) {
+      this.collectionCard = new ArrayList<OrderMaster>();
+    }
+    this.collectionCard.add(collectionCardItem);
+    return this;
+  }
+
+  /**
+   * Get collectionCard
+   * @return collectionCard
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public List<OrderMaster> getCollectionCard() {
+    return collectionCard;
+  }
+
+  public void setCollectionCard(List<OrderMaster> collectionCard) {
+    this.collectionCard = collectionCard;
+  }
+
+  public ReportSummary collectionCash(List<OrderMaster> collectionCash) {
+    this.collectionCash = collectionCash;
+    return this;
+  }
+
+  public ReportSummary addCollectionCashItem(OrderMaster collectionCashItem) {
+    if (this.collectionCash == null) {
+      this.collectionCash = new ArrayList<OrderMaster>();
+    }
+    this.collectionCash.add(collectionCashItem);
+    return this;
+  }
+
+  /**
+   * Get collectionCash
+   * @return collectionCash
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public List<OrderMaster> getCollectionCash() {
+    return collectionCash;
+  }
+
+  public void setCollectionCash(List<OrderMaster> collectionCash) {
+    this.collectionCash = collectionCash;
+  }
+
   public ReportSummary date(LocalDate date) {
     this.date = date;
     return this;
@@ -74,6 +151,64 @@ public class ReportSummary   {
 
   public void setDate(LocalDate date) {
     this.date = date;
+  }
+
+  public ReportSummary deliveryCard(List<OrderMaster> deliveryCard) {
+    this.deliveryCard = deliveryCard;
+    return this;
+  }
+
+  public ReportSummary addDeliveryCardItem(OrderMaster deliveryCardItem) {
+    if (this.deliveryCard == null) {
+      this.deliveryCard = new ArrayList<OrderMaster>();
+    }
+    this.deliveryCard.add(deliveryCardItem);
+    return this;
+  }
+
+  /**
+   * Get deliveryCard
+   * @return deliveryCard
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public List<OrderMaster> getDeliveryCard() {
+    return deliveryCard;
+  }
+
+  public void setDeliveryCard(List<OrderMaster> deliveryCard) {
+    this.deliveryCard = deliveryCard;
+  }
+
+  public ReportSummary deliveryCash(List<OrderMaster> deliveryCash) {
+    this.deliveryCash = deliveryCash;
+    return this;
+  }
+
+  public ReportSummary addDeliveryCashItem(OrderMaster deliveryCashItem) {
+    if (this.deliveryCash == null) {
+      this.deliveryCash = new ArrayList<OrderMaster>();
+    }
+    this.deliveryCash.add(deliveryCashItem);
+    return this;
+  }
+
+  /**
+   * Get deliveryCash
+   * @return deliveryCash
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public List<OrderMaster> getDeliveryCash() {
+    return deliveryCash;
+  }
+
+  public void setDeliveryCash(List<OrderMaster> deliveryCash) {
+    this.deliveryCash = deliveryCash;
   }
 
   public ReportSummary storeId(String storeId) {
@@ -306,7 +441,11 @@ public class ReportSummary   {
       return false;
     }
     ReportSummary reportSummary = (ReportSummary) o;
-    return Objects.equals(this.date, reportSummary.date) &&
+    return Objects.equals(this.collectionCard, reportSummary.collectionCard) &&
+        Objects.equals(this.collectionCash, reportSummary.collectionCash) &&
+        Objects.equals(this.date, reportSummary.date) &&
+        Objects.equals(this.deliveryCard, reportSummary.deliveryCard) &&
+        Objects.equals(this.deliveryCash, reportSummary.deliveryCash) &&
         Objects.equals(this.storeId, reportSummary.storeId) &&
         Objects.equals(this.typeAllCount, reportSummary.typeAllCount) &&
         Objects.equals(this.typeAllTotal, reportSummary.typeAllTotal) &&
@@ -322,7 +461,7 @@ public class ReportSummary   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(date, storeId, typeAllCount, typeAllTotal, typeCardCount, typeCardTotal, typeCashCount, typeCashTotal, typeCollectionCount, typeCollectionTotal, typeDeliveryCount, typeDeliveryTotal);
+    return Objects.hash(collectionCard, collectionCash, date, deliveryCard, deliveryCash, storeId, typeAllCount, typeAllTotal, typeCardCount, typeCardTotal, typeCashCount, typeCashTotal, typeCollectionCount, typeCollectionTotal, typeDeliveryCount, typeDeliveryTotal);
   }
 
   @Override
@@ -330,7 +469,11 @@ public class ReportSummary   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReportSummary {\n");
     
+    sb.append("    collectionCard: ").append(toIndentedString(collectionCard)).append("\n");
+    sb.append("    collectionCash: ").append(toIndentedString(collectionCash)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
+    sb.append("    deliveryCard: ").append(toIndentedString(deliveryCard)).append("\n");
+    sb.append("    deliveryCash: ").append(toIndentedString(deliveryCash)).append("\n");
     sb.append("    storeId: ").append(toIndentedString(storeId)).append("\n");
     sb.append("    typeAllCount: ").append(toIndentedString(typeAllCount)).append("\n");
     sb.append("    typeAllTotal: ").append(toIndentedString(typeAllTotal)).append("\n");
