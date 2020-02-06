@@ -41,6 +41,7 @@ import com.diviso.graeshoppe.client.offer.model.DeductionValueTypeDTO;
 import com.diviso.graeshoppe.client.offer.model.OfferDTO;
 import com.diviso.graeshoppe.client.order.model.Order;
 import com.diviso.graeshoppe.client.report.model.AuxItem;
+import com.diviso.graeshoppe.client.report.model.CancellationSummary;
 import com.diviso.graeshoppe.client.report.model.OfferLine;
 import com.diviso.graeshoppe.client.report.model.OrderLine;
 import com.diviso.graeshoppe.client.report.model.OrderMaster;
@@ -117,8 +118,8 @@ public class QueryResource {
 	}
 
 	@GetMapping("/findOrderMasterByExpectedDeliveryBetween/{from}/{to}")
-	public ResponseEntity<PageOfOrderMaster> findOrderMasterByExpectedDeliveryBetween(@PathVariable OffsetDateTime from,
-			@PathVariable OffsetDateTime to, Pageable pageable) {
+	public ResponseEntity<PageOfOrderMaster> findOrderMasterByExpectedDeliveryBetween(@PathVariable String from,
+			@PathVariable String to, Pageable pageable) {
 		return reportQueryService.findByExpectedDeliveryBetween(from, to, pageable);
 	}
 
@@ -571,5 +572,10 @@ public class QueryResource {
 	@GetMapping("/findSubTermByTermId/{id}")
 	public List<SubTerm> getSubTermsByTermId(@PathVariable Long id) {
 		return administrationQueryService.getSubTermsByTermId(id);
+	}
+	
+	@GetMapping("/cancellationview/{date}/{storeName}")
+	public ResponseEntity<CancellationSummary> cancellationSummaryForView(@PathVariable String date,@PathVariable String storeName) {
+		return reportQueryService.cancellationSummaryForView(date, storeName);
 	}
 }

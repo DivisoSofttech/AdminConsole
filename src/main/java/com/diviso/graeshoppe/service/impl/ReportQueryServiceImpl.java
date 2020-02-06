@@ -1,5 +1,6 @@
 package com.diviso.graeshoppe.service.impl;
 
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.diviso.graeshoppe.client.report.api.QueryResourceApi;
 import com.diviso.graeshoppe.client.report.model.AuxItem;
+import com.diviso.graeshoppe.client.report.model.CancellationSummary;
 import com.diviso.graeshoppe.client.report.model.OfferLine;
 import com.diviso.graeshoppe.client.report.model.OrderLine;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
@@ -71,7 +73,7 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	}
 
 	@Override
-	public ResponseEntity<PageOfOrderMaster> findByExpectedDeliveryBetween(OffsetDateTime from, OffsetDateTime to, Pageable pageable) {
+	public ResponseEntity<PageOfOrderMaster> findByExpectedDeliveryBetween(String from, String to, Pageable pageable) {
 	
 		return queryResourceApi.findOrderMasterByExpectedDeliveryBetweenUsingGET(from, to, null, null, null);
 	}
@@ -164,6 +166,12 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 		pdf.setPdf(this.queryResourceApi.getCancellationSummaryAsPdfUsingGET(date, storeName).getBody());
 		pdf.setContentType("application/pdf");
 		return ResponseEntity.ok().body(pdf);
+	}
+
+
+	@Override
+	public ResponseEntity<CancellationSummary> cancellationSummaryForView(String date, String storeName) {
+		return queryResourceApi.createCancellationReportSummaryViewUsingGET(date, storeName);
 	}
 	
 	

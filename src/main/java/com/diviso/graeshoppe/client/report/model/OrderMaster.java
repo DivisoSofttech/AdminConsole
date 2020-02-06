@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
  * OrderMaster
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-25T10:28:52.093+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-06T14:12:57.765+05:30[Asia/Kolkata]")
 
 public class OrderMaster   {
   @JsonProperty("addressType")
@@ -68,6 +68,9 @@ public class OrderMaster   {
 
   @JsonProperty("methodOfOrder")
   private String methodOfOrder = null;
+
+  @JsonProperty("nextTaskId")
+  private String nextTaskId = null;
 
   @JsonProperty("notes")
   private String notes = null;
@@ -465,6 +468,26 @@ public class OrderMaster   {
 
   public void setMethodOfOrder(String methodOfOrder) {
     this.methodOfOrder = methodOfOrder;
+  }
+
+  public OrderMaster nextTaskId(String nextTaskId) {
+    this.nextTaskId = nextTaskId;
+    return this;
+  }
+
+  /**
+   * Get nextTaskId
+   * @return nextTaskId
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getNextTaskId() {
+    return nextTaskId;
+  }
+
+  public void setNextTaskId(String nextTaskId) {
+    this.nextTaskId = nextTaskId;
   }
 
   public OrderMaster notes(String notes) {
@@ -1014,6 +1037,7 @@ public class OrderMaster   {
         Objects.equals(this.landmark, orderMaster.landmark) &&
         Objects.equals(this.loyaltyPoint, orderMaster.loyaltyPoint) &&
         Objects.equals(this.methodOfOrder, orderMaster.methodOfOrder) &&
+        Objects.equals(this.nextTaskId, orderMaster.nextTaskId) &&
         Objects.equals(this.notes, orderMaster.notes) &&
         Objects.equals(this.offerLines, orderMaster.offerLines) &&
         Objects.equals(this.orderAcceptedAt, orderMaster.orderAcceptedAt) &&
@@ -1043,7 +1067,7 @@ public class OrderMaster   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressType, allergyNote, alternatePhone, cancellationRef, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, refundedAmount, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
+    return Objects.hash(addressType, allergyNote, alternatePhone, cancellationRef, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, nextTaskId, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, refundedAmount, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
   }
 
   @Override
@@ -1067,6 +1091,7 @@ public class OrderMaster   {
     sb.append("    landmark: ").append(toIndentedString(landmark)).append("\n");
     sb.append("    loyaltyPoint: ").append(toIndentedString(loyaltyPoint)).append("\n");
     sb.append("    methodOfOrder: ").append(toIndentedString(methodOfOrder)).append("\n");
+    sb.append("    nextTaskId: ").append(toIndentedString(nextTaskId)).append("\n");
     sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
     sb.append("    offerLines: ").append(toIndentedString(offerLines)).append("\n");
     sb.append("    orderAcceptedAt: ").append(toIndentedString(orderAcceptedAt)).append("\n");

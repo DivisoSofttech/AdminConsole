@@ -1,22 +1,26 @@
 package com.diviso.graeshoppe.client.report.model;
 
 import java.util.Objects;
+import com.diviso.graeshoppe.client.report.model.OfferLine;
+import com.diviso.graeshoppe.client.report.model.OrderLine;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * OrderMasterDTO
+ * EscPosDocket
  */
 @Validated
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-06T14:12:57.765+05:30[Asia/Kolkata]")
 
-public class OrderMasterDTO   {
+public class EscPosDocket   {
   @JsonProperty("addressType")
   private String addressType = null;
 
@@ -26,11 +30,20 @@ public class OrderMasterDTO   {
   @JsonProperty("alternatePhone")
   private Long alternatePhone = null;
 
+  @JsonProperty("attentionForFirstOrder")
+  private String attentionForFirstOrder = null;
+
   @JsonProperty("cancellationRef")
   private Long cancellationRef = null;
 
   @JsonProperty("city")
   private String city = null;
+
+  @JsonProperty("content")
+  private String content = null;
+
+  @JsonProperty("customerDetails")
+  private String customerDetails = null;
 
   @JsonProperty("customerId")
   private String customerId = null;
@@ -41,14 +54,26 @@ public class OrderMasterDTO   {
   @JsonProperty("customerOrder")
   private Long customerOrder = null;
 
+  @JsonProperty("customerOrderDetails")
+  private String customerOrderDetails = null;
+
   @JsonProperty("deliveryCharge")
   private Double deliveryCharge = null;
+
+  @JsonProperty("discountAndTotal")
+  private String discountAndTotal = null;
 
   @JsonProperty("email")
   private String email = null;
 
   @JsonProperty("expectedDelivery")
   private OffsetDateTime expectedDelivery = null;
+
+  @JsonProperty("footer")
+  private String footer = null;
+
+  @JsonProperty("headers")
+  private String headers = null;
 
   @JsonProperty("houseNoOrBuildingName")
   private String houseNoOrBuildingName = null;
@@ -65,11 +90,12 @@ public class OrderMasterDTO   {
   @JsonProperty("methodOfOrder")
   private String methodOfOrder = null;
 
-  @JsonProperty("nextTaskId")
-  private String nextTaskId = null;
-
   @JsonProperty("notes")
   private String notes = null;
+
+  @JsonProperty("offerLines")
+  @Valid
+  private List<OfferLine> offerLines = null;
 
   @JsonProperty("orderAcceptedAt")
   private OffsetDateTime orderAcceptedAt = null;
@@ -79,6 +105,10 @@ public class OrderMasterDTO   {
 
   @JsonProperty("orderFromCustomer")
   private Long orderFromCustomer = null;
+
+  @JsonProperty("orderLines")
+  @Valid
+  private List<OrderLine> orderLines = null;
 
   @JsonProperty("orderNumber")
   private String orderNumber = null;
@@ -95,6 +125,9 @@ public class OrderMasterDTO   {
   @JsonProperty("paymentStatus")
   private String paymentStatus = null;
 
+  @JsonProperty("paymentStatusForDocket")
+  private String paymentStatusForDocket = null;
+
   @JsonProperty("phone")
   private Long phone = null;
 
@@ -103,6 +136,9 @@ public class OrderMasterDTO   {
 
   @JsonProperty("preOrderDate")
   private OffsetDateTime preOrderDate = null;
+
+  @JsonProperty("products")
+  private String products = null;
 
   @JsonProperty("refundedAmount")
   private Double refundedAmount = null;
@@ -137,7 +173,7 @@ public class OrderMasterDTO   {
   @JsonProperty("zoneId")
   private String zoneId = null;
 
-  public OrderMasterDTO addressType(String addressType) {
+  public EscPosDocket addressType(String addressType) {
     this.addressType = addressType;
     return this;
   }
@@ -157,7 +193,7 @@ public class OrderMasterDTO   {
     this.addressType = addressType;
   }
 
-  public OrderMasterDTO allergyNote(String allergyNote) {
+  public EscPosDocket allergyNote(String allergyNote) {
     this.allergyNote = allergyNote;
     return this;
   }
@@ -177,7 +213,7 @@ public class OrderMasterDTO   {
     this.allergyNote = allergyNote;
   }
 
-  public OrderMasterDTO alternatePhone(Long alternatePhone) {
+  public EscPosDocket alternatePhone(Long alternatePhone) {
     this.alternatePhone = alternatePhone;
     return this;
   }
@@ -197,7 +233,27 @@ public class OrderMasterDTO   {
     this.alternatePhone = alternatePhone;
   }
 
-  public OrderMasterDTO cancellationRef(Long cancellationRef) {
+  public EscPosDocket attentionForFirstOrder(String attentionForFirstOrder) {
+    this.attentionForFirstOrder = attentionForFirstOrder;
+    return this;
+  }
+
+  /**
+   * Get attentionForFirstOrder
+   * @return attentionForFirstOrder
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getAttentionForFirstOrder() {
+    return attentionForFirstOrder;
+  }
+
+  public void setAttentionForFirstOrder(String attentionForFirstOrder) {
+    this.attentionForFirstOrder = attentionForFirstOrder;
+  }
+
+  public EscPosDocket cancellationRef(Long cancellationRef) {
     this.cancellationRef = cancellationRef;
     return this;
   }
@@ -217,7 +273,7 @@ public class OrderMasterDTO   {
     this.cancellationRef = cancellationRef;
   }
 
-  public OrderMasterDTO city(String city) {
+  public EscPosDocket city(String city) {
     this.city = city;
     return this;
   }
@@ -237,7 +293,47 @@ public class OrderMasterDTO   {
     this.city = city;
   }
 
-  public OrderMasterDTO customerId(String customerId) {
+  public EscPosDocket content(String content) {
+    this.content = content;
+    return this;
+  }
+
+  /**
+   * Get content
+   * @return content
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getContent() {
+    return content;
+  }
+
+  public void setContent(String content) {
+    this.content = content;
+  }
+
+  public EscPosDocket customerDetails(String customerDetails) {
+    this.customerDetails = customerDetails;
+    return this;
+  }
+
+  /**
+   * Get customerDetails
+   * @return customerDetails
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getCustomerDetails() {
+    return customerDetails;
+  }
+
+  public void setCustomerDetails(String customerDetails) {
+    this.customerDetails = customerDetails;
+  }
+
+  public EscPosDocket customerId(String customerId) {
     this.customerId = customerId;
     return this;
   }
@@ -257,7 +353,7 @@ public class OrderMasterDTO   {
     this.customerId = customerId;
   }
 
-  public OrderMasterDTO customerName(String customerName) {
+  public EscPosDocket customerName(String customerName) {
     this.customerName = customerName;
     return this;
   }
@@ -277,7 +373,7 @@ public class OrderMasterDTO   {
     this.customerName = customerName;
   }
 
-  public OrderMasterDTO customerOrder(Long customerOrder) {
+  public EscPosDocket customerOrder(Long customerOrder) {
     this.customerOrder = customerOrder;
     return this;
   }
@@ -297,7 +393,27 @@ public class OrderMasterDTO   {
     this.customerOrder = customerOrder;
   }
 
-  public OrderMasterDTO deliveryCharge(Double deliveryCharge) {
+  public EscPosDocket customerOrderDetails(String customerOrderDetails) {
+    this.customerOrderDetails = customerOrderDetails;
+    return this;
+  }
+
+  /**
+   * Get customerOrderDetails
+   * @return customerOrderDetails
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getCustomerOrderDetails() {
+    return customerOrderDetails;
+  }
+
+  public void setCustomerOrderDetails(String customerOrderDetails) {
+    this.customerOrderDetails = customerOrderDetails;
+  }
+
+  public EscPosDocket deliveryCharge(Double deliveryCharge) {
     this.deliveryCharge = deliveryCharge;
     return this;
   }
@@ -317,7 +433,27 @@ public class OrderMasterDTO   {
     this.deliveryCharge = deliveryCharge;
   }
 
-  public OrderMasterDTO email(String email) {
+  public EscPosDocket discountAndTotal(String discountAndTotal) {
+    this.discountAndTotal = discountAndTotal;
+    return this;
+  }
+
+  /**
+   * Get discountAndTotal
+   * @return discountAndTotal
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getDiscountAndTotal() {
+    return discountAndTotal;
+  }
+
+  public void setDiscountAndTotal(String discountAndTotal) {
+    this.discountAndTotal = discountAndTotal;
+  }
+
+  public EscPosDocket email(String email) {
     this.email = email;
     return this;
   }
@@ -337,7 +473,7 @@ public class OrderMasterDTO   {
     this.email = email;
   }
 
-  public OrderMasterDTO expectedDelivery(OffsetDateTime expectedDelivery) {
+  public EscPosDocket expectedDelivery(OffsetDateTime expectedDelivery) {
     this.expectedDelivery = expectedDelivery;
     return this;
   }
@@ -358,7 +494,47 @@ public class OrderMasterDTO   {
     this.expectedDelivery = expectedDelivery;
   }
 
-  public OrderMasterDTO houseNoOrBuildingName(String houseNoOrBuildingName) {
+  public EscPosDocket footer(String footer) {
+    this.footer = footer;
+    return this;
+  }
+
+  /**
+   * Get footer
+   * @return footer
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getFooter() {
+    return footer;
+  }
+
+  public void setFooter(String footer) {
+    this.footer = footer;
+  }
+
+  public EscPosDocket headers(String headers) {
+    this.headers = headers;
+    return this;
+  }
+
+  /**
+   * Get headers
+   * @return headers
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getHeaders() {
+    return headers;
+  }
+
+  public void setHeaders(String headers) {
+    this.headers = headers;
+  }
+
+  public EscPosDocket houseNoOrBuildingName(String houseNoOrBuildingName) {
     this.houseNoOrBuildingName = houseNoOrBuildingName;
     return this;
   }
@@ -378,7 +554,7 @@ public class OrderMasterDTO   {
     this.houseNoOrBuildingName = houseNoOrBuildingName;
   }
 
-  public OrderMasterDTO id(Long id) {
+  public EscPosDocket id(Long id) {
     this.id = id;
     return this;
   }
@@ -398,7 +574,7 @@ public class OrderMasterDTO   {
     this.id = id;
   }
 
-  public OrderMasterDTO landmark(String landmark) {
+  public EscPosDocket landmark(String landmark) {
     this.landmark = landmark;
     return this;
   }
@@ -418,7 +594,7 @@ public class OrderMasterDTO   {
     this.landmark = landmark;
   }
 
-  public OrderMasterDTO loyaltyPoint(Long loyaltyPoint) {
+  public EscPosDocket loyaltyPoint(Long loyaltyPoint) {
     this.loyaltyPoint = loyaltyPoint;
     return this;
   }
@@ -438,7 +614,7 @@ public class OrderMasterDTO   {
     this.loyaltyPoint = loyaltyPoint;
   }
 
-  public OrderMasterDTO methodOfOrder(String methodOfOrder) {
+  public EscPosDocket methodOfOrder(String methodOfOrder) {
     this.methodOfOrder = methodOfOrder;
     return this;
   }
@@ -458,27 +634,7 @@ public class OrderMasterDTO   {
     this.methodOfOrder = methodOfOrder;
   }
 
-  public OrderMasterDTO nextTaskId(String nextTaskId) {
-    this.nextTaskId = nextTaskId;
-    return this;
-  }
-
-  /**
-   * Get nextTaskId
-   * @return nextTaskId
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getNextTaskId() {
-    return nextTaskId;
-  }
-
-  public void setNextTaskId(String nextTaskId) {
-    this.nextTaskId = nextTaskId;
-  }
-
-  public OrderMasterDTO notes(String notes) {
+  public EscPosDocket notes(String notes) {
     this.notes = notes;
     return this;
   }
@@ -498,7 +654,36 @@ public class OrderMasterDTO   {
     this.notes = notes;
   }
 
-  public OrderMasterDTO orderAcceptedAt(OffsetDateTime orderAcceptedAt) {
+  public EscPosDocket offerLines(List<OfferLine> offerLines) {
+    this.offerLines = offerLines;
+    return this;
+  }
+
+  public EscPosDocket addOfferLinesItem(OfferLine offerLinesItem) {
+    if (this.offerLines == null) {
+      this.offerLines = new ArrayList<OfferLine>();
+    }
+    this.offerLines.add(offerLinesItem);
+    return this;
+  }
+
+  /**
+   * Get offerLines
+   * @return offerLines
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public List<OfferLine> getOfferLines() {
+    return offerLines;
+  }
+
+  public void setOfferLines(List<OfferLine> offerLines) {
+    this.offerLines = offerLines;
+  }
+
+  public EscPosDocket orderAcceptedAt(OffsetDateTime orderAcceptedAt) {
     this.orderAcceptedAt = orderAcceptedAt;
     return this;
   }
@@ -519,7 +704,7 @@ public class OrderMasterDTO   {
     this.orderAcceptedAt = orderAcceptedAt;
   }
 
-  public OrderMasterDTO orderDiscountAmount(Double orderDiscountAmount) {
+  public EscPosDocket orderDiscountAmount(Double orderDiscountAmount) {
     this.orderDiscountAmount = orderDiscountAmount;
     return this;
   }
@@ -539,7 +724,7 @@ public class OrderMasterDTO   {
     this.orderDiscountAmount = orderDiscountAmount;
   }
 
-  public OrderMasterDTO orderFromCustomer(Long orderFromCustomer) {
+  public EscPosDocket orderFromCustomer(Long orderFromCustomer) {
     this.orderFromCustomer = orderFromCustomer;
     return this;
   }
@@ -559,7 +744,36 @@ public class OrderMasterDTO   {
     this.orderFromCustomer = orderFromCustomer;
   }
 
-  public OrderMasterDTO orderNumber(String orderNumber) {
+  public EscPosDocket orderLines(List<OrderLine> orderLines) {
+    this.orderLines = orderLines;
+    return this;
+  }
+
+  public EscPosDocket addOrderLinesItem(OrderLine orderLinesItem) {
+    if (this.orderLines == null) {
+      this.orderLines = new ArrayList<OrderLine>();
+    }
+    this.orderLines.add(orderLinesItem);
+    return this;
+  }
+
+  /**
+   * Get orderLines
+   * @return orderLines
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public List<OrderLine> getOrderLines() {
+    return orderLines;
+  }
+
+  public void setOrderLines(List<OrderLine> orderLines) {
+    this.orderLines = orderLines;
+  }
+
+  public EscPosDocket orderNumber(String orderNumber) {
     this.orderNumber = orderNumber;
     return this;
   }
@@ -579,7 +793,7 @@ public class OrderMasterDTO   {
     this.orderNumber = orderNumber;
   }
 
-  public OrderMasterDTO orderPlaceAt(OffsetDateTime orderPlaceAt) {
+  public EscPosDocket orderPlaceAt(OffsetDateTime orderPlaceAt) {
     this.orderPlaceAt = orderPlaceAt;
     return this;
   }
@@ -600,7 +814,7 @@ public class OrderMasterDTO   {
     this.orderPlaceAt = orderPlaceAt;
   }
 
-  public OrderMasterDTO orderStatus(String orderStatus) {
+  public EscPosDocket orderStatus(String orderStatus) {
     this.orderStatus = orderStatus;
     return this;
   }
@@ -620,7 +834,7 @@ public class OrderMasterDTO   {
     this.orderStatus = orderStatus;
   }
 
-  public OrderMasterDTO paymentRef(String paymentRef) {
+  public EscPosDocket paymentRef(String paymentRef) {
     this.paymentRef = paymentRef;
     return this;
   }
@@ -640,7 +854,7 @@ public class OrderMasterDTO   {
     this.paymentRef = paymentRef;
   }
 
-  public OrderMasterDTO paymentStatus(String paymentStatus) {
+  public EscPosDocket paymentStatus(String paymentStatus) {
     this.paymentStatus = paymentStatus;
     return this;
   }
@@ -660,7 +874,27 @@ public class OrderMasterDTO   {
     this.paymentStatus = paymentStatus;
   }
 
-  public OrderMasterDTO phone(Long phone) {
+  public EscPosDocket paymentStatusForDocket(String paymentStatusForDocket) {
+    this.paymentStatusForDocket = paymentStatusForDocket;
+    return this;
+  }
+
+  /**
+   * Get paymentStatusForDocket
+   * @return paymentStatusForDocket
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getPaymentStatusForDocket() {
+    return paymentStatusForDocket;
+  }
+
+  public void setPaymentStatusForDocket(String paymentStatusForDocket) {
+    this.paymentStatusForDocket = paymentStatusForDocket;
+  }
+
+  public EscPosDocket phone(Long phone) {
     this.phone = phone;
     return this;
   }
@@ -680,7 +914,7 @@ public class OrderMasterDTO   {
     this.phone = phone;
   }
 
-  public OrderMasterDTO pincode(String pincode) {
+  public EscPosDocket pincode(String pincode) {
     this.pincode = pincode;
     return this;
   }
@@ -700,7 +934,7 @@ public class OrderMasterDTO   {
     this.pincode = pincode;
   }
 
-  public OrderMasterDTO preOrderDate(OffsetDateTime preOrderDate) {
+  public EscPosDocket preOrderDate(OffsetDateTime preOrderDate) {
     this.preOrderDate = preOrderDate;
     return this;
   }
@@ -721,7 +955,27 @@ public class OrderMasterDTO   {
     this.preOrderDate = preOrderDate;
   }
 
-  public OrderMasterDTO refundedAmount(Double refundedAmount) {
+  public EscPosDocket products(String products) {
+    this.products = products;
+    return this;
+  }
+
+  /**
+   * Get products
+   * @return products
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getProducts() {
+    return products;
+  }
+
+  public void setProducts(String products) {
+    this.products = products;
+  }
+
+  public EscPosDocket refundedAmount(Double refundedAmount) {
     this.refundedAmount = refundedAmount;
     return this;
   }
@@ -741,7 +995,7 @@ public class OrderMasterDTO   {
     this.refundedAmount = refundedAmount;
   }
 
-  public OrderMasterDTO roadNameAreaOrStreet(String roadNameAreaOrStreet) {
+  public EscPosDocket roadNameAreaOrStreet(String roadNameAreaOrStreet) {
     this.roadNameAreaOrStreet = roadNameAreaOrStreet;
     return this;
   }
@@ -761,7 +1015,7 @@ public class OrderMasterDTO   {
     this.roadNameAreaOrStreet = roadNameAreaOrStreet;
   }
 
-  public OrderMasterDTO serviceCharge(Double serviceCharge) {
+  public EscPosDocket serviceCharge(Double serviceCharge) {
     this.serviceCharge = serviceCharge;
     return this;
   }
@@ -781,7 +1035,7 @@ public class OrderMasterDTO   {
     this.serviceCharge = serviceCharge;
   }
 
-  public OrderMasterDTO state(String state) {
+  public EscPosDocket state(String state) {
     this.state = state;
     return this;
   }
@@ -801,7 +1055,7 @@ public class OrderMasterDTO   {
     this.state = state;
   }
 
-  public OrderMasterDTO storeIdpcode(String storeIdpcode) {
+  public EscPosDocket storeIdpcode(String storeIdpcode) {
     this.storeIdpcode = storeIdpcode;
     return this;
   }
@@ -821,7 +1075,7 @@ public class OrderMasterDTO   {
     this.storeIdpcode = storeIdpcode;
   }
 
-  public OrderMasterDTO storeName(String storeName) {
+  public EscPosDocket storeName(String storeName) {
     this.storeName = storeName;
     return this;
   }
@@ -841,7 +1095,7 @@ public class OrderMasterDTO   {
     this.storeName = storeName;
   }
 
-  public OrderMasterDTO storePhone(Long storePhone) {
+  public EscPosDocket storePhone(Long storePhone) {
     this.storePhone = storePhone;
     return this;
   }
@@ -861,7 +1115,7 @@ public class OrderMasterDTO   {
     this.storePhone = storePhone;
   }
 
-  public OrderMasterDTO storelocationName(String storelocationName) {
+  public EscPosDocket storelocationName(String storelocationName) {
     this.storelocationName = storelocationName;
     return this;
   }
@@ -881,7 +1135,7 @@ public class OrderMasterDTO   {
     this.storelocationName = storelocationName;
   }
 
-  public OrderMasterDTO subTotal(Double subTotal) {
+  public EscPosDocket subTotal(Double subTotal) {
     this.subTotal = subTotal;
     return this;
   }
@@ -901,7 +1155,7 @@ public class OrderMasterDTO   {
     this.subTotal = subTotal;
   }
 
-  public OrderMasterDTO totalDue(Double totalDue) {
+  public EscPosDocket totalDue(Double totalDue) {
     this.totalDue = totalDue;
     return this;
   }
@@ -921,7 +1175,7 @@ public class OrderMasterDTO   {
     this.totalDue = totalDue;
   }
 
-  public OrderMasterDTO zoneId(String zoneId) {
+  public EscPosDocket zoneId(String zoneId) {
     this.zoneId = zoneId;
     return this;
   }
@@ -950,88 +1204,108 @@ public class OrderMasterDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrderMasterDTO orderMasterDTO = (OrderMasterDTO) o;
-    return Objects.equals(this.addressType, orderMasterDTO.addressType) &&
-        Objects.equals(this.allergyNote, orderMasterDTO.allergyNote) &&
-        Objects.equals(this.alternatePhone, orderMasterDTO.alternatePhone) &&
-        Objects.equals(this.cancellationRef, orderMasterDTO.cancellationRef) &&
-        Objects.equals(this.city, orderMasterDTO.city) &&
-        Objects.equals(this.customerId, orderMasterDTO.customerId) &&
-        Objects.equals(this.customerName, orderMasterDTO.customerName) &&
-        Objects.equals(this.customerOrder, orderMasterDTO.customerOrder) &&
-        Objects.equals(this.deliveryCharge, orderMasterDTO.deliveryCharge) &&
-        Objects.equals(this.email, orderMasterDTO.email) &&
-        Objects.equals(this.expectedDelivery, orderMasterDTO.expectedDelivery) &&
-        Objects.equals(this.houseNoOrBuildingName, orderMasterDTO.houseNoOrBuildingName) &&
-        Objects.equals(this.id, orderMasterDTO.id) &&
-        Objects.equals(this.landmark, orderMasterDTO.landmark) &&
-        Objects.equals(this.loyaltyPoint, orderMasterDTO.loyaltyPoint) &&
-        Objects.equals(this.methodOfOrder, orderMasterDTO.methodOfOrder) &&
-        Objects.equals(this.nextTaskId, orderMasterDTO.nextTaskId) &&
-        Objects.equals(this.notes, orderMasterDTO.notes) &&
-        Objects.equals(this.orderAcceptedAt, orderMasterDTO.orderAcceptedAt) &&
-        Objects.equals(this.orderDiscountAmount, orderMasterDTO.orderDiscountAmount) &&
-        Objects.equals(this.orderFromCustomer, orderMasterDTO.orderFromCustomer) &&
-        Objects.equals(this.orderNumber, orderMasterDTO.orderNumber) &&
-        Objects.equals(this.orderPlaceAt, orderMasterDTO.orderPlaceAt) &&
-        Objects.equals(this.orderStatus, orderMasterDTO.orderStatus) &&
-        Objects.equals(this.paymentRef, orderMasterDTO.paymentRef) &&
-        Objects.equals(this.paymentStatus, orderMasterDTO.paymentStatus) &&
-        Objects.equals(this.phone, orderMasterDTO.phone) &&
-        Objects.equals(this.pincode, orderMasterDTO.pincode) &&
-        Objects.equals(this.preOrderDate, orderMasterDTO.preOrderDate) &&
-        Objects.equals(this.refundedAmount, orderMasterDTO.refundedAmount) &&
-        Objects.equals(this.roadNameAreaOrStreet, orderMasterDTO.roadNameAreaOrStreet) &&
-        Objects.equals(this.serviceCharge, orderMasterDTO.serviceCharge) &&
-        Objects.equals(this.state, orderMasterDTO.state) &&
-        Objects.equals(this.storeIdpcode, orderMasterDTO.storeIdpcode) &&
-        Objects.equals(this.storeName, orderMasterDTO.storeName) &&
-        Objects.equals(this.storePhone, orderMasterDTO.storePhone) &&
-        Objects.equals(this.storelocationName, orderMasterDTO.storelocationName) &&
-        Objects.equals(this.subTotal, orderMasterDTO.subTotal) &&
-        Objects.equals(this.totalDue, orderMasterDTO.totalDue) &&
-        Objects.equals(this.zoneId, orderMasterDTO.zoneId);
+    EscPosDocket escPosDocket = (EscPosDocket) o;
+    return Objects.equals(this.addressType, escPosDocket.addressType) &&
+        Objects.equals(this.allergyNote, escPosDocket.allergyNote) &&
+        Objects.equals(this.alternatePhone, escPosDocket.alternatePhone) &&
+        Objects.equals(this.attentionForFirstOrder, escPosDocket.attentionForFirstOrder) &&
+        Objects.equals(this.cancellationRef, escPosDocket.cancellationRef) &&
+        Objects.equals(this.city, escPosDocket.city) &&
+        Objects.equals(this.content, escPosDocket.content) &&
+        Objects.equals(this.customerDetails, escPosDocket.customerDetails) &&
+        Objects.equals(this.customerId, escPosDocket.customerId) &&
+        Objects.equals(this.customerName, escPosDocket.customerName) &&
+        Objects.equals(this.customerOrder, escPosDocket.customerOrder) &&
+        Objects.equals(this.customerOrderDetails, escPosDocket.customerOrderDetails) &&
+        Objects.equals(this.deliveryCharge, escPosDocket.deliveryCharge) &&
+        Objects.equals(this.discountAndTotal, escPosDocket.discountAndTotal) &&
+        Objects.equals(this.email, escPosDocket.email) &&
+        Objects.equals(this.expectedDelivery, escPosDocket.expectedDelivery) &&
+        Objects.equals(this.footer, escPosDocket.footer) &&
+        Objects.equals(this.headers, escPosDocket.headers) &&
+        Objects.equals(this.houseNoOrBuildingName, escPosDocket.houseNoOrBuildingName) &&
+        Objects.equals(this.id, escPosDocket.id) &&
+        Objects.equals(this.landmark, escPosDocket.landmark) &&
+        Objects.equals(this.loyaltyPoint, escPosDocket.loyaltyPoint) &&
+        Objects.equals(this.methodOfOrder, escPosDocket.methodOfOrder) &&
+        Objects.equals(this.notes, escPosDocket.notes) &&
+        Objects.equals(this.offerLines, escPosDocket.offerLines) &&
+        Objects.equals(this.orderAcceptedAt, escPosDocket.orderAcceptedAt) &&
+        Objects.equals(this.orderDiscountAmount, escPosDocket.orderDiscountAmount) &&
+        Objects.equals(this.orderFromCustomer, escPosDocket.orderFromCustomer) &&
+        Objects.equals(this.orderLines, escPosDocket.orderLines) &&
+        Objects.equals(this.orderNumber, escPosDocket.orderNumber) &&
+        Objects.equals(this.orderPlaceAt, escPosDocket.orderPlaceAt) &&
+        Objects.equals(this.orderStatus, escPosDocket.orderStatus) &&
+        Objects.equals(this.paymentRef, escPosDocket.paymentRef) &&
+        Objects.equals(this.paymentStatus, escPosDocket.paymentStatus) &&
+        Objects.equals(this.paymentStatusForDocket, escPosDocket.paymentStatusForDocket) &&
+        Objects.equals(this.phone, escPosDocket.phone) &&
+        Objects.equals(this.pincode, escPosDocket.pincode) &&
+        Objects.equals(this.preOrderDate, escPosDocket.preOrderDate) &&
+        Objects.equals(this.products, escPosDocket.products) &&
+        Objects.equals(this.refundedAmount, escPosDocket.refundedAmount) &&
+        Objects.equals(this.roadNameAreaOrStreet, escPosDocket.roadNameAreaOrStreet) &&
+        Objects.equals(this.serviceCharge, escPosDocket.serviceCharge) &&
+        Objects.equals(this.state, escPosDocket.state) &&
+        Objects.equals(this.storeIdpcode, escPosDocket.storeIdpcode) &&
+        Objects.equals(this.storeName, escPosDocket.storeName) &&
+        Objects.equals(this.storePhone, escPosDocket.storePhone) &&
+        Objects.equals(this.storelocationName, escPosDocket.storelocationName) &&
+        Objects.equals(this.subTotal, escPosDocket.subTotal) &&
+        Objects.equals(this.totalDue, escPosDocket.totalDue) &&
+        Objects.equals(this.zoneId, escPosDocket.zoneId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressType, allergyNote, alternatePhone, cancellationRef, city, customerId, customerName, customerOrder, deliveryCharge, email, expectedDelivery, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, nextTaskId, notes, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, phone, pincode, preOrderDate, refundedAmount, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
+    return Objects.hash(addressType, allergyNote, alternatePhone, attentionForFirstOrder, cancellationRef, city, content, customerDetails, customerId, customerName, customerOrder, customerOrderDetails, deliveryCharge, discountAndTotal, email, expectedDelivery, footer, headers, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, paymentStatusForDocket, phone, pincode, preOrderDate, products, refundedAmount, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrderMasterDTO {\n");
+    sb.append("class EscPosDocket {\n");
     
     sb.append("    addressType: ").append(toIndentedString(addressType)).append("\n");
     sb.append("    allergyNote: ").append(toIndentedString(allergyNote)).append("\n");
     sb.append("    alternatePhone: ").append(toIndentedString(alternatePhone)).append("\n");
+    sb.append("    attentionForFirstOrder: ").append(toIndentedString(attentionForFirstOrder)).append("\n");
     sb.append("    cancellationRef: ").append(toIndentedString(cancellationRef)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    customerDetails: ").append(toIndentedString(customerDetails)).append("\n");
     sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    customerName: ").append(toIndentedString(customerName)).append("\n");
     sb.append("    customerOrder: ").append(toIndentedString(customerOrder)).append("\n");
+    sb.append("    customerOrderDetails: ").append(toIndentedString(customerOrderDetails)).append("\n");
     sb.append("    deliveryCharge: ").append(toIndentedString(deliveryCharge)).append("\n");
+    sb.append("    discountAndTotal: ").append(toIndentedString(discountAndTotal)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    expectedDelivery: ").append(toIndentedString(expectedDelivery)).append("\n");
+    sb.append("    footer: ").append(toIndentedString(footer)).append("\n");
+    sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("    houseNoOrBuildingName: ").append(toIndentedString(houseNoOrBuildingName)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    landmark: ").append(toIndentedString(landmark)).append("\n");
     sb.append("    loyaltyPoint: ").append(toIndentedString(loyaltyPoint)).append("\n");
     sb.append("    methodOfOrder: ").append(toIndentedString(methodOfOrder)).append("\n");
-    sb.append("    nextTaskId: ").append(toIndentedString(nextTaskId)).append("\n");
     sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
+    sb.append("    offerLines: ").append(toIndentedString(offerLines)).append("\n");
     sb.append("    orderAcceptedAt: ").append(toIndentedString(orderAcceptedAt)).append("\n");
     sb.append("    orderDiscountAmount: ").append(toIndentedString(orderDiscountAmount)).append("\n");
     sb.append("    orderFromCustomer: ").append(toIndentedString(orderFromCustomer)).append("\n");
+    sb.append("    orderLines: ").append(toIndentedString(orderLines)).append("\n");
     sb.append("    orderNumber: ").append(toIndentedString(orderNumber)).append("\n");
     sb.append("    orderPlaceAt: ").append(toIndentedString(orderPlaceAt)).append("\n");
     sb.append("    orderStatus: ").append(toIndentedString(orderStatus)).append("\n");
     sb.append("    paymentRef: ").append(toIndentedString(paymentRef)).append("\n");
     sb.append("    paymentStatus: ").append(toIndentedString(paymentStatus)).append("\n");
+    sb.append("    paymentStatusForDocket: ").append(toIndentedString(paymentStatusForDocket)).append("\n");
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    pincode: ").append(toIndentedString(pincode)).append("\n");
     sb.append("    preOrderDate: ").append(toIndentedString(preOrderDate)).append("\n");
+    sb.append("    products: ").append(toIndentedString(products)).append("\n");
     sb.append("    refundedAmount: ").append(toIndentedString(refundedAmount)).append("\n");
     sb.append("    roadNameAreaOrStreet: ").append(toIndentedString(roadNameAreaOrStreet)).append("\n");
     sb.append("    serviceCharge: ").append(toIndentedString(serviceCharge)).append("\n");

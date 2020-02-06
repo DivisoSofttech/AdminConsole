@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.diviso.graeshoppe.client.report.model.AuxItem;
+import com.diviso.graeshoppe.client.report.model.CancellationSummary;
 import com.diviso.graeshoppe.client.report.model.OfferLine;
 import com.diviso.graeshoppe.client.report.model.OrderLine;
 import com.diviso.graeshoppe.client.report.model.OrderMaster;
@@ -29,7 +30,7 @@ public interface ReportQueryService {
 
 	public Long countByOrderStatus(String orderStatus);
 	
-	public ResponseEntity<PageOfOrderMaster> findByExpectedDeliveryBetween(OffsetDateTime from, OffsetDateTime to,Pageable pageable);
+	public ResponseEntity<PageOfOrderMaster> findByExpectedDeliveryBetween(String from, String to,Pageable pageable);
 
 	public ResponseEntity<PdfDTO> getReportSummaryAsPdf(String date,String storeId);
 
@@ -65,6 +66,8 @@ public interface ReportQueryService {
 			String methodOfOrder, String paymentStatus);
 
 	public ResponseEntity<PdfDTO> getCancellationReportAsPdf(String date, String storeName);
+
+	public ResponseEntity<CancellationSummary> cancellationSummaryForView(String date, String storeName);
 	
 	
 }
