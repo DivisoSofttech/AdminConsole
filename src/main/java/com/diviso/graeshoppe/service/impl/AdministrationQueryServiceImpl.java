@@ -392,6 +392,7 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 				searchSourceBuilder.query(dslQuery);
 				searchSourceBuilder.sort("id", SortOrder.ASC);
 				SearchRequest searchRequest = new SearchRequest("subterm");
+				searchRequest.source(searchSourceBuilder);
 				SearchResponse searchResponse = null;
 				try {
 					searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
