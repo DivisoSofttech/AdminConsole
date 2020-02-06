@@ -575,8 +575,7 @@ public class QueryResource {
 	}
 	
 	@GetMapping("/cancellationview/{date}/{storeName}")
-	public ResponseEntity<CancellationSummary> cancellationSummaryForView(@PathVariable String date,@RequestParam(value="storeName",required = false)
-			 String storeName) {
+	public ResponseEntity<CancellationSummary> cancellationSummaryForView(@PathVariable String date,@PathVariable String storeName) {
 		return reportQueryService.cancellationSummaryForView(date, storeName);
 	}
 }
