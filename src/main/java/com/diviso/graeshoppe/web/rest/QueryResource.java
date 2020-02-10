@@ -584,7 +584,7 @@ public class QueryResource {
 	public ResponseEntity<CancellationSummary> cancellationSummaryForView(@PathVariable String date,@PathVariable String storeName) {
 		return reportQueryService.cancellationSummaryForView(date, storeName);
 	}
-	@GetMapping("/findOrderMasterByOrderNumber")
+	@GetMapping("/findOrderMasterByOrderNumber/{orderNumber}")
 	public ResponseEntity<OrderMaster> findOrderMasterByOrderNumber(@PathVariable String orderNumber){
 		log.debug("<<<<<<<<<<<findOrderMasterByOrderNumber>>>>>>>{}",orderNumber);
 		return reportQueryService.findOrderMasterByOrderNumber(orderNumber);
