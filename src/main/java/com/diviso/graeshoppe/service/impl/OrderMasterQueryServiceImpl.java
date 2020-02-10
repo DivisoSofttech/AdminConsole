@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.diviso.graeshoppe.client.report.api.QueryResourceApi;
 import com.diviso.graeshoppe.client.report.model.OrderMaster;
+import com.diviso.graeshoppe.client.report.model.OrderMasterDTO;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.service.OrderMasterQueryService;
 
@@ -30,6 +31,12 @@ public class OrderMasterQueryServiceImpl implements OrderMasterQueryService{
 		return queryResourceApi.getOrdersByFilterUsingGET(fromDate, toDate, methodOfOrder, pageNumber, paymentStatus, size, sort, storeId);
 		
 	
+	}
+
+	@Override
+	public ResponseEntity<OrderMasterDTO> findByOrderNumber(String orderNumber) {
+	
+		return queryResourceApi.findOrderMasterByOrderNumberUsingGET(orderNumber);
 	}
 	
 	

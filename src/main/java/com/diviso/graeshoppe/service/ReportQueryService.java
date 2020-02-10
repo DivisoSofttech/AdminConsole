@@ -16,6 +16,7 @@ import com.diviso.graeshoppe.client.report.model.CancellationSummary;
 import com.diviso.graeshoppe.client.report.model.OfferLine;
 import com.diviso.graeshoppe.client.report.model.OrderLine;
 import com.diviso.graeshoppe.client.report.model.OrderMaster;
+import com.diviso.graeshoppe.client.report.model.OrderMasterDTO;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
 import com.diviso.graeshoppe.service.dto.PdfDTO;
@@ -68,6 +69,7 @@ public interface ReportQueryService {
 	public ResponseEntity<PdfDTO> getCancellationReportAsPdf(String date, String storeName);
 
 	public ResponseEntity<CancellationSummary> cancellationSummaryForView(String date, String storeName);
+	
 	
 	
 }

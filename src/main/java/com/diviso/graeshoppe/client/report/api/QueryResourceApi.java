@@ -10,6 +10,7 @@ import com.diviso.graeshoppe.client.report.model.CancellationSummary;
 import com.diviso.graeshoppe.client.report.model.EscPosDocket;
 import com.diviso.graeshoppe.client.report.model.OfferLine;
 import com.diviso.graeshoppe.client.report.model.OrderLine;
+import com.diviso.graeshoppe.client.report.model.OrderMasterDTO;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
 import io.swagger.annotations.*;
@@ -31,7 +32,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-06T14:12:57.765+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-10T12:30:31.405+05:30[Asia/Kolkata]")
 
 @Api(value = "QueryResource", description = "the QueryResource API")
 public interface QueryResourceApi {
@@ -178,6 +179,18 @@ public interface QueryResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<PageOfOrderMaster> findOrderMasterByExpectedDeliveryBetweenUsingGET(@ApiParam(value = "from",required=true) @PathVariable("from") String from,@ApiParam(value = "to",required=true) @PathVariable("to") String to,@ApiParam(value = "Page number of the requested page") @Valid @RequestParam(value = "page", required = false) Integer page,@ApiParam(value = "Size of a page") @Valid @RequestParam(value = "size", required = false) Integer size,@ApiParam(value = "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.") @Valid @RequestParam(value = "sort", required = false) List<String> sort);
+
+
+    @ApiOperation(value = "findOrderMasterByOrderNumber", nickname = "findOrderMasterByOrderNumberUsingGET", notes = "", response = OrderMasterDTO.class, tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = OrderMasterDTO.class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/findOrderMasterByOrderNumber/{orderNumber}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<OrderMasterDTO> findOrderMasterByOrderNumberUsingGET(@ApiParam(value = "orderNumber",required=true) @PathVariable("orderNumber") String orderNumber);
 
 
     @ApiOperation(value = "findOrderMasterCountByExpectedDeliveryBetween", nickname = "findOrderMasterCountByExpectedDeliveryBetweenUsingGET", notes = "", response = Long.class, tags={ "query-resource", })
@@ -358,6 +371,18 @@ public interface QueryResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<byte[]> getOrderSummaryByDateAndStoreNameAsPdfUsingGET(@ApiParam(value = "date",required=true) @PathVariable("date") String date,@ApiParam(value = "storeId",required=true) @PathVariable("storeId") String storeId);
+
+
+    @ApiOperation(value = "getOrderTimes", nickname = "getOrderTimesUsingGET", notes = "", response = String.class, tags={ "query-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = String.class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/docketOrderTime/{orderNumber}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<String> getOrderTimesUsingGET(@ApiParam(value = "orderNumber",required=true) @PathVariable("orderNumber") String orderNumber);
 
 
     @ApiOperation(value = "getOrdersByFilter", nickname = "getOrdersByFilterUsingGET", notes = "", response = PageOfOrderMaster.class, tags={ "query-resource", })

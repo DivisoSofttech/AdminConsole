@@ -45,6 +45,7 @@ import com.diviso.graeshoppe.client.report.model.CancellationSummary;
 import com.diviso.graeshoppe.client.report.model.OfferLine;
 import com.diviso.graeshoppe.client.report.model.OrderLine;
 import com.diviso.graeshoppe.client.report.model.OrderMaster;
+import com.diviso.graeshoppe.client.report.model.OrderMasterDTO;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
 import com.diviso.graeshoppe.client.store.model.Store;
@@ -115,6 +116,11 @@ public class QueryResource {
 	@GetMapping("/findOrderCountByStatusName/{statusName}")
 	public Long findOrderCountByStatusName(@PathVariable String statusName) {
 		return reportQueryService.countByOrderStatus(statusName);
+	}
+
+	@GetMapping("/findOrderMasterByOrderNumber/{orderNumber}")
+	public ResponseEntity<OrderMasterDTO>  findOrderMasterByOrderMaster(@PathVariable String orderNumber) {
+		return orderMasterQueryService.findByOrderNumber(orderNumber);
 	}
 
 	@GetMapping("/findOrderMasterByExpectedDeliveryBetween/{from}/{to}")

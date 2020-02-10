@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
  * EscPosDocket
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-06T14:12:57.765+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-10T12:30:31.405+05:30[Asia/Kolkata]")
 
 public class EscPosDocket   {
   @JsonProperty("addressType")
@@ -118,6 +118,9 @@ public class EscPosDocket   {
 
   @JsonProperty("orderStatus")
   private String orderStatus = null;
+
+  @JsonProperty("orderTimes")
+  private String orderTimes = null;
 
   @JsonProperty("paymentRef")
   private String paymentRef = null;
@@ -834,6 +837,26 @@ public class EscPosDocket   {
     this.orderStatus = orderStatus;
   }
 
+  public EscPosDocket orderTimes(String orderTimes) {
+    this.orderTimes = orderTimes;
+    return this;
+  }
+
+  /**
+   * Get orderTimes
+   * @return orderTimes
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getOrderTimes() {
+    return orderTimes;
+  }
+
+  public void setOrderTimes(String orderTimes) {
+    this.orderTimes = orderTimes;
+  }
+
   public EscPosDocket paymentRef(String paymentRef) {
     this.paymentRef = paymentRef;
     return this;
@@ -1237,6 +1260,7 @@ public class EscPosDocket   {
         Objects.equals(this.orderNumber, escPosDocket.orderNumber) &&
         Objects.equals(this.orderPlaceAt, escPosDocket.orderPlaceAt) &&
         Objects.equals(this.orderStatus, escPosDocket.orderStatus) &&
+        Objects.equals(this.orderTimes, escPosDocket.orderTimes) &&
         Objects.equals(this.paymentRef, escPosDocket.paymentRef) &&
         Objects.equals(this.paymentStatus, escPosDocket.paymentStatus) &&
         Objects.equals(this.paymentStatusForDocket, escPosDocket.paymentStatusForDocket) &&
@@ -1259,7 +1283,7 @@ public class EscPosDocket   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressType, allergyNote, alternatePhone, attentionForFirstOrder, cancellationRef, city, content, customerDetails, customerId, customerName, customerOrder, customerOrderDetails, deliveryCharge, discountAndTotal, email, expectedDelivery, footer, headers, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, paymentRef, paymentStatus, paymentStatusForDocket, phone, pincode, preOrderDate, products, refundedAmount, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
+    return Objects.hash(addressType, allergyNote, alternatePhone, attentionForFirstOrder, cancellationRef, city, content, customerDetails, customerId, customerName, customerOrder, customerOrderDetails, deliveryCharge, discountAndTotal, email, expectedDelivery, footer, headers, houseNoOrBuildingName, id, landmark, loyaltyPoint, methodOfOrder, notes, offerLines, orderAcceptedAt, orderDiscountAmount, orderFromCustomer, orderLines, orderNumber, orderPlaceAt, orderStatus, orderTimes, paymentRef, paymentStatus, paymentStatusForDocket, phone, pincode, preOrderDate, products, refundedAmount, roadNameAreaOrStreet, serviceCharge, state, storeIdpcode, storeName, storePhone, storelocationName, subTotal, totalDue, zoneId);
   }
 
   @Override
@@ -1299,6 +1323,7 @@ public class EscPosDocket   {
     sb.append("    orderNumber: ").append(toIndentedString(orderNumber)).append("\n");
     sb.append("    orderPlaceAt: ").append(toIndentedString(orderPlaceAt)).append("\n");
     sb.append("    orderStatus: ").append(toIndentedString(orderStatus)).append("\n");
+    sb.append("    orderTimes: ").append(toIndentedString(orderTimes)).append("\n");
     sb.append("    paymentRef: ").append(toIndentedString(paymentRef)).append("\n");
     sb.append("    paymentStatus: ").append(toIndentedString(paymentStatus)).append("\n");
     sb.append("    paymentStatusForDocket: ").append(toIndentedString(paymentStatusForDocket)).append("\n");
