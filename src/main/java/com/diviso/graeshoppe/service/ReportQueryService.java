@@ -70,7 +70,7 @@ public interface ReportQueryService {
 
 	public ResponseEntity<CancellationSummary> cancellationSummaryForView(String date, String storeName);
 
-	public ResponseEntity<OrderMaster> findOrderMasterByOrderNumber(String orderNumber);
+	public ResponseEntity<OrderMaster> getOrderMasterByOrderNumber(String orderNumber);
 	
 	
 	

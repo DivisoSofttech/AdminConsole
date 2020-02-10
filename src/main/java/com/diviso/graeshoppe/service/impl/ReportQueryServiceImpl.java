@@ -186,9 +186,9 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 
 
 	@Override
-	public ResponseEntity<OrderMaster> findOrderMasterByOrderNumber(String orderNumber) {
+	public ResponseEntity<OrderMaster> getOrderMasterByOrderNumber(String orderNumber) {
 		log.debug("<<<<<<<<<<<< findOrderMasterByOrderNumber >>>>>>>>>>>{}",orderNumber);
-		QueryBuilder dslBuilder = QueryBuilders.termQuery("orderNumber", orderNumber);
+		QueryBuilder dslBuilder = QueryBuilders.termQuery("orderNumber.keyword", orderNumber);
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(dslBuilder);
 		SearchResponse response = serviceUtility.searchResponseForObject("ordermaster", dslBuilder);
