@@ -4,6 +4,10 @@ import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.List;
 
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +20,11 @@ import com.diviso.graeshoppe.client.report.model.AuxItem;
 import com.diviso.graeshoppe.client.report.model.CancellationSummary;
 import com.diviso.graeshoppe.client.report.model.OfferLine;
 import com.diviso.graeshoppe.client.report.model.OrderLine;
+import com.diviso.graeshoppe.client.report.model.OrderMaster;
+import com.diviso.graeshoppe.client.report.model.OrderMasterDTO;
 import com.diviso.graeshoppe.client.report.model.PageOfOrderMaster;
 import com.diviso.graeshoppe.client.report.model.ReportSummary;
+import com.diviso.graeshoppe.config.elasticsearch.ServiceUtility;
 import com.diviso.graeshoppe.service.ReportQueryService;
 import com.diviso.graeshoppe.service.dto.PdfDTO;
 
@@ -26,6 +33,9 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 
 	@Autowired
 	QueryResourceApi queryResourceApi;
+	
+	@Autowired
+	ServiceUtility serviceUtility;
 	
 	private final Logger log = LoggerFactory.getLogger(ReportQueryServiceImpl.class);
 	
@@ -172,6 +182,17 @@ public class ReportQueryServiceImpl implements ReportQueryService {
 	@Override
 	public ResponseEntity<CancellationSummary> cancellationSummaryForView(String date, String storeName) {
 		return queryResourceApi.createCancellationReportSummaryViewUsingGET(date, storeName);
+	}
+
+
+	@Override
+	public ResponseEntity<OrderMaster> findOrderMasterByOrderNumber(String orderNumber) {
+		log.debug("<<<<<<<<<<<< findOrderMasterByOrderNumber >>>>>>>>>>>{}",orderNumber);
+		QueryBuilder dslBuilder = QueryBuilders.termQuery("orderNumber", orderNumber);
+		SearchSourceBuilder builder = new SearchSourceBuilder();
+		builder.query(dslBuilder);
+		SearchResponse response = serviceUtility.searchResponseForObject("ordermaster", dslBuilder);
+		return ResponseEntity.ok().body(serviceUtility.getObjectResult(response, new OrderMaster()));
 	}
 	
 	

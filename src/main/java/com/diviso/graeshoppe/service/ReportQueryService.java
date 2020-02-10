@@ -69,6 +69,8 @@ public interface ReportQueryService {
 	public ResponseEntity<PdfDTO> getCancellationReportAsPdf(String date, String storeName);
 
 	public ResponseEntity<CancellationSummary> cancellationSummaryForView(String date, String storeName);
+
+	public ResponseEntity<OrderMaster> findOrderMasterByOrderNumber(String orderNumber);
 	
 	
 	
