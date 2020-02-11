@@ -441,4 +441,21 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 			
 		}
 
+		@Override
+		public ResponseEntity<List<Term>> getTermByTermId(Long id) {
+			log.debug("<<<<<<<<<getTermByTermId >>>>>>>>>>{}",id );
+			List<Term> terms = new ArrayList<Term>();
+			QueryBuilder dslQuery = QueryBuilders.termQuery("id", id);
+			SearchSourceBuilder builder = new SearchSourceBuilder();
+			builder.query(dslQuery);
+			builder.sort("id", SortOrder.DESC);
+			SearchResponse response = null;
+			SearchHit searchHit[] = response.getHits().getHits();
+			try {
+				response=restHighLevelClient.search(searchRequest, options)
+			}
+			
+			return null;
+		}
+
 }

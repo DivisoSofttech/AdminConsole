@@ -119,5 +119,7 @@ public interface AdministrationQueryService {
 	Page<Term> findallterms(Pageable pageable);
 
 	Page<About> findallabout(Pageable pageable);
+
+	public ResponseEntity<List<Term>> getTermByTermId(Long id);
     
 }

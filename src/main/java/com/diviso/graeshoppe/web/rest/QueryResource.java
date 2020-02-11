@@ -575,7 +575,7 @@ public class QueryResource {
 		return administrationQueryService.findSubTermById(id);
 	}
 	
-	@GetMapping("/findSubTermByTermId/{id}")
+	@GetMapping("/findSubTermBySubTermId/{id}")
 	public List<SubTerm> getSubTermsByTermId(@PathVariable Long id) {
 		return administrationQueryService.getSubTermsByTermId(id);
 	}
@@ -589,6 +589,11 @@ public class QueryResource {
 		log.debug("<<<<<<<<<<<findOrderMasterByOrderNumber>>>>>>>{}",orderNumber);
 		return reportQueryService.getOrderMasterByOrderNumber(orderNumber);
 		
+	}
+	@GetMapping("/findTermByTermId")
+	public ResponseEntity<List<Term>> getTermByTermId(@PathVariable Long id){
+		log.debug("<<<<<<<<< getTermByTermId >>>>>>>{}",id);
+		return administrationQueryService.getTermByTermId(id);
 	}
 	
 }

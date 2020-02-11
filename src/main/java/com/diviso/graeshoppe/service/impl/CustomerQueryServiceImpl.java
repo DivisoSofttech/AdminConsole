@@ -29,7 +29,7 @@ public class CustomerQueryServiceImpl implements CustomerQueryService{
 	public ResponseEntity<Customer> findCustomerByIdpCode(String idpCode) {
 		log.debug("<<<<<<<<<< findCustomerByIdpCode >>>>>>>> impl {}",idpCode);
 		
-		QueryBuilder queryBuilder = QueryBuilders.matchQuery("idpCode", idpCode);
+		QueryBuilder queryBuilder = QueryBuilders.termQuery("idpCode.keyword", idpCode);
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryBuilder);
 		SearchResponse response = serviceUtility.searchResponseForObject("customer", queryBuilder);
