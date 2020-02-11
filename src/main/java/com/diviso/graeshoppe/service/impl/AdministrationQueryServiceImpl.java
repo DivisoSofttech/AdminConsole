@@ -449,13 +449,19 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 			SearchSourceBuilder builder = new SearchSourceBuilder();
 			builder.query(dslQuery);
 			builder.sort("id", SortOrder.DESC);
+			SearchRequest request = new SearchRequest("term");
 			SearchResponse response = null;
 			SearchHit searchHit[] = response.getHits().getHits();
 			try {
-				response=restHighLevelClient.search(searchRequest, options)
+				response=restHighLevelClient.search(request, RequestOptions.DEFAULT);
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+			for(SearchHit hit : searchHit) {
+				terms.add(objectMapper.convertValue(hit.getSourceAsMap(), Term.class));
 			}
 			
-			return null;
+			return ResponseEntity.ok().body(terms);
 		}
 
 }

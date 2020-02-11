@@ -8,7 +8,7 @@ import com.diviso.graeshoppe.client.customer.model.Customer;
 
 public interface CustomerQueryService {
 
-	ResponseEntity<Customer> findCustomerByIdpCode(String idpCode);
+	ResponseEntity<Customer> findCustomerByCustomerUniqueId(String customerUniqueId);
 
 	
 

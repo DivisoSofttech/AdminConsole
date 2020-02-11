@@ -464,11 +464,11 @@ public class QueryResource {
 		return administrationQueryService.findAllCancellationRequests(pageable);
 	}
 	
-	@GetMapping("/findCustomerByIdpCode/{idpCode}")
-	public ResponseEntity<Customer> findCustomerByIdpCode(@PathVariable String idpCode){
-		log.debug("<<<<<<<<<< findCancellationRequest >>>>>>>>{}",idpCode);
+	@GetMapping("/findCustomerByCustomerUniqueId/{customerUniqueId}")
+	public ResponseEntity<Customer> findCustomerByCustomerUniqueId(@PathVariable String customerUniqueId){
+		log.debug("<<<<<<<<<< findCancellationRequest >>>>>>>>{}",customerUniqueId);
 		
-		return customerQueryService.findCustomerByIdpCode(idpCode);
+		return customerQueryService.findCustomerByCustomerUniqueId(customerUniqueId);
 	}
 	@GetMapping("/findCancellationRequestByStatus/{statusName}/{date}")
 	public Page<CancellationRequest> findCancellationRequestByStatus(@PathVariable String statusName,@PathVariable LocalDate date,Pageable pageable){

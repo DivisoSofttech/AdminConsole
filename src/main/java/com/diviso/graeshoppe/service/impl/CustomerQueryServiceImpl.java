@@ -26,10 +26,10 @@ public class CustomerQueryServiceImpl implements CustomerQueryService{
 	ServiceUtility serviceUtility;
 
 	@Override
-	public ResponseEntity<Customer> findCustomerByIdpCode(String idpCode) {
-		log.debug("<<<<<<<<<< findCustomerByIdpCode >>>>>>>> impl {}",idpCode);
+	public ResponseEntity<Customer> findCustomerByCustomerUniqueId(String customerUniqueId) {
+		log.debug("<<<<<<<<<< findCustomerByCustomerUniqueId >>>>>>>> impl {}",customerUniqueId);
 		
-		QueryBuilder queryBuilder = QueryBuilders.termQuery("idpCode.keyword", idpCode);
+		QueryBuilder queryBuilder = QueryBuilders.termQuery("customerUniqueId.keyword", customerUniqueId);
 		SearchSourceBuilder builder = new SearchSourceBuilder();
 		builder.query(queryBuilder);
 		SearchResponse response = serviceUtility.searchResponseForObject("customer", queryBuilder);
