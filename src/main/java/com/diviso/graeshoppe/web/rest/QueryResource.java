@@ -575,9 +575,9 @@ public class QueryResource {
 		return administrationQueryService.findSubTermById(id);
 	}
 	
-	@GetMapping("/findSubTermBySubTermId/{id}")
+	@GetMapping("/findSubTermByTermId/{id}")
 	public List<SubTerm> getSubTermsByTermId(@PathVariable Long id) {
-		return administrationQueryService.getSubTermsByTermId(id);
+		return administrationQueryService.getSubTermsBySubtermId(id);
 	}
 	
 	@GetMapping("/cancellationview/{date}/{storeName}")
@@ -592,7 +592,7 @@ public class QueryResource {
 	}
 	@GetMapping("/findTermByTermId/{id}")
 	public ResponseEntity<List<Term>> getTermByTermId(@PathVariable Long id){
-		log.debug("<<<<<<<<< getTermByTermId >>>>>>>{}",id);
+		log.debug("<<<<<<<<< getTermById >>>>>>>{}",id);
 		return administrationQueryService.getTermByTermId(id);
 	}
 	

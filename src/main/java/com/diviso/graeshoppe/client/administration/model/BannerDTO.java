@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
  * BannerDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-11T11:33:40.718+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-11T16:00:16.475+05:30[Asia/Calcutta]")
 
 public class BannerDTO   {
   @JsonProperty("cost")
