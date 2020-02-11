@@ -590,7 +590,7 @@ public class QueryResource {
 		return reportQueryService.getOrderMasterByOrderNumber(orderNumber);
 		
 	}
-	@GetMapping("/findTermByTermId")
+	@GetMapping("/findTermByTermId/{id}")
 	public ResponseEntity<List<Term>> getTermByTermId(@PathVariable Long id){
 		log.debug("<<<<<<<<< getTermByTermId >>>>>>>{}",id);
 		return administrationQueryService.getTermByTermId(id);
