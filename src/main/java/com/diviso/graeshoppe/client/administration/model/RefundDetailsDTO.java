@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * RefundDetailsDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-27T14:39:15.905+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-11T11:33:40.718+05:30[Asia/Calcutta]")
 
 public class RefundDetailsDTO   {
   @JsonProperty("id")
@@ -24,24 +24,8 @@ public class RefundDetailsDTO   {
 
   @JsonProperty("status")
   private String status = null;
-  @JsonProperty("amount")
-  private Double amount;
 
-  /**
- * @return the amount
- */
-public Double getAmount() {
-	return amount;
-}
-
-/**
- * @param amount the amount to set
- */
-public void setAmount(Double amount) {
-	this.amount = amount;
-}
-
-public RefundDetailsDTO id(Long id) {
+  public RefundDetailsDTO id(Long id) {
     this.id = id;
     return this;
   }

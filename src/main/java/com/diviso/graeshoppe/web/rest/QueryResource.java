@@ -590,4 +590,5 @@ public class QueryResource {
 		return reportQueryService.getOrderMasterByOrderNumber(orderNumber);
 		
 	}
+	
 }
