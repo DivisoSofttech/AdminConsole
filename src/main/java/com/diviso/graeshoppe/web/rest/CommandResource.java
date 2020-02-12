@@ -27,6 +27,7 @@ import com.diviso.graeshoppe.client.aggregator.Term;
 import com.diviso.graeshoppe.client.offer.model.DeductionValueTypeDTO;
 import com.diviso.graeshoppe.client.offer.model.OfferModel;
 import com.diviso.graeshoppe.client.offer.model.OrderModel;
+import com.diviso.graeshoppe.model.RefundDTO;
 import com.diviso.graeshoppe.service.AdministrationCommandService;
 import com.diviso.graeshoppe.service.OfferCommandService;
 import com.diviso.graeshoppe.service.PaymentService;
@@ -238,7 +239,7 @@ public class CommandResource {
 
 	// oderCancellation activiti method 2 method to create an refund dto
 	@PostMapping("/create/refundDetails/{orderId}/{paymentId}")
-	public ResponseEntity<RefundDetailsDTO> createRefund(@RequestBody RefundDetailsDTO refundDetailsDTO,
+	public ResponseEntity<RefundDetailsDTO> createRefund(@RequestBody RefundDTO refundDetailsDTO,
 			@PathVariable String orderId, @PathVariable String paymentId) {
 		log.debug("REST request to save createRefundDetails : {}",
 				refundDetailsDTO + "\n ## orderId = " + orderId + "\n ## paymentId  " + paymentId);

@@ -10,6 +10,7 @@ import com.diviso.graeshoppe.client.administration.api.RefundDetailsResourceApi;
 import com.diviso.graeshoppe.client.administration.model.RefundDetailsDTO;
 import com.diviso.graeshoppe.client.payment.api.BraintreeCommandResourceApi;
 import com.diviso.graeshoppe.client.payment.model.RefundResponse;
+import com.diviso.graeshoppe.model.RefundDTO;
 import com.diviso.graeshoppe.service.PaymentService;
 
 @Service
@@ -24,11 +25,11 @@ public class PaymentServiceImpl implements PaymentService {
 	private RefundDetailsResourceApi refundDetailsResourceApi;
 
 	@Override
-	public ResponseEntity<RefundDetailsDTO> createRefund(RefundDetailsDTO refundDetailsDTO, String orderId,
+	public ResponseEntity<RefundDetailsDTO> createRefund(RefundDTO refundDTO, String orderId,
 			String paymentId) {
 
 		log.debug("REST request to save createRefundDetails : {}",
-				refundDetailsDTO + "\n ## orderId = " + orderId + "\n ## paymentId  " + paymentId);
+				refundDTO + "\n ## orderId = " + orderId + "\n ## paymentId  " + paymentId);
 
 		RefundDetailsDTO result = new RefundDetailsDTO();
 		/* creating an refund request in payment microservice */
@@ -43,7 +44,12 @@ public class PaymentServiceImpl implements PaymentService {
 		 
 
 		if (refundResponse.getStatus().equalsIgnoreCase("completed")) {
-			refundDetailsDTO.setRefundId(refundResponse.getTransactionId());
+			refundDTO.setRefundId(refundResponse.getTransactionId());
+			RefundDetailsDTO refundDetailsDTO=new RefundDetailsDTO();
+			refundDetailsDTO.setRefundId(refundDTO.getRefundId());
+			refundDetailsDTO.setStatus( refundDTO.getStatus());
+
+			
 			result = refundDetailsResourceApi.createRefundDetailsUsingPOST(orderId, refundDetailsDTO).getBody();
 			result.setStatus("completed");
 		} else {
