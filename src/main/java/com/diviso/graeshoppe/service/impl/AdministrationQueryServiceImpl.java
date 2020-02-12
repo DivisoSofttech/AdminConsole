@@ -384,13 +384,13 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 		}
 		
 			@Override
-			public List<SubTerm> getSubTermsByTermId(Long id) {
+			public List<SubTerm> getSubTermsBySubtermId(Long id) {
 				log.debug("input", id);
 				QueryBuilder dslQuery = QueryBuilders.termQuery("term.id", id);
 				SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 				
 				searchSourceBuilder.query(dslQuery);
-				searchSourceBuilder.sort("id", SortOrder.ASC);
+				searchSourceBuilder.sort("subTermId", SortOrder.ASC);
 				SearchRequest searchRequest = new SearchRequest("subterm");
 				searchRequest.source(searchSourceBuilder);
 				SearchResponse searchResponse = null;
@@ -442,13 +442,13 @@ public class AdministrationQueryServiceImpl implements AdministrationQueryServic
 		}
 
 		@Override
-		public ResponseEntity<List<Term>> getTermByTermId(Long id) {
-			log.debug("<<<<<<<<<getTermByTermId >>>>>>>>>>{}",id );
+		public ResponseEntity<List<Term>> getTermByTermId(Long termId) {
+			log.debug("<<<<<<<<<getTermByTermId >>>>>>>>>>{}",termId );
 			List<Term> terms = new ArrayList<Term>();
-			QueryBuilder dslQuery = QueryBuilders.termQuery("id", id);
+			QueryBuilder dslQuery = QueryBuilders.termQuery("id", termId);
 			SearchSourceBuilder builder = new SearchSourceBuilder();
 			builder.query(dslQuery);
-			builder.sort("id", SortOrder.DESC);
+			builder.sort("termId", SortOrder.DESC);
 			SearchRequest request = new SearchRequest("term");
 			SearchResponse response = null;
 			SearchHit searchHit[] = response.getHits().getHits();

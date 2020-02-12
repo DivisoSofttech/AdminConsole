@@ -13,11 +13,14 @@ import javax.validation.constraints.*;
  * TermDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-11T11:33:40.718+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-11T16:00:16.475+05:30[Asia/Calcutta]")
 
 public class TermDTO   {
   @JsonProperty("id")
   private Long id = null;
+
+  @JsonProperty("termId")
+  private Long termId = null;
 
   @JsonProperty("title")
   private String title = null;
@@ -40,6 +43,26 @@ public class TermDTO   {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public TermDTO termId(Long termId) {
+    this.termId = termId;
+    return this;
+  }
+
+  /**
+   * Get termId
+   * @return termId
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getTermId() {
+    return termId;
+  }
+
+  public void setTermId(Long termId) {
+    this.termId = termId;
   }
 
   public TermDTO title(String title) {
@@ -73,12 +96,13 @@ public class TermDTO   {
     }
     TermDTO termDTO = (TermDTO) o;
     return Objects.equals(this.id, termDTO.id) &&
+        Objects.equals(this.termId, termDTO.termId) &&
         Objects.equals(this.title, termDTO.title);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title);
+    return Objects.hash(id, termId, title);
   }
 
   @Override
@@ -87,6 +111,7 @@ public class TermDTO   {
     sb.append("class TermDTO {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    termId: ").append(toIndentedString(termId)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("}");
     return sb.toString();
