@@ -18,6 +18,6 @@ node{
   
   stage('Push Docker Image to GCR'){
     sh 'sudo docker tag customer gcr.io/production-265707/adminconsolegateway:latest'
-    sh 'sudo docker push gcr.io/production-265707/customer'
+    sh 'sudo docker push gcr.io/production-265707/adminconsolegateway'
   }
 }
